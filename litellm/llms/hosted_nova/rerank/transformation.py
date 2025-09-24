@@ -24,7 +24,7 @@ from litellm.llms.base_llm.rerank.transformation import BaseRerankConfig
 from litellm.secret_managers.main import get_secret_str
 
 
-class HostedVLLMRerankError(BaseLLMException):
+class HostedNOVARerankError(BaseLLMException):
     def __init__(
         self,
         status_code: int,
@@ -34,7 +34,7 @@ class HostedVLLMRerankError(BaseLLMException):
         super().__init__(status_code=status_code, message=message, headers=headers)
 
 
-class HostedVLLMRerankConfig(BaseRerankConfig):
+class HostedNOVARerankConfig(BaseRerankConfig):
     def __init__(self) -> None:
         pass
 
@@ -45,7 +45,7 @@ class HostedVLLMRerankConfig(BaseRerankConfig):
             if not api_base.endswith("/v1/rerank"):
                 api_base = f"{api_base}/v1/rerank"
             return api_base
-        raise ValueError("api_base must be provided for Hosted VLLM rerank")
+        raise ValueError("api_base must be provided for Hosted Nova rerank")
 
     def get_supported_cohere_rerank_params(self, model: str) -> list:
         return [
@@ -71,10 +71,10 @@ class HostedVLLMRerankConfig(BaseRerankConfig):
         max_tokens_per_doc: Optional[int] = None,
     ) -> OptionalRerankParams:
         """
-        Map parameters for Hosted VLLM rerank
+        Map parameters for Hosted Nova rerank
         """
         if max_chunks_per_doc is not None:
-            raise ValueError("Hosted VLLM does not support max_chunks_per_doc")
+            raise ValueError("Hosted Nova does not support max_chunks_per_doc")
             
         return OptionalRerankParams(
             query=query,
@@ -91,7 +91,7 @@ class HostedVLLMRerankConfig(BaseRerankConfig):
         api_key: Optional[str] = None,
     ) -> dict:
         if api_key is None:
-            api_key = get_secret_str("HOSTED_VLLM_API_KEY") or "fake-api-key"
+            api_key = get_secret_str("HOSTED_NOVA_API_KEY") or "fake-api-key"
 
         default_headers = {
             "Authorization": f"Bearer {api_key}",
@@ -113,9 +113,9 @@ class HostedVLLMRerankConfig(BaseRerankConfig):
         headers: dict,
     ) -> dict:
         if "query" not in optional_rerank_params:
-            raise ValueError("query is required for Hosted VLLM rerank")
+            raise ValueError("query is required for Hosted Nova rerank")
         if "documents" not in optional_rerank_params:
-            raise ValueError("documents is required for Hosted VLLM rerank")
+            raise ValueError("documents is required for Hosted Nova rerank")
         
         rerank_request = RerankRequest(
             model=model,
@@ -139,7 +139,7 @@ class HostedVLLMRerankConfig(BaseRerankConfig):
         litellm_params: dict = {},
     ) -> RerankResponse:
         """
-        Process response from Hosted VLLM rerank API
+        Process response from Hosted Nova rerank API
         """
         try:
             raw_response_json = raw_response.json()
@@ -153,7 +153,7 @@ class HostedVLLMRerankConfig(BaseRerankConfig):
     def get_error_class(
         self, error_message: str, status_code: int, headers: Union[dict, httpx.Headers]
     ) -> BaseLLMException:
-        return HostedVLLMRerankError(message=error_message, status_code=status_code, headers=headers)
+        return HostedNOVARerankError(message=error_message, status_code=status_code, headers=headers)
 
     def _transform_response(self, response: dict) -> RerankResponse:
         # Extract usage information
