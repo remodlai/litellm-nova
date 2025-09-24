@@ -6,7 +6,7 @@ from litellm._logging import print_verbose
 from litellm.utils import get_optional_params
 
 from ..llms.vllm.completion import handler as vllm_handler
-
+from ..llms.nova.completion import handler as nova_handler
 
 def batch_completion(
     model: str,
@@ -84,6 +84,29 @@ def batch_completion(
             custom_llm_provider=custom_llm_provider,
         )
         results = vllm_handler.batch_completions(
+            model=model,
+            messages=batch_messages,
+            custom_prompt_dict=litellm.custom_prompt_dict,
+            optional_params=optional_params,
+        )
+    elif custom_llm_provider == "nova":
+        optional_params = get_optional_params(
+            functions=functions,
+            function_call=function_call,
+            temperature=temperature,
+            top_p=top_p,
+            n=n,
+            stream=stream or False,
+            stop=stop,
+            max_tokens=max_tokens,
+            presence_penalty=presence_penalty,
+            frequency_penalty=frequency_penalty,
+            logit_bias=logit_bias,
+            user=user,
+            model=model,
+            custom_llm_provider=custom_llm_provider,
+        )
+        results = nova_handler.batch_completions(
             model=model,
             messages=batch_messages,
             custom_prompt_dict=litellm.custom_prompt_dict,

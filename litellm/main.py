@@ -191,6 +191,7 @@ from .llms.vertex_ai.vertex_ai_partner_models.main import VertexAIPartnerModels
 from .llms.vertex_ai.vertex_embeddings.embedding_handler import VertexEmbedding
 from .llms.vertex_ai.vertex_model_garden.main import VertexAIModelGardenModels
 from .llms.vllm.completion import handler as vllm_handler
+from .llms.nova.completion import handler as nova_handler
 from .llms.watsonx.chat.handler import WatsonXChatHandler
 from .llms.watsonx.common_utils import IBMWatsonXMixin
 from .types.llms.anthropic import AnthropicThinkingParam
@@ -3315,6 +3316,35 @@ def completion(  # type: ignore # noqa: PLR0915
 
             ## RESPONSE OBJECT
             response = model_response
+        elif custom_llm_provider == "nova":
+            custom_prompt_dict = custom_prompt_dict or litellm.custom_prompt_dict
+            model_response = nova_handler.completion(
+                model=model,
+                messages=messages,
+                custom_prompt_dict=custom_prompt_dict,
+                model_response=model_response,
+                print_verbose=print_verbose,
+                optional_params=optional_params,
+                litellm_params=litellm_params,
+                logger_fn=logger_fn,
+                encoding=encoding,
+                logging_obj=logging,
+            )
+
+            if (
+                "stream" in optional_params and optional_params["stream"] is True
+            ):  ## [BETA]
+                # don't try to access stream object,
+                response = CustomStreamWrapper(
+                    model_response,
+                    model,
+                    custom_llm_provider="nova",
+                    logging_obj=logging,
+                )
+                return response
+
+            ## RESPONSE OBJECT
+            response = model_response
         elif custom_llm_provider == "ollama":
             api_base = (
                 litellm.api_base
@@ -4148,6 +4178,7 @@ def embedding(  # noqa: PLR0915
         elif (
             custom_llm_provider == "openai_like"
             or custom_llm_provider == "hosted_vllm"
+            or custom_llm_provider == "hosted_nova"
             or custom_llm_provider == "llamafile"
             or custom_llm_provider == "lm_studio"
         ):
@@ -5044,7 +5075,7 @@ def text_completion(  # noqa: PLR0915
 
     if _model is not None and (
         custom_llm_provider == "openai"
-    ):  # for openai compatible endpoints - e.g. vllm, call the native /v1/completions endpoint for text completion calls
+    ):  # for openai compatible endpoints - e.g. vllm, call the native /v1/completions endpoint for text completion calls. for nova, call the native /v1/completions endpoint for text completion calls.
         if _model not in litellm.open_ai_chat_completion_models:
             model = "text-completion-openai/" + _model
             optional_params.pop("custom_llm_provider", None)

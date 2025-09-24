@@ -1108,6 +1108,8 @@ class CustomStreamWrapper:
                     self.received_finish_reason = response_obj["finish_reason"]
             elif self.custom_llm_provider and self.custom_llm_provider == "vllm":
                 completion_obj["content"] = chunk[0].outputs[0].text
+            elif self.custom_llm_provider and self.custom_llm_provider == "nova":
+                completion_obj["content"] = chunk[0].outputs[0].text
             elif (
                 self.custom_llm_provider and self.custom_llm_provider == "aleph_alpha"
             ):  # aleph alpha doesn't provide streaming

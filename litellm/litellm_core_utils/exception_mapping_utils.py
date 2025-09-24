@@ -1955,6 +1955,16 @@ def exception_type(  # type: ignore  # noqa: PLR0915
                             model=model,
                             request=original_exception.request,
                         )
+            elif custom_llm_provider == "nova":
+                if hasattr(original_exception, "status_code"):
+                    if original_exception.status_code == 0:
+                        exception_mapping_worked = True
+                        raise APIConnectionError(
+                            message=f"NovaException - {original_exception.message}",
+                            llm_provider="nova",
+                            model=model,
+                            request=original_exception.request,
+                        )
             elif custom_llm_provider == "azure" or custom_llm_provider == "azure_text":
                 message = get_error_message(error_obj=original_exception)
                 if message is None:

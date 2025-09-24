@@ -2394,7 +2394,7 @@ def _should_drop_param(k, additional_drop_params) -> bool:
         and isinstance(additional_drop_params, list)
         and k in additional_drop_params
     ):
-        return True  # allow user to drop specific params for a model - e.g. vllm - logit bias
+        return True  # allow user to drop specific params for a model - e.g. vllm and nova - logit bias
 
     return False
 
@@ -3908,6 +3908,28 @@ def get_optional_params(  # noqa: PLR0915
         )
     elif custom_llm_provider == "vllm":
         optional_params = litellm.VLLMConfig().map_openai_params(
+            non_default_params=non_default_params,
+            optional_params=optional_params,
+            model=model,
+            drop_params=(
+                drop_params
+                if drop_params is not None and isinstance(drop_params, bool)
+                else False
+            ),
+        )
+    elif custom_llm_provider == "hosted_nova":
+        optional_params = litellm.HostedNOVAChatConfig().map_openai_params(
+            non_default_params=non_default_params,
+            optional_params=optional_params,
+            model=model,
+            drop_params=(
+                drop_params
+                if drop_params is not None and isinstance(drop_params, bool)
+                else False
+            ),
+        )
+    elif custom_llm_provider == "nova":
+        optional_params = litellm.NovaConfig().map_openai_params(
             non_default_params=non_default_params,
             optional_params=optional_params,
             model=model,
@@ -7271,6 +7293,12 @@ class ProviderConfigManager:
             )
 
             return HostedVLLMAudioTranscriptionConfig()
+        elif litellm.LlmProviders.HOSTED_NOVA == provider:
+            from litellm.llms.hosted_nova.transcriptions.transformation import (
+                HostedNOVAudioTranscriptionConfig,
+            )
+
+            return HostedNOVAudioTranscriptionConfig()
         return None
 
     @staticmethod
@@ -7333,6 +7361,13 @@ class ProviderConfigManager:
             )
 
             return VLLMModelInfo()
+
+        elif LlmProviders.NOVA == provider or LlmProviders.HOSTED_NOVA == provider:
+            from litellm.llms.nova.common_utils import (
+                NovaModelInfo,  # experimental approach, to reduce bloat on __init__.py
+            )
+
+            return NovaModelInfo()
         return None
 
     @staticmethod
