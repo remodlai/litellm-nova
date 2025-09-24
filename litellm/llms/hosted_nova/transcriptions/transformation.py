@@ -16,7 +16,7 @@ from litellm.llms.openai.transcriptions.whisper_transformation import (
 from litellm.types.utils import FileTypes
 
 
-class HostedVLLMAudioTranscriptionError(BaseLLMException):
+class HostedNOVAudioTranscriptionError(BaseLLMException):
     def __init__(
         self,
         status_code: int,
@@ -26,7 +26,7 @@ class HostedVLLMAudioTranscriptionError(BaseLLMException):
         super().__init__(status_code=status_code, message=message, headers=headers)
 
 
-class HostedVLLMAudioTranscriptionConfig(OpenAIWhisperAudioTranscriptionConfig):
+class HostedNOVAudioTranscriptionConfig(OpenAIWhisperAudioTranscriptionConfig):
     def __init__(self) -> None:
         pass
 
@@ -45,7 +45,7 @@ class HostedVLLMAudioTranscriptionConfig(OpenAIWhisperAudioTranscriptionConfig):
             if not api_base.endswith("/v1/audio/transcriptions"):
                 api_base = f"{api_base}/v1/audio/transcriptions"
             return api_base
-        raise ValueError("api_base must be provided for Hosted VLLM rerank")
+        raise ValueError("api_base must be provided for Hosted Nova rerank")
 
     def transform_audio_transcription_request(
         self,
@@ -55,7 +55,7 @@ class HostedVLLMAudioTranscriptionConfig(OpenAIWhisperAudioTranscriptionConfig):
         litellm_params: dict,
     ) -> AudioTranscriptionRequestData:
         """
-        Transform the audio transcription request
+        Transform the audio transcription request for Hosted Nova
         """
 
         data = {"model": model, "file": audio_file, **optional_params}

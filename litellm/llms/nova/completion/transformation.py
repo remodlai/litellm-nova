@@ -1,15 +1,15 @@
 """
-Translates from OpenAI's `/v1/chat/completions` to the VLLM sdk `llm.generate`. 
+Translates from OpenAI's `/v1/chat/completions` to the Nova sdk `llm.generate`. 
 
-NOT RECOMMENDED FOR PRODUCTION USE. Use `hosted_vllm/` instead.
+NOT RECOMMENDED FOR PRODUCTION USE. Use `hosted_nova/` instead.
 """
 
-from ...hosted_vllm.chat.transformation import HostedVLLMChatConfig
+from ...hosted_nova.chat.transformation import HostedNOVAChatConfig
 
 
-class VLLMConfig(HostedVLLMChatConfig):
+class NovaConfig(HostedNOVAChatConfig):
     """
-    VLLM SDK supports the same OpenAI params as hosted_vllm.
+    Nova SDK supports the same OpenAI params as hosted_nova.
     """
 
     pass
