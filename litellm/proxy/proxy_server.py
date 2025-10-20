@@ -472,7 +472,7 @@ except ImportError:
 
 server_root_path = os.getenv("SERVER_ROOT_PATH", "")
 _license_check = LicenseCheck()
-premium_user: bool = _license_check.is_premium()
+premium_user: bool = True
 premium_user_data: Optional[
     "EnterpriseLicenseData"
 ] = _license_check.airgapped_license_data

@@ -252,6 +252,8 @@ heroku_key: Optional[str] = None
 cometapi_key: Optional[str] = None
 ovhcloud_key: Optional[str] = None
 lemonade_key: Optional[str] = None
+lexiq_nova_key: Optional[str] = None
+hosted_lexiq_nova_key: Optional[str] = None
 common_cloud_provider_auth_params: dict = {
     "params": ["project", "region_name", "token"],
     "providers": ["vertex_ai", "bedrock", "watsonx", "azure", "vertex_ai_beta"],
@@ -1201,6 +1203,16 @@ from .llms.azure.responses.o_series_transformation import (
 from .llms.litellm_proxy.responses.transformation import (
     LiteLLMProxyResponsesAPIConfig,
 )
+
+from .llms.lexiq_nova.chat.transformation import LexiqNovaConfig
+from .llms.lexiq_nova.completion.transformation import LexiqNovaTextCompletionConfig
+from .llms.lexiq_nova.embedding.transformation import LexiqNovaEmbeddingConfig
+from .llms.lexiq_nova.rerank.transformation import LexiqNovaRerankConfig
+from .llms.lexiq_nova.transcriptions.transformation import LexiqNovaAudioTranscriptionConfig
+from .llms.lexiq_nova.responses.transformation import LexiqNovaResponsesAPIConfig
+from .llms.lexiq_nova.passthrough.transformation import LexiqNovaPassthroughConfig
+from .llms.lexiq_nova.common_utils import LexiqNovaModelInfo
+
 from .llms.openai.chat.o_series_transformation import (
     OpenAIOSeriesConfig as OpenAIO1Config,  # maintain backwards compatibility
     OpenAIOSeriesConfig,

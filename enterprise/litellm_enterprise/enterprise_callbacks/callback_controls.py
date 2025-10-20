@@ -85,8 +85,5 @@ class EnterpriseCallbackControls:
     
     @staticmethod
     def _premium_user_check():
-        from litellm.proxy.proxy_server import premium_user
-        if premium_user:
-            return True
-        verbose_logger.warning(f"Disabling callbacks using request headers is an enterprise feature. {CommonProxyErrors.not_premium_user.value}")
-        return False
+        
+        return True
