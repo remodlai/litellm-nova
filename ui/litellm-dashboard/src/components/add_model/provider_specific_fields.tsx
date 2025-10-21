@@ -510,6 +510,34 @@ const PROVIDER_CREDENTIAL_FIELDS: Record<Providers, ProviderCredentialField[]> =
       required: true,
     },
   ],
+  [Providers.Hosted_Lexiq_Nova]: [
+    {
+      key: "api_base",
+      label: "API Base",
+      placeholder: "https://api.lexiq-nova.com",
+      required: true,
+    },
+    {
+      key: "api_key",
+      label: "API Key",
+      type: "password",
+      required: false,
+    },
+  ],
+  [Providers.Lexiq_Nova]: [
+    {
+      key: "api_base",
+      label: "API Base",
+      placeholder: "http://localhost:8000",
+      required: true,
+    },
+    {
+      key: "api_key",
+      label: "API Key",
+      type: "password",
+      required: false,
+    },
+  ],
   [Providers.Voyage]: [
     {
       key: "api_key",

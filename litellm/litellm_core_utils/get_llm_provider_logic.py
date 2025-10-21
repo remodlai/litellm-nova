@@ -368,6 +368,11 @@ def get_llm_provider(  # noqa: PLR0915
         # bytez models
         elif model.startswith("bytez/"):
             custom_llm_provider = "bytez"
+        # lexiq_nova models
+        elif model.startswith("lexiq_nova/"):
+            custom_llm_provider = "lexiq_nova"
+        elif model.startswith("hosted_lexiq_nova/"):
+            custom_llm_provider = "hosted_lexiq_nova"
         elif model.startswith("lemonade/"):
             custom_llm_provider = "lemonade"
         elif model.startswith("heroku/"):

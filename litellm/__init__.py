@@ -252,6 +252,8 @@ heroku_key: Optional[str] = None
 cometapi_key: Optional[str] = None
 ovhcloud_key: Optional[str] = None
 lemonade_key: Optional[str] = None
+lexiq_nova_key: Optional[str] = None
+hosted_lexiq_nova_key: Optional[str] = None
 common_cloud_provider_auth_params: dict = {
     "params": ["project", "region_name", "token"],
     "providers": ["vertex_ai", "bedrock", "watsonx", "azure", "vertex_ai_beta"],
@@ -502,6 +504,10 @@ galadriel_models: Set = set()
 nvidia_nim_models: Set = set()
 sambanova_models: Set = set()
 sambanova_embedding_models: Set = set()
+lexiq_nova_models: Set = set()
+lexiq_nova_embedding_models: Set = set()
+hosted_lexiq_nova_models: Set = set()
+hosted_lexiq_nova_embedding_models: Set = set()
 novita_models: Set = set()
 assemblyai_models: Set = set()
 snowflake_models: Set = set()
@@ -700,6 +706,14 @@ def add_known_models():
             sambanova_models.add(key)
         elif value.get("litellm_provider") == "sambanova-embedding-models":
             sambanova_embedding_models.add(key)
+        elif value.get("litellm_provider") == "lexiq_nova":
+            lexiq_nova_models.add(key)
+        elif value.get("litellm_provider") == "lexiq_nova-embedding-models":
+            lexiq_nova_embedding_models.add(key)
+        elif value.get("litellm_provider") == "hosted_lexiq_nova":
+            hosted_lexiq_nova_models.add(key)
+        elif value.get("litellm_provider") == "hosted_lexiq_nova-embedding-models":
+            hosted_lexiq_nova_embedding_models.add(key)
         elif value.get("litellm_provider") == "novita":
             novita_models.add(key)
         elif value.get("litellm_provider") == "nebius-chat-models":
@@ -913,6 +927,8 @@ models_by_provider: dict = {
     "galadriel": galadriel_models,
     "nvidia_nim": nvidia_nim_models,
     "sambanova": sambanova_models | sambanova_embedding_models,
+    "lexiq_nova": lexiq_nova_models | lexiq_nova_embedding_models,
+    "hosted_lexiq_nova": hosted_lexiq_nova_models | hosted_lexiq_nova_embedding_models,
     "novita": novita_models,
     "nebius": nebius_models | nebius_embedding_models,
     "aiml": aiml_models,
@@ -974,6 +990,8 @@ all_embedding_models = (
     | fireworks_ai_embedding_models
     | nebius_embedding_models
     | sambanova_embedding_models
+    | lexiq_nova_embedding_models
+    | hosted_lexiq_nova_embedding_models
     | ovhcloud_embedding_models
 )
 
@@ -1270,9 +1288,11 @@ from .llms.azure.chat.gpt_transformation import AzureOpenAIConfig
 from .llms.azure.chat.gpt_5_transformation import AzureOpenAIGPT5Config
 from .llms.azure.completion.transformation import AzureOpenAITextConfig
 from .llms.hosted_vllm.chat.transformation import HostedVLLMChatConfig
+from .llms.hosted_lexiq_nova.chat.transformation import HostedLexiqNovaChatConfig
 from .llms.llamafile.chat.transformation import LlamafileChatConfig
 from .llms.litellm_proxy.chat.transformation import LiteLLMProxyChatConfig
 from .llms.vllm.completion.transformation import VLLMConfig
+from .llms.lexiq_nova.completion.transformation import LexiqNovaConfig
 from .llms.deepseek.chat.transformation import DeepSeekChatConfig
 from .llms.lm_studio.chat.transformation import LMStudioChatConfig
 from .llms.lm_studio.embed.transformation import LmStudioEmbeddingConfig

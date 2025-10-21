@@ -2501,6 +2501,8 @@ class LlmProviders(str, Enum):
     CUSTOM = "custom"
     LITELLM_PROXY = "litellm_proxy"
     HOSTED_VLLM = "hosted_vllm"
+    LEXIQ_NOVA = "lexiq_nova"
+    HOSTED_LEXIQ_NOVA = "hosted_lexiq_nova"
     LLAMAFILE = "llamafile"
     LM_STUDIO = "lm_studio"
     GALADRIEL = "galadriel"
