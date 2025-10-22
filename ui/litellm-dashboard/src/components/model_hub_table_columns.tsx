@@ -16,6 +16,11 @@ interface ModelHubData {
   supports_parallel_function_calling: boolean;
   supports_vision: boolean;
   supports_function_calling: boolean;
+  // # added for remodlai nova embeddings
+  supports_embedding_image_input: boolean;
+  supports_embedding_text_input: boolean;
+  supports_embedding_audio_input: boolean;
+  supports_embedding_multivector: boolean;
   supported_openai_params?: string[];
   is_public_model_group: boolean;
   [key: string]: any;
@@ -52,8 +57,8 @@ export const modelHubColumns = (
   showModal: (model: ModelHubData) => void,
   copyToClipboard: (text: string) => void,
   publicPage: boolean = false,
-): ColumnDef<ModelHubData>[] => {
-  const allColumns: ColumnDef<ModelHubData>[] = [
+): ColumnDef<ModelHubData, any>[] => {
+  const allColumns: ColumnDef<ModelHubData, any>[] = [
     {
       header: "Public Model Name",
       accessorKey: "model_group",

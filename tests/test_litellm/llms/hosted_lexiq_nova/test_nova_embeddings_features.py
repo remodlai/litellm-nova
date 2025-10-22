@@ -175,6 +175,37 @@ class TestNovaEmbeddingsFeatures:
         assert result["Content-Type"] == "application/json"
 
 
+def test_nova_jina_v4_compatibility():
+    """
+    Test that Nova implementation maintains Jina V4 compatibility
+    
+    Since Nova is built on Jina V4, it should handle the same inputs
+    """
+    config = HostedLexiqNovaEmbeddingConfig()
+    
+    # Test dimensions parameter (Jina V4 feature)
+    non_default = {"dimensions": 512}
+    optional = {}
+    result = config.map_openai_params(non_default, optional, "nova-embeddings-v1", False)
+    assert result["dimensions"] == 512
+    
+    # Test base64 image handling (Jina V4 feature)
+    base64_img = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+    request_data = config.transform_embedding_request(
+        model="nova-embeddings-v1",
+        input=[base64_img, "text input"],
+        optional_params={},
+        headers={}
+    )
+    
+    # Should transform base64 to {"image": ...} format like Jina V4
+    assert isinstance(request_data["input"], list)
+    assert request_data["input"][0]["image"]  # Base64 image
+    assert request_data["input"][1]["text"] == "text input"  # Text
+    
+    print("✅ Nova maintains full Jina V4 compatibility")
+
+
 def test_nova_embeddings_usage_example():
     """
     Example of how to use Nova Embeddings V1 with LiteLLM

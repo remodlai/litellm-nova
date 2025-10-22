@@ -29,7 +29,40 @@ model_list:
   #   model_info:
   #     mode: chat
 
-  # Wildcard routing for all Lexiq Nova models
+  # Nova Embeddings V1 - Retrieval Task Adapter
+  - model_name: nova-embeddings-v1
+    litellm_params:
+      model: hosted_lexiq_nova/nova-embeddings-retrieval
+      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
+      api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
+      tags: ["retrieval", "retrieval.query", "retrieval.passage"]  # Task-based routing
+    model_info:
+      mode: embedding
+      id: nova-embeddings-retrieval
+
+  # Nova Embeddings V1 - Text Matching Task Adapter
+  - model_name: nova-embeddings-v1
+    litellm_params:
+      model: hosted_lexiq_nova/nova-embeddings-text-matching
+      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
+      api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
+      tags: ["text-matching"]  # Task-based routing
+    model_info:
+      mode: embedding
+      id: nova-embeddings-text-matching
+
+  # Nova Embeddings V1 - Code Task Adapter
+  - model_name: nova-embeddings-v1
+    litellm_params:
+      model: hosted_lexiq_nova/nova-embeddings-code
+      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
+      api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
+      tags: ["code", "code.query", "code.passage"]  # Task-based routing
+    model_info:
+      mode: embedding
+      id: nova-embeddings-code
+
+  # Wildcard routing for other Lexiq Nova models (chat, etc.)
   - model_name: "hosted_lexiq_nova/*"
     litellm_params:
       model: "hosted_lexiq_nova/*"
@@ -41,15 +74,17 @@ litellm_settings:
   num_retries: 3
   request_timeout: 600
   telemetry: False
+  callbacks: litellm.proxy.hooks.nova_task_routing.nova_task_router  # Enable Nova task routing
   # set_verbose: True  # Uncomment for debugging
-
 general_settings:
   master_key: sk-1234  # Change this to a secure key in production
+  local_model_cost_map: True
   store_model_in_db: True
-  # database_url: "postgresql://<user>:<password>@<host>:<port>/<dbname>"  # Uncomment for production
+  database_url: postgresql://neondb_owner:npg_YIynbl1f3MUc@ep-autumn-king-a4xm63yd-pooler.us-east-1.aws.neon.tech/litellm?sslmode=require&channel_binding=require'  # Uncomment for production
 
-# Optional: Router settings for load balancing
-# router_settings:
-#   routing_strategy: simple-shuffle
-#   model_group_alias:
-#     "nova-embed": "nova-embeddings-v1"
+# Router settings for Nova task-based routing
+router_settings:
+  enable_tag_filtering: True  # Required for task-based routing
+  routing_strategy: simple-shuffle
+  # model_group_alias:
+  #   "nova-embed": "nova-embeddings-v1"

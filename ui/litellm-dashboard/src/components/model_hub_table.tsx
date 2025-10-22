@@ -235,7 +235,7 @@ const ModelHubTable: React.FC<ModelHubTableProps> = ({ accessToken, publicPage, 
 
             {/* Model Table */}
             <ModelDataTable
-              columns={modelHubColumns(showModal, copyToClipboard, publicPage)}
+              columns={modelHubColumns(showModal, copyToClipboard, publicPage) as any}
               data={filteredData}
               isLoading={loading}
               table={tableRef}
