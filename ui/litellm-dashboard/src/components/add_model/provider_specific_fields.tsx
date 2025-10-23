@@ -514,7 +514,6 @@ const PROVIDER_CREDENTIAL_FIELDS: Record<Providers, ProviderCredentialField[]> =
     {
       key: "api_base",
       label: "API Base",
-      placeholder: "https://api.remodl.ai/v1",
       required: true,
     },
     {

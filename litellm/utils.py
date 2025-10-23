@@ -4621,6 +4621,16 @@ def _check_provider_match(model_info: dict, custom_llm_provider: Optional[str]) 
             custom_llm_provider == "litellm_proxy"
         ):  # litellm_proxy is a special case, it's not a provider, it's a proxy for the provider
             return True
+        elif (
+            custom_llm_provider == "remodlai"
+            and model_info["litellm_provider"] == "remodlai-embedding-models"
+        ):  # remodlai embeddings use remodlai-embedding-models in model_cost but remodlai as provider
+            return True
+        elif (
+            custom_llm_provider == "remodlai-embedding-models"
+            and model_info["litellm_provider"] == "remodlai"
+        ):  # reverse case
+            return True
         else:
             return False
 
@@ -4809,9 +4819,13 @@ def _get_model_info_helper(  # noqa: PLR0915
             custom_llm_provider == "ollama" or custom_llm_provider == "ollama_chat"
         ) and not _is_potential_model_name_in_model_cost(potential_model_names):
             return litellm.OllamaConfig().get_model_info(model)
-        else:
-            """
-            Check if: (in order of specificity)
+
+        # Normalize remodlai provider names for model_cost lookup
+        if custom_llm_provider == "remodlai-embedding-models":
+            custom_llm_provider = "remodlai"
+
+        """
+        Check if: (in order of specificity)
             1. 'custom_llm_provider/model' in litellm.model_cost. Checks "groq/llama3-8b-8192" if model="llama3-8b-8192" and custom_llm_provider="groq"
             2. 'model' in litellm.model_cost. Checks "gemini-1.5-pro-002" in  litellm.model_cost if model="gemini-1.5-pro-002" and custom_llm_provider=None
             3. 'combined_stripped_model_name' in litellm.model_cost. Checks if 'gemini/gemini-1.5-flash' in model map, if 'gemini/gemini-1.5-flash-001' given.
@@ -4819,171 +4833,171 @@ def _get_model_info_helper(  # noqa: PLR0915
             5. 'split_model' in litellm.model_cost. Checks "llama3-8b-8192" in litellm.model_cost if model="groq/llama3-8b-8192"
             """
 
-            _model_info: Optional[Dict[str, Any]] = None
-            key: Optional[str] = None
+        _model_info: Optional[Dict[str, Any]] = None
+        key: Optional[str] = None
 
-            if combined_model_name in litellm.model_cost:
-                key = combined_model_name
-                _model_info = _get_model_info_from_model_cost(key=cast(str, key))
-                if not _check_provider_match(
-                    model_info=_model_info, custom_llm_provider=custom_llm_provider
-                ):
-                    _model_info = None
-            if _model_info is None and model in litellm.model_cost:
-                key = model
-                _model_info = _get_model_info_from_model_cost(key=cast(str, key))
-                if not _check_provider_match(
-                    model_info=_model_info, custom_llm_provider=custom_llm_provider
-                ):
-                    _model_info = None
-            if (
-                _model_info is None
-                and combined_stripped_model_name in litellm.model_cost
+        if combined_model_name in litellm.model_cost:
+            key = combined_model_name
+            _model_info = _get_model_info_from_model_cost(key=cast(str, key))
+            if not _check_provider_match(
+                model_info=_model_info, custom_llm_provider=custom_llm_provider
             ):
-                key = combined_stripped_model_name
-                _model_info = _get_model_info_from_model_cost(key=cast(str, key))
-                if not _check_provider_match(
-                    model_info=_model_info, custom_llm_provider=custom_llm_provider
-                ):
-                    _model_info = None
-            if _model_info is None and stripped_model_name in litellm.model_cost:
-                key = stripped_model_name
-                _model_info = _get_model_info_from_model_cost(key=cast(str, key))
-                if not _check_provider_match(
-                    model_info=_model_info, custom_llm_provider=custom_llm_provider
-                ):
-                    _model_info = None
-            if _model_info is None and split_model in litellm.model_cost:
-                key = split_model
-                _model_info = _get_model_info_from_model_cost(key=cast(str, key))
-                if not _check_provider_match(
-                    model_info=_model_info, custom_llm_provider=custom_llm_provider
-                ):
-                    _model_info = None
+                _model_info = None
+        if _model_info is None and model in litellm.model_cost:
+            key = model
+            _model_info = _get_model_info_from_model_cost(key=cast(str, key))
+            if not _check_provider_match(
+                model_info=_model_info, custom_llm_provider=custom_llm_provider
+            ):
+                _model_info = None
+        if (
+            _model_info is None
+            and combined_stripped_model_name in litellm.model_cost
+        ):
+            key = combined_stripped_model_name
+            _model_info = _get_model_info_from_model_cost(key=cast(str, key))
+            if not _check_provider_match(
+                model_info=_model_info, custom_llm_provider=custom_llm_provider
+            ):
+                _model_info = None
+        if _model_info is None and stripped_model_name in litellm.model_cost:
+            key = stripped_model_name
+            _model_info = _get_model_info_from_model_cost(key=cast(str, key))
+            if not _check_provider_match(
+                model_info=_model_info, custom_llm_provider=custom_llm_provider
+            ):
+                _model_info = None
+        if _model_info is None and split_model in litellm.model_cost:
+            key = split_model
+            _model_info = _get_model_info_from_model_cost(key=cast(str, key))
+            if not _check_provider_match(
+                model_info=_model_info, custom_llm_provider=custom_llm_provider
+            ):
+                _model_info = None
 
-            if _model_info is None or key is None:
-                raise ValueError(
-                    "This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json"
-                )
-
-            _input_cost_per_token: Optional[float] = _model_info.get(
-                "input_cost_per_token"
+        if _model_info is None or key is None:
+            raise ValueError(
+                "This model isn't mapped yet. Add it here - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json"
             )
-            if _input_cost_per_token is None:
-                # default value to 0, be noisy about this
-                verbose_logger.debug(
-                    "model={}, custom_llm_provider={} has no input_cost_per_token in model_cost_map. Defaulting to 0.".format(
-                        model, custom_llm_provider
-                    )
-                )
-                _input_cost_per_token = 0
 
-            _output_cost_per_token: Optional[float] = _model_info.get(
-                "output_cost_per_token"
+        _input_cost_per_token: Optional[float] = _model_info.get(
+            "input_cost_per_token"
+        )
+        if _input_cost_per_token is None:
+            # default value to 0, be noisy about this
+            verbose_logger.debug(
+                "model={}, custom_llm_provider={} has no input_cost_per_token in model_cost_map. Defaulting to 0.".format(
+                    model, custom_llm_provider
+                )
             )
-            if _output_cost_per_token is None:
-                # default value to 0, be noisy about this
-                verbose_logger.debug(
-                    "model={}, custom_llm_provider={} has no output_cost_per_token in model_cost_map. Defaulting to 0.".format(
-                        model, custom_llm_provider
-                    )
-                )
-                _output_cost_per_token = 0
+            _input_cost_per_token = 0
 
-            return ModelInfoBase(
-                key=key,
-                max_tokens=_model_info.get("max_tokens", None),
-                max_input_tokens=_model_info.get("max_input_tokens", None),
-                max_output_tokens=_model_info.get("max_output_tokens", None),
-                input_cost_per_token=_input_cost_per_token,
-                input_cost_per_token_flex=_model_info.get(
-                    "input_cost_per_token_flex", None
-                ),
-                input_cost_per_token_priority=_model_info.get(
-                    "input_cost_per_token_priority", None
-                ),
-                cache_creation_input_token_cost=_model_info.get(
-                    "cache_creation_input_token_cost", None
-                ),
-                cache_read_input_token_cost=_model_info.get(
-                    "cache_read_input_token_cost", None
-                ),
-                cache_read_input_token_cost_flex=_model_info.get(
-                    "cache_read_input_token_cost_flex", None
-                ),
-                cache_read_input_token_cost_priority=_model_info.get(
-                    "cache_read_input_token_cost_priority", None
-                ),
-                cache_creation_input_token_cost_above_1hr=_model_info.get(
-                    "cache_creation_input_token_cost_above_1hr", None
-                ),
-                input_cost_per_character=_model_info.get(
-                    "input_cost_per_character", None
-                ),
-                input_cost_per_token_above_128k_tokens=_model_info.get(
-                    "input_cost_per_token_above_128k_tokens", None
-                ),
-                input_cost_per_token_above_200k_tokens=_model_info.get(
-                    "input_cost_per_token_above_200k_tokens", None
-                ),
-                input_cost_per_query=_model_info.get("input_cost_per_query", None),
-                input_cost_per_second=_model_info.get("input_cost_per_second", None),
-                input_cost_per_audio_token=_model_info.get(
-                    "input_cost_per_audio_token", None
-                ),
-                input_cost_per_token_batches=_model_info.get(
-                    "input_cost_per_token_batches"
-                ),
-                output_cost_per_token_batches=_model_info.get(
-                    "output_cost_per_token_batches"
-                ),
-                output_cost_per_token=_output_cost_per_token,
-                output_cost_per_token_flex=_model_info.get(
-                    "output_cost_per_token_flex", None
-                ),
-                output_cost_per_token_priority=_model_info.get(
-                    "output_cost_per_token_priority", None
-                ),
-                output_cost_per_audio_token=_model_info.get(
-                    "output_cost_per_audio_token", None
-                ),
-                output_cost_per_character=_model_info.get(
-                    "output_cost_per_character", None
-                ),
-                output_cost_per_reasoning_token=_model_info.get(
-                    "output_cost_per_reasoning_token", None
-                ),
-                output_cost_per_token_above_128k_tokens=_model_info.get(
-                    "output_cost_per_token_above_128k_tokens", None
-                ),
-                output_cost_per_character_above_128k_tokens=_model_info.get(
-                    "output_cost_per_character_above_128k_tokens", None
-                ),
-                output_cost_per_token_above_200k_tokens=_model_info.get(
-                    "output_cost_per_token_above_200k_tokens", None
-                ),
-                output_cost_per_second=_model_info.get("output_cost_per_second", None),
-                output_cost_per_image=_model_info.get("output_cost_per_image", None),
-                output_vector_size=_model_info.get("output_vector_size", None),
-                citation_cost_per_token=_model_info.get(
-                    "citation_cost_per_token", None
-                ),
-                tiered_pricing=_model_info.get("tiered_pricing", None),
-                litellm_provider=_model_info.get(
-                    "litellm_provider", custom_llm_provider
-                ),
-                mode=_model_info.get("mode"),  # type: ignore
-                supports_system_messages=_model_info.get(
-                    "supports_system_messages", None
-                ),
-                supports_response_schema=_model_info.get(
-                    "supports_response_schema", None
-                ),
-                supports_vision=_model_info.get("supports_vision", None),
-                supports_function_calling=_model_info.get(
-                    "supports_function_calling", None
-                ),
-                supports_tool_choice=_model_info.get("supports_tool_choice", None),
+        _output_cost_per_token: Optional[float] = _model_info.get(
+            "output_cost_per_token"
+        )
+        if _output_cost_per_token is None:
+            # default value to 0, be noisy about this
+            verbose_logger.debug(
+                "model={}, custom_llm_provider={} has no output_cost_per_token in model_cost_map. Defaulting to 0.".format(
+                    model, custom_llm_provider
+                )
+            )
+            _output_cost_per_token = 0
+
+        return ModelInfoBase(
+            key=key,
+            max_tokens=_model_info.get("max_tokens", None),
+            max_input_tokens=_model_info.get("max_input_tokens", None),
+            max_output_tokens=_model_info.get("max_output_tokens", None),
+            input_cost_per_token=_input_cost_per_token,
+            input_cost_per_token_flex=_model_info.get(
+                "input_cost_per_token_flex", None
+            ),
+            input_cost_per_token_priority=_model_info.get(
+                "input_cost_per_token_priority", None
+            ),
+            cache_creation_input_token_cost=_model_info.get(
+                "cache_creation_input_token_cost", None
+            ),
+            cache_read_input_token_cost=_model_info.get(
+                "cache_read_input_token_cost", None
+            ),
+            cache_read_input_token_cost_flex=_model_info.get(
+                "cache_read_input_token_cost_flex", None
+            ),
+            cache_read_input_token_cost_priority=_model_info.get(
+                "cache_read_input_token_cost_priority", None
+            ),
+            cache_creation_input_token_cost_above_1hr=_model_info.get(
+                "cache_creation_input_token_cost_above_1hr", None
+            ),
+            input_cost_per_character=_model_info.get(
+                "input_cost_per_character", None
+            ),
+            input_cost_per_token_above_128k_tokens=_model_info.get(
+                "input_cost_per_token_above_128k_tokens", None
+            ),
+            input_cost_per_token_above_200k_tokens=_model_info.get(
+                "input_cost_per_token_above_200k_tokens", None
+            ),
+            input_cost_per_query=_model_info.get("input_cost_per_query", None),
+            input_cost_per_second=_model_info.get("input_cost_per_second", None),
+            input_cost_per_audio_token=_model_info.get(
+                "input_cost_per_audio_token", None
+            ),
+            input_cost_per_token_batches=_model_info.get(
+                "input_cost_per_token_batches"
+            ),
+            output_cost_per_token_batches=_model_info.get(
+                "output_cost_per_token_batches"
+            ),
+            output_cost_per_token=_output_cost_per_token,
+            output_cost_per_token_flex=_model_info.get(
+                "output_cost_per_token_flex", None
+            ),
+            output_cost_per_token_priority=_model_info.get(
+                "output_cost_per_token_priority", None
+            ),
+            output_cost_per_audio_token=_model_info.get(
+                "output_cost_per_audio_token", None
+            ),
+            output_cost_per_character=_model_info.get(
+                "output_cost_per_character", None
+            ),
+            output_cost_per_reasoning_token=_model_info.get(
+                "output_cost_per_reasoning_token", None
+            ),
+            output_cost_per_token_above_128k_tokens=_model_info.get(
+                "output_cost_per_token_above_128k_tokens", None
+            ),
+            output_cost_per_character_above_128k_tokens=_model_info.get(
+                "output_cost_per_character_above_128k_tokens", None
+            ),
+            output_cost_per_token_above_200k_tokens=_model_info.get(
+                "output_cost_per_token_above_200k_tokens", None
+            ),
+            output_cost_per_second=_model_info.get("output_cost_per_second", None),
+            output_cost_per_image=_model_info.get("output_cost_per_image", None),
+            output_vector_size=_model_info.get("output_vector_size", None),
+            citation_cost_per_token=_model_info.get(
+                "citation_cost_per_token", None
+            ),
+            tiered_pricing=_model_info.get("tiered_pricing", None),
+            litellm_provider=_model_info.get(
+                "litellm_provider", custom_llm_provider
+            ),
+            mode=_model_info.get("mode"),  # type: ignore
+            supports_system_messages=_model_info.get(
+                "supports_system_messages", None
+            ),
+            supports_response_schema=_model_info.get(
+                "supports_response_schema", None
+            ),
+            supports_vision=_model_info.get("supports_vision", None),
+            supports_function_calling=_model_info.get(
+                "supports_function_calling", None
+            ),
+            supports_tool_choice=_model_info.get("supports_tool_choice", None),
                 supports_assistant_prefill=_model_info.get(
                     "supports_assistant_prefill", None
                 ),
