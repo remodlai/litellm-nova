@@ -277,7 +277,6 @@ LITELLM_CHAT_PROVIDERS = [
     "cohere_chat",
     "clarifai",
     "anthropic",
-    "remodlai_embeddings",
     "anthropic_text",
     "replicate",
     "huggingface",
@@ -865,7 +864,7 @@ BEDROCK_CONVERSE_MODELS = [
     "meta.llama3-2-90b-instruct-v1:0",
 ]
 
-
+remodlai_embeddings_models: set = set(["nova-embeddings-v1"])
 open_ai_embedding_models: set = set(["text-embedding-ada-002"])
 cohere_embedding_models: set = set(
     [

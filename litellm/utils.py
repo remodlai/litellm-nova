@@ -2868,6 +2868,13 @@ def get_optional_params_embeddings(  # noqa: PLR0915
             model=model,
             drop_params=drop_params if drop_params is not None else False,
         )
+        _check_valid_arg(supported_params=supported_params)
+        optional_params = litellm.RemodlaiEmbeddingsConfig().map_openai_params(
+            non_default_params=non_default_params,
+            optional_params={},
+            model=model,
+            drop_params=drop_params if drop_params is not None else False,
+        )
     elif custom_llm_provider == "voyage":
         supported_params = get_supported_openai_params(
             model=model,
@@ -7220,6 +7227,12 @@ class ProviderConfigManager:
             )
 
             return JinaAIEmbeddingConfig()
+        elif litellm.LlmProviders.REMODLAI_EMBEDDINGS == provider:
+            from litellm.llms.remodlai_embeddings.embedding.transformation import (
+                RemodlaiEmbeddingsConfig,
+            )
+
+            return RemodlaiEmbeddingsConfig()
         elif litellm.LlmProviders.VOLCENGINE == provider:
             from litellm.llms.volcengine.embedding.transformation import (
                 VolcEngineEmbeddingConfig,

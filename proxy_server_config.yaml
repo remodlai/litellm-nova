@@ -93,7 +93,7 @@ model_list:
   #     api_key: "dummy-key"
 
 litellm_settings:
-  drop_params: False  # Drop unsupported params instead of erroring
+  drop_params: True  # Drop unsupported params instead of erroring
   num_retries: 3
   store_audit_logs: true
   request_timeout: 600
