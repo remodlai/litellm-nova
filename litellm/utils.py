@@ -4113,10 +4113,11 @@ def add_provider_specific_params_to_optional_params(
     Add provider specific params to optional_params
     """
 
+    # Note: remodlai embeddings are handled separately (Jina-like), not OpenAI-compatible for embeddings
     if (
         custom_llm_provider
         in ["openai", "azure", "text-completion-openai"]
-        + litellm.openai_compatible_providers
+        + [p for p in litellm.openai_compatible_providers if p != "remodlai"]
     ):
         # for openai, azure we should pass the extra/passed params within `extra_body` https://github.com/openai/openai-python/blob/ac33853ba10d13ac149b1fa3ca6dba7d613065c9/src/openai/resources/models.py#L46
         if (

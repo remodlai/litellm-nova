@@ -2026,6 +2026,7 @@ def completion(  # type: ignore # noqa: PLR0915
             or custom_llm_provider == "cerebras"
             or custom_llm_provider == "baseten"
             or custom_llm_provider == "sambanova"
+            or custom_llm_provider == "remodlai"
             or custom_llm_provider == "volcengine"
             or custom_llm_provider == "anyscale"
             or custom_llm_provider == "openai"
@@ -4658,6 +4659,25 @@ def embedding(  # noqa: PLR0915
                 aembedding=aembedding,
             )
         elif custom_llm_provider == "jina_ai":
+            if isinstance(input, str):
+                transformed_input = [input]
+            else:
+                transformed_input = input
+            response = base_llm_http_handler.embedding(
+                model=model,
+                input=transformed_input,
+                custom_llm_provider=custom_llm_provider,
+                api_base=api_base,
+                api_key=api_key,
+                logging_obj=logging,
+                timeout=timeout,
+                model_response=EmbeddingResponse(),
+                optional_params=optional_params,
+                litellm_params={},
+                client=client,
+                aembedding=aembedding,
+            )
+        elif custom_llm_provider == "remodlai":
             if isinstance(input, str):
                 transformed_input = [input]
             else:

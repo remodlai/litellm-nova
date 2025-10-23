@@ -102,7 +102,7 @@ litellm_settings:
   # set_verbose: True  # Uncomment for debugging
 general_settings:
   master_key: sk-1234  # Change this to a secure key in production
-  #local_model_cost_map: true
+  local_model_cost_map: true
   store_prompts_in_spend_logs: true
   store_model_in_db: true
   database_url: postgresql://neondb_owner:npg_YIynbl1f3MUc@ep-autumn-king-a4xm63yd-pooler.us-east-1.aws.neon.tech/litellm?sslmode=require&channel_binding=require'  # Uncomment for production

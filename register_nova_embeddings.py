@@ -8,57 +8,24 @@ import litellm
 
 # Register nova-embeddings-v1 models
 nova_embedding_models = {
-    "remodlai/nova-embeddings-v1": {
-        "input_cost_per_token": 0.0,
-        "output_cost_per_token": 0.0,
-        "litellm_provider": "remodlai",
-        "mode": "embedding",
+    "nova-embeddings-v1": {
+        "input_cost_per_image": 5e-06,
+        "input_cost_per_token": 5e-06,
+        "litellm_provider": "remodlai-embedding-models",
         "max_input_tokens": 8192,
+        "max_output_tokens": 8192,
         "max_tokens": 8192,
-        "output_vector_size": 128,
-        "supports_embedding_image_input": True,
-        "metadata": {
-            "notes": "Multivector, multimodal embedding model. Alias for remodlai/nova-embeddings-v1."
-        }
-    },
-    "remodlai/remodlai/nova-embeddings-v1": {
-        "input_cost_per_token": 0.0,
-        "output_cost_per_token": 0.0,
-        "litellm_provider": "remodlai",
         "mode": "embedding",
-        "max_input_tokens": 8192,
-        "max_tokens": 8192,
-        "output_vector_size": 128,
+        "output_cost_per_token": 1.5e-05,
+        "supports_function_calling": False,
+        "supports_tool_choice": False,
+        "supports_vision": True,
+        "supports_web_search": False,
         "supports_embedding_image_input": True,
-        "metadata": {
-            "notes": "Nova Embeddings V1: Industry-first multimodal multi-vector embeddings with runtime instruction tuning. Supports text, images, code. Task adapters: retrieval, text-matching, code. Dense (pooled up to 2048d) or multivector (128d per token)."
-        }
-    },
-    "remodlai/nova-embeddings-v1": {
-        "input_cost_per_token": 0.0,
-        "output_cost_per_token": 0.0,
-        "litellm_provider": "remodlai",
-        "mode": "embedding",
-        "max_input_tokens": 8192,
-        "max_tokens": 8192,
-        "output_vector_size": 128,
-        "supports_embedding_image_input": True,
-        "metadata": {
-            "notes": "Local SDK version. Alias for remodlai/nova-embeddings-v1."
-        }
-    },
-    "remodlai/remodlai/nova-embeddings-v1": {
-        "input_cost_per_token": 0.0,
-        "output_cost_per_token": 0.0,
-        "litellm_provider": "remodlai",
-        "mode": "embedding",
-        "max_input_tokens": 8192,
-        "max_tokens": 8192,
-        "output_vector_size": 128,
-        "supports_embedding_image_input": True,
-        "metadata": {
-            "notes": "Local SDK version. Multivector, multimodal embedding model."
-        }
+        "supports_embedding_text_input": True,
+        "supports_embedding_multivector": True,
+        "supports_instructions": True,
+        "output_vector_size": 2048,
     }
 }
 
@@ -76,6 +43,7 @@ for model_name in nova_embedding_models.keys():
         print(f"\n✅ {model_name}")
         print(f"   Provider: {model_info.get('litellm_provider')}")
         print(f"   Max tokens: {model_info.get('max_tokens')}")
+        # trunk-ignore(ruff/T201)
         print(f"   Output vector size: {model_info.get('output_vector_size')}")
         print(f"   Multimodal: {model_info.get('supports_embedding_image_input')}")
     except Exception as e:
@@ -83,5 +51,6 @@ for model_name in nova_embedding_models.keys():
 
 print("\n✅ Nova Embeddings V1 registration complete!")
 print("\nYou can now use these models:")
-print("  litellm.embedding(model='remodlai/nova-embeddings-v1', input=[...], task='retrieval')")
-
+print(
+    "  litellm.embedding(model='remodlai/nova-embeddings-v1', input=[...], task='retrieval')"
+)

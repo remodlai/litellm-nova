@@ -356,6 +356,12 @@ def get_llm_provider(  # noqa: PLR0915
             custom_llm_provider = "bedrock"
         elif model in litellm.watsonx_models:
             custom_llm_provider = "watsonx"
+
+        # remodlai embeddings
+        elif model in litellm.remodlai_embedding_models:
+            custom_llm_provider = "remodlai"
+        elif model in litellm.remodlai_models:
+            custom_llm_provider = "remodlai"
         # openai embeddings
         elif model in litellm.open_ai_embedding_models:
             custom_llm_provider = "openai"
@@ -368,8 +374,6 @@ def get_llm_provider(  # noqa: PLR0915
         # bytez models
         elif model.startswith("bytez/"):
             custom_llm_provider = "bytez"
-        elif model.startswith("remodlai/"):
-            custom_llm_provider = "remodlai"
         elif model.startswith("lemonade/"):
             custom_llm_provider = "lemonade"
         elif model.startswith("heroku/"):

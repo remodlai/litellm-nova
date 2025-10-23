@@ -14325,32 +14325,8 @@
             "/v1/images/generations"
         ]
     },
-    "remodlai/nova-embeddings-v1": {
-        "input_cost_per_token": 0.0,
-        "litellm_provider": "remodlai-embedding-models",
-        "max_input_tokens": 8192,
-        "max_tokens": 8192,
-        "mode": "embedding",
-        "output_cost_per_token": 0.0,
-        "output_vector_size": 128,
-        "supports_embedding_image_input": true,
-        "metadata": {
-            "notes": "Multivector, multimodal embedding model. Alias for remodlai/nova-embeddings-v1."
-        }
-    },
-    "remodlai/remodlai/nova-embeddings-v1": {
-        "input_cost_per_token": 0.0,
-        "litellm_provider": "remodlai-embedding-models",
-        "max_input_tokens": 8192,
-        "max_tokens": 8192,
-        "mode": "embedding",
-        "output_cost_per_token": 0.0,
-        "output_vector_size": 128,
-        "supports_embedding_image_input": true,
-        "metadata": {
-            "notes": "Multivector, multimodal embedding model. Set return_multivector=true for token-level embeddings (128d) or false for pooled vectors (matryoshka dimensions: 256, 512, 1024, 2048). Supports text, images, and multiple task adapters (retrieval, text-matching, code)."
-        }
-    },
+    
+    
     "hyperbolic/NousResearch/Hermes-3-Llama-3.1-70B": {
         "input_cost_per_token": 1.2e-07,
         "litellm_provider": "hyperbolic",
@@ -15059,32 +15035,6 @@
         "supports_function_calling": true,
         "supports_response_schema": true,
         "supports_tool_choice": true
-    },
-    "lexiq_nova/nova-embeddings-v1": {
-        "input_cost_per_token": 0.0,
-        "litellm_provider": "lexiq_nova-embedding-models",
-        "max_input_tokens": 8192,
-        "max_tokens": 8192,
-        "mode": "embedding",
-        "output_cost_per_token": 0.0,
-        "output_vector_size": 128,
-        "supports_embedding_image_input": true,
-        "metadata": {
-            "notes": "Local SDK version. Alias for remodlai/nova-embeddings-v1."
-        }
-    },
-    "lexiq_nova/remodlai/nova-embeddings-v1": {
-        "input_cost_per_token": 0.0,
-        "litellm_provider": "lexiq_nova-embedding-models",
-        "max_input_tokens": 8192,
-        "max_tokens": 8192,
-        "mode": "embedding",
-        "output_cost_per_token": 0.0,
-        "output_vector_size": 128,
-        "supports_embedding_image_input": true,
-        "metadata": {
-            "notes": "Local SDK version. Multivector, multimodal embedding model."
-        }
     },
     "low/1024-x-1024/gpt-image-1": {
         "input_cost_per_pixel": 1.0490417e-08,

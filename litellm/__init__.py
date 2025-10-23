@@ -505,6 +505,7 @@ nvidia_nim_models: Set = set()
 sambanova_models: Set = set()
 sambanova_embedding_models: Set = set()
 remodlai_models: Set = set()
+remodlai_embedding_models: Set = set()
 novita_models: Set = set()
 assemblyai_models: Set = set()
 snowflake_models: Set = set()
@@ -705,6 +706,8 @@ def add_known_models():
             sambanova_embedding_models.add(key)
         elif value.get("litellm_provider") == "remodlai":
             remodlai_models.add(key)
+        elif value.get("litellm_provider") == "remodlai-embedding-models":
+            remodlai_embedding_models.add(key)
         elif value.get("litellm_provider") == "novita":
             novita_models.add(key)
         elif value.get("litellm_provider") == "nebius-chat-models":
@@ -833,6 +836,7 @@ model_list = list(
     | galadriel_models
     | nvidia_nim_models
     | sambanova_models
+    | remodlai_models
     | azure_text_models
     | novita_models
     | assemblyai_models
@@ -918,7 +922,8 @@ models_by_provider: dict = {
     "galadriel": galadriel_models,
     "nvidia_nim": nvidia_nim_models,
     "sambanova": sambanova_models | sambanova_embedding_models,
-    "remodlai": remodlai_models,
+    # NOTE: remodlai_embedding_models is a subset of remodlai_models - TODO: CONFIRM THIS.
+    "remodlai": remodlai_models | remodlai_embedding_models,
     "novita": novita_models,
     "nebius": nebius_models | nebius_embedding_models,
     "aiml": aiml_models,
@@ -980,6 +985,7 @@ all_embedding_models = (
     | fireworks_ai_embedding_models
     | nebius_embedding_models
     | sambanova_embedding_models
+    | remodlai_embedding_models
     | ovhcloud_embedding_models
 )
 
