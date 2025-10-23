@@ -1,5 +1,5 @@
 """
-Transformation logic for Hosted Lexiq Nova rerank
+Transformation logic for Hosted RemodlAI rerank
 """
 
 from typing import Any, Dict, List, Optional, Union
@@ -47,7 +47,7 @@ class RemodlAIRerankConfig(BaseRerankConfig):
             elif not api_base.endswith("/rerank"):
                 api_base = f"{api_base}/rerank"
             return api_base
-        raise ValueError("api_base must be provided for Hosted Lexiq Nova rerank")
+        raise ValueError("api_base must be provided for Hosted RemodlAI rerank")
 
     def get_supported_cohere_rerank_params(self, model: str) -> list:
         return [
@@ -73,10 +73,10 @@ class RemodlAIRerankConfig(BaseRerankConfig):
         max_tokens_per_doc: Optional[int] = None,
     ) -> Dict:
         """
-        Map parameters for Hosted Lexiq Nova rerank
+        Map parameters for Hosted RemodlAI rerank
         """
         if max_chunks_per_doc is not None:
-            raise ValueError("Hosted Lexiq Nova does not support max_chunks_per_doc")
+            raise ValueError("Hosted RemodlAI does not support max_chunks_per_doc")
             
         return dict(OptionalRerankParams(
             query=query,
@@ -115,9 +115,9 @@ class RemodlAIRerankConfig(BaseRerankConfig):
         headers: dict,
     ) -> dict:
         if "query" not in optional_rerank_params:
-            raise ValueError("query is required for Hosted Lexiq Nova rerank")
+            raise ValueError("query is required for Hosted RemodlAI rerank")
         if "documents" not in optional_rerank_params:
-            raise ValueError("documents is required for Hosted Lexiq Nova rerank")
+            raise ValueError("documents is required for Hosted RemodlAI rerank")
         
         rerank_request = RerankRequest(
             model=model,
@@ -141,7 +141,7 @@ class RemodlAIRerankConfig(BaseRerankConfig):
         litellm_params: dict = {},
     ) -> RerankResponse:
         """
-        Process response from Hosted Lexiq Nova rerank API
+        Process response from Hosted RemodlAI rerank API
         """
         try:
             raw_response_json = raw_response.json()

@@ -1,5 +1,5 @@
 """
-Transformation logic for Hosted Lexiq Nova embeddings
+Transformation logic for Hosted RemodlAI embeddings
 
 Nova Embeddings V1 is based on Jina Embeddings V4 with added functionality:
 - Runtime instruction tuning (Nova-specific)
@@ -36,7 +36,7 @@ class RemodlAIEmbeddingError(BaseLLMException):
 
 class RemodlAIEmbeddingConfig(BaseEmbeddingConfig):
     """
-    Configuration for Hosted Lexiq Nova embedding models.
+    Configuration for Hosted RemodlAI embedding models.
     
     Based on Jina Embeddings V4 with Nova-specific enhancements:
     

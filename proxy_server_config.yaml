@@ -43,7 +43,7 @@ model_list:
   #     mode: embedding
   #     id: remodlai-nova-embeddings-v1-code
 
-  # Lexiq Nova chat models (add your chat models here)
+  # RemodlAI chat models (add your chat models here)
   # - model_name: lexiq-chat
   #   litellm_params:
   #     model: remodlai/your-chat-model
@@ -85,7 +85,7 @@ model_list:
   #     mode: embedding
   #     id: nova-embeddings-code
 
-  # Wildcard routing for other Lexiq Nova models (chat, etc.)
+  # Wildcard routing for other RemodlAI models (chat, etc.)
   # - model_name: "remodlai/*"
   #   litellm_params:
   #     model: "remodlai/*"

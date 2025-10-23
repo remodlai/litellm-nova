@@ -1,5 +1,5 @@
 """
-Translate from OpenAI's `/v1/chat/completions` to Lexiq Nova's `/v1/chat/completions`
+Translate from OpenAI's `/v1/chat/completions` to RemodlAI's `/v1/chat/completions`
 """
 
 from typing import Any, Coroutine, List, Literal, Optional, Tuple, Union, cast, overload

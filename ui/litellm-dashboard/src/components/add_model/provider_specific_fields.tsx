@@ -510,7 +510,7 @@ const PROVIDER_CREDENTIAL_FIELDS: Record<Providers, ProviderCredentialField[]> =
       required: true,
     },
   ],
-  [Providers.Hosted_Lexiq_Nova]: [
+  [Providers.RemodlAI]: [
     {
       key: "api_base",
       label: "API Base",

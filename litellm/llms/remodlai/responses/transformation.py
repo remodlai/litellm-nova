@@ -1,8 +1,8 @@
 """
-LiteLLM Responses API transformation for Hosted Lexiq Nova.
+LiteLLM Responses API transformation for Hosted RemodlAI.
 
 This mirrors the OpenAI Responses API implementation while swapping in
-Hosted Lexiq Nova specific authentication and endpoint handling. Lexiq Nova
+Hosted RemodlAI specific authentication and endpoint handling. RemodlAI
 provides a fully OpenAI-compatible surface area (responses, streaming,
 function calling, etc.) for both Nova native models and any custom model
 hosted on the cluster.
@@ -73,7 +73,7 @@ class RemodlAIResponsesAPIConfig(BaseResponsesAPIConfig):
 
     def get_supported_openai_params(self, model: str) -> list:
         """
-        Hosted Lexiq Nova supports the full OpenAI Responses API surface.
+        Hosted RemodlAI supports the full OpenAI Responses API surface.
         """
         supported_params = get_type_hints(ResponsesAPIRequestParams).keys()
         return list(
@@ -144,7 +144,7 @@ class RemodlAIResponsesAPIConfig(BaseResponsesAPIConfig):
     def _handle_reasoning_item(self, item: Dict[str, Any]) -> Dict[str, Any]:
         """
         Filter out None values on reasoning items using OpenAI's model so that
-        Hosted Lexiq Nova receives the exact schema it expects.
+        Hosted RemodlAI receives the exact schema it expects.
         """
         if item.get("type") == "reasoning":
             try:
@@ -179,7 +179,7 @@ class RemodlAIResponsesAPIConfig(BaseResponsesAPIConfig):
         raw_response: httpx.Response,
         logging_obj: LiteLLMLoggingObj,
     ) -> ResponsesAPIResponse:
-        """Pass through the OpenAI-formatted response from Hosted Lexiq Nova."""
+        """Pass through the OpenAI-formatted response from Hosted RemodlAI."""
         try:
             logging_obj.post_call(
                 original_response=raw_response.text,
@@ -227,7 +227,7 @@ class RemodlAIResponsesAPIConfig(BaseResponsesAPIConfig):
         litellm_params: dict,
     ) -> str:
         """
-        Hosted Lexiq Nova exposes an OpenAI-compatible `/v1/responses` endpoint.
+        Hosted RemodlAI exposes an OpenAI-compatible `/v1/responses` endpoint.
         """
         api_base = (
             api_base
@@ -258,7 +258,7 @@ class RemodlAIResponsesAPIConfig(BaseResponsesAPIConfig):
         """
         Convert Nova streaming chunks into strongly-typed Responses API events.
         """
-        verbose_logger.debug("Raw Hosted Lexiq Nova chunk=%s", parsed_chunk)
+        verbose_logger.debug("Raw Hosted RemodlAI chunk=%s", parsed_chunk)
         event_type = str(parsed_chunk.get("type"))
         event_pydantic_model = RemodlAIResponsesAPIConfig.get_event_model_class(
             event_type=event_type
@@ -317,7 +317,7 @@ class RemodlAIResponsesAPIConfig(BaseResponsesAPIConfig):
         custom_llm_provider: Optional[str] = None,
     ) -> bool:
         """
-        Hosted Lexiq Nova clusters natively stream responses, including custom
+        Hosted RemodlAI clusters natively stream responses, including custom
         models. If metadata is missing, default to real streaming rather than
         faking chunks.
         """
@@ -333,13 +333,13 @@ class RemodlAIResponsesAPIConfig(BaseResponsesAPIConfig):
                 if supports_stream is False:
                     # Nova still streams even if model metadata is missing
                     verbose_logger.debug(
-                        "Fallback to native streaming for Hosted Lexiq Nova model=%s",
+                        "Fallback to native streaming for Hosted RemodlAI model=%s",
                         model,
                     )
                     return False
             except Exception as e:
                 verbose_logger.debug(
-                    "Error checking native streaming for Hosted Lexiq Nova (%s). Defaulting to native streaming.",
+                    "Error checking native streaming for Hosted RemodlAI (%s). Defaulting to native streaming.",
                     e,
                 )
         return False

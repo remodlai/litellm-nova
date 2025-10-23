@@ -39,7 +39,7 @@ class TestRemodlAIRerankTransform:
 
     def test_map_cohere_rerank_params_raises_on_max_chunks_per_doc(self):
         with pytest.raises(
-            ValueError, match="Hosted Lexiq Nova does not support max_chunks_per_doc"
+            ValueError, match="Hosted RemodlAI does not support max_chunks_per_doc"
         ):
             self.config.map_cohere_rerank_params(
                 non_default_params=None,

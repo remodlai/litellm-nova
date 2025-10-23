@@ -1,5 +1,5 @@
 """
-Transformation logic for Hosted Lexiq Nova transcriptions
+Transformation logic for Hosted RemodlAI transcriptions
 """
 
 from typing import Optional, Union
@@ -45,7 +45,7 @@ class RemodlAIAudioTranscriptionConfig(OpenAIWhisperAudioTranscriptionConfig):
             if not api_base.endswith("/v1/audio/transcriptions"):
                 api_base = f"{api_base}/v1/audio/transcriptions"
             return api_base
-        raise ValueError("api_base must be provided for Hosted Lexiq Nova transcriptions")
+        raise ValueError("api_base must be provided for Hosted RemodlAI transcriptions")
 
     def transform_audio_transcription_request(
         self,
