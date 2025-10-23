@@ -169,16 +169,14 @@ class RemodlAIEmbeddingConfig(BaseEmbeddingConfig):
         """
         api_base = (
             api_base
-            or get_secret_str("HOSTED_LEXIQ_NOVA_API_BASE")
-            or get_secret_str("LEXIQ_NOVA_API_BASE")
+            or get_secret_str("REMODL_AI_API_BASE")
         )
         dynamic_api_key = (
             api_key
-            or get_secret_str("HOSTED_LEXIQ_NOVA_API_KEY")
-            or get_secret_str("LEXIQ_NOVA_API_KEY")
+            or get_secret_str("REMODL_AI_API_KEY")
             or "fake-api-key"  # Nova doesn't require API key for local deployments
         )
-        return LlmProviders.HOSTED_LEXIQ_NOVA.value, api_base, dynamic_api_key
+        return LlmProviders.REMODL_AI.value, api_base, dynamic_api_key
 
     def get_complete_url(
         self,
@@ -192,11 +190,9 @@ class RemodlAIEmbeddingConfig(BaseEmbeddingConfig):
         """
         Returns the complete URL for Nova embeddings endpoint
         """
-        return (
-            f"{api_base}/embeddings"
-            if api_base
-            else "https://api.lexiq-nova.com/v1/embeddings"
-        )
+        if not api_base:
+            raise ValueError("api_base must be provided for RemodlAI embeddings")
+        return f"{api_base}/embeddings"
 
     def transform_embedding_request(
         self,

@@ -12,7 +12,7 @@ This script tests the complete Nova integration:
 Prerequisites:
 - LiteLLM proxy running on port 4000
 - Nova server configured with adapters
-- Environment variables set (HOSTED_LEXIQ_NOVA_API_BASE, etc.)
+- Environment variables set (REMODL_AI_API_BASE, etc.)
 """
 
 import requests

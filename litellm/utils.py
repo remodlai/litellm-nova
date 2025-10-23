@@ -2855,6 +2855,19 @@ def get_optional_params_embeddings(  # noqa: PLR0915
             model=model,
             drop_params=drop_params if drop_params is not None else False,
         )
+    elif custom_llm_provider == "remodlai":
+        supported_params = get_supported_openai_params(
+            model=model,
+            custom_llm_provider="remodlai",
+            request_type="embeddings",
+        )
+        _check_valid_arg(supported_params=supported_params)
+        optional_params = litellm.RemodlAIEmbeddingConfig().map_openai_params(
+            non_default_params=non_default_params,
+            optional_params={},
+            model=model,
+            drop_params=drop_params if drop_params is not None else False,
+        )
     elif custom_llm_provider == "voyage":
         supported_params = get_supported_openai_params(
             model=model,

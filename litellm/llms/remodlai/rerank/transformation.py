@@ -93,7 +93,7 @@ class RemodlAIRerankConfig(BaseRerankConfig):
         api_key: Optional[str] = None,
     ) -> dict:
         if api_key is None:
-            api_key = get_secret_str("HOSTED_LEXIQ_NOVA_API_KEY") or "fake-api-key"
+            api_key = get_secret_str("REMODL_AI_API_KEY") or "fake-api-key"
 
         default_headers = {
             "Authorization": f"Bearer {api_key}",
