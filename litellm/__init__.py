@@ -121,6 +121,7 @@ _custom_logger_compatible_callbacks_literal = Literal[
     "literalai",
     "dynamic_rate_limiter",
     "dynamic_rate_limiter_v3",
+    "nova_task_router",
     "langsmith",
     "prometheus",
     "otel",

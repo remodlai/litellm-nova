@@ -1,0 +1,10 @@
+execution_duration_ms: 3061
+request_preview: whats the weather in new york tomorrow
+request_time: '2025-10-23T21:06:49.951Z'
+response_preview: 'Let me get the detailed forecast for you:'
+state: OK
+trace_id: tr-d17467e235338f8336b86d6b8cc4be93
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

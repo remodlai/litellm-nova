@@ -3,7 +3,7 @@ import { Card, Form, Button, Tooltip, Typography, Select as AntdSelect, Modal } 
 import type { FormInstance } from "antd";
 import type { UploadProps } from "antd/es/upload";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@tremor/react";
-import LiteLLMModelNameField from "./litellm_model_name";
+import RemodlAIModelNameField from "./litellm_model_name";
 import ConditionalPublicModelName from "./conditional_public_model_name";
 import ProviderSpecificFields from "./provider_specific_fields";
 import AdvancedSettings from "./advanced_settings";
@@ -188,7 +188,7 @@ const AddModelTab: React.FC<AddModelTabProps> = ({
                       ))}
                     </AntdSelect>
                   </Form.Item>
-                  <LiteLLMModelNameField
+                  <RemodlAIModelNameField
                     selectedProvider={selectedProvider}
                     providerModels={providerModels}
                     getPlaceholder={getPlaceholder}
@@ -210,7 +210,7 @@ const AddModelTab: React.FC<AddModelTabProps> = ({
                     <Col span={10}></Col>
                     <Col span={10}>
                       <Text className="mb-5 mt-1">
-                        <strong>Optional</strong> - LiteLLM endpoint to use when health checking this model{" "}
+                        <strong>Optional</strong> - RemodlAI endpoint to use when health checking this model{" "}
                         <Link href="https://docs.litellm.ai/docs/proxy/health#health" target="_blank">
                           Learn more
                         </Link>

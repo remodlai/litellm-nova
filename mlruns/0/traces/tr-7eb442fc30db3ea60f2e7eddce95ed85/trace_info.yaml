@@ -1,0 +1,10 @@
+execution_duration_ms: 301
+request_preview: whats the weather in portland aine tomrrow
+request_time: '2025-10-23T21:14:08.122Z'
+response_preview: ''
+state: ERROR
+trace_id: tr-7eb442fc30db3ea60f2e7eddce95ed85
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

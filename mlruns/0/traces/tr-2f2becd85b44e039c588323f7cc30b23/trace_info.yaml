@@ -1,0 +1,21 @@
+execution_duration_ms: 2819
+request_preview: whats the weather in maine tomrrow
+request_time: '2025-10-23T21:15:52.902Z'
+response_preview: '{"id": "chatcmpl-8785e73c-9cd9-40f1-a60c-8892566e233e", "created":
+  1761254154, "model": "claude-sonnet-4-5", "object": "chat.completion", "system_fingerprint":
+  null, "choices": [{"finish_reason": "tool_calls", "index": 0, "message": {"content":
+  "", "role": "assistant", "tool_calls": [{"function": {"arguments": "{\"query\":
+  \"weather Maine tomorrow\", \"limit\": 5, \"sources\": [{\"type\":\"web\"}]}", "name":
+  "firecrawl_search"}, "id": "toolu_01LjYfVAzS814SWPwyUJ9HMg", "type": "function"}],
+  "function_call": null}}], "usage": {"completion_tokens": 84, "prompt_tokens": 2184,
+  "total_tokens": 2268, "completion_tokens_details": {"accepted_prediction_tokens":
+  null, "audio_tokens": null, "reasoning_tokens": 0, "rejected_prediction_tokens":
+  null, "text_tokens": null}, "prompt_tokens_details": {"audio_tokens": null, "cached_tokens":
+  0, "text_tokens": null, "image_tokens": null, "cache_creation_tokens": 0}, "cache_creation_input_tokens":
+  0, "cache_read_input_tokens": 0}}'
+state: OK
+trace_id: tr-2f2becd85b44e039c588323f7cc30b23
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

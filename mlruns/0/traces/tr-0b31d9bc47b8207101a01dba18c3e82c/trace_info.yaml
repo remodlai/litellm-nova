@@ -1,0 +1,40 @@
+execution_duration_ms: 11268
+request_preview: whats going on with graham platner? Hes losing his mind
+request_time: '2025-10-23T21:17:30.594Z'
+response_preview: 'Based on the recent news, here''s what''s going on with Graham
+  Platner:
+
+
+  **The Controversy:**
+
+  Graham Platner, a Maine oyster farmer running as a Democratic candidate for U.S.
+  Senate, is in the middle of a major controversy involving:
+
+
+  1. **Nazi-resembling tattoo** - He has a skull-and-crossbones tattoo that resembles
+  Nazi SS imagery (the "Totenkopf" symbol). He apologized and claims he was unaware
+  of the Nazi connotation. He says he''s since covered it up with a Celtic knot and
+  dog design.
+
+
+  2. **Problematic Reddit posts** - Old posts from his Reddit history have surfaced
+  that he''s had to apologize for.
+
+
+  **Current Situation:**
+
+  - Despite these controversies, he''s **remaining defiant** and staying in the race
+
+  - Recent polling shows he actually holds a **wide lead** over Governor Janet Mills
+  in the Democratic primary
+
+  - His candidacy has become a **"litmus test"** for progressive Democrats and allies
+  like Bernie Sanders
+
+  - This is sparking debate within the Democratic party about whether to ...'
+state: OK
+trace_id: tr-0b31d9bc47b8207101a01dba18c3e82c
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

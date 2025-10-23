@@ -98,18 +98,33 @@ litellm_settings:
   store_audit_logs: true
   request_timeout: 600
   telemetry: False
-  #callbacks: litellm.proxy.hooks.nova_task_routing.nova_task_router  # Enable Nova task routing
+  callbacks: ["nova_task_router", "resend_email", "s3_v2"]  # Enable Nova task routing
+  
+  #session cold storage
+  cold_storage_custom_logger: s3_v2
+  s3_callback_params:
+    s3_bucket_name: "remodl-cold-storage"
+    s3_region_name: "us-east-1"
+   
+    s3_path: "remodl/logs"
+  cache: True
+  cache_params:
+    namespace: "remodl.caching.caching"
+  
+  success_callback: ["mlflow"]
+  failure_callback: ["mlflow"]
+   
+  
   # set_verbose: True  # Uncomment for debugging
 general_settings:
   master_key: sk-1234  # Change this to a secure key in production
   local_model_cost_map: true
   store_prompts_in_spend_logs: true
+  store_prompts_in_cold_storage: true
   store_model_in_db: true
-  database_url: postgresql://neondb_owner:npg_YIynbl1f3MUc@ep-autumn-king-a4xm63yd-pooler.us-east-1.aws.neon.tech/litellm?sslmode=require&channel_binding=require'  # Uncomment for production
+  #database_url: postgresql://neondb_owner:npg_YIynbl1f3MUc@ep-autumn-king-a4xm63yd-pooler.us-east-1.aws.neon.tech/litellm?sslmode=require&channel_binding=require'  # Uncomment for production
 
 # Router settings for Nova task-based routing
 router_settings:
- # enable_tag_filtering: True  # Required for task-based routing
-  # routing_strategy: simple-shuffle
-  # model_group_alias:
-  #   "nova-embed": "nova-embeddings-v1"
+  enable_tag_filtering: True  # Required for task-based routing
+

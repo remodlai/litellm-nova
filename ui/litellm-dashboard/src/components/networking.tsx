@@ -152,7 +152,7 @@ export interface PublicModelHubInfo {
   useful_links: Record<string, string>;
 }
 
-export interface LiteLLMWellKnownUiConfig {
+export interface RemodlAIWellKnownUiConfig {
   server_root_path: string;
   proxy_base_url: string | null;
 }
@@ -214,7 +214,7 @@ export const getUiConfig = async () => {
     ? `${defaultProxyBaseUrl}/litellm/.well-known/litellm-ui-config`
     : `/litellm/.well-known/litellm-ui-config`;
   const response = await fetch(url);
-  const jsonData: LiteLLMWellKnownUiConfig = await response.json();
+  const jsonData: RemodlAIWellKnownUiConfig = await response.json();
   /**
    * Update the proxy base url and server root path
    */

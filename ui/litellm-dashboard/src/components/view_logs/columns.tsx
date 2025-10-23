@@ -463,19 +463,19 @@ export const auditLogColumns: ColumnDef<AuditLogEntry>[] = [
       const tableName = info.getValue();
       let displayValue = tableName;
       switch (tableName) {
-        case "LiteLLM_VerificationToken":
+        case "RemodlAI_VerificationToken":
           displayValue = "Keys";
           break;
-        case "LiteLLM_TeamTable":
+        case "RemodlAI_TeamTable":
           displayValue = "Teams";
           break;
-        case "LiteLLM_OrganizationTable":
+        case "RemodlAI_OrganizationTable":
           displayValue = "Organizations";
           break;
-        case "LiteLLM_UserTable":
+        case "RemodlAI_UserTable":
           displayValue = "Users";
           break;
-        case "LiteLLM_ProxyModelTable":
+        case "RemodlAI_ProxyModelTable":
           displayValue = "Models";
           break;
         default:

@@ -50,6 +50,7 @@ from litellm.integrations.vector_store_integrations.vector_store_pre_call_hook i
 )
 from litellm.proxy.hooks.dynamic_rate_limiter import _PROXY_DynamicRateLimitHandler
 from litellm.proxy.hooks.dynamic_rate_limiter_v3 import _PROXY_DynamicRateLimitHandlerV3
+from litellm.proxy.hooks.nova_task_routing import NovaTaskRoutingHook
 
 
 class CustomLoggerRegistry:
@@ -90,6 +91,7 @@ class CustomLoggerRegistry:
         "aws_sqs": SQSLogger,
         "dynamic_rate_limiter": _PROXY_DynamicRateLimitHandler,
         "dynamic_rate_limiter_v3": _PROXY_DynamicRateLimitHandlerV3,
+        "nova_task_router": NovaTaskRoutingHook,
         "vector_store_pre_call_hook": VectorStorePreCallHook,
         "dotprompt": DotpromptManager,
         "bitbucket": BitBucketPromptManager,

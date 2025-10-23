@@ -280,7 +280,7 @@ export default function AuditLogs({
         <div>
           <h4 className="text-sm font-medium text-blue-800">Audit Logs Not Available</h4>
           <p className="text-sm text-blue-700 mt-1">
-            To enable audit logging, add the following configuration to your LiteLLM proxy configuration file:
+            To enable audit logging, add the following configuration to your RemodlAI proxy configuration file:
           </p>
           <pre className="mt-2 bg-white p-3 rounded border border-blue-200 text-xs font-mono overflow-auto">
             {`litellm_settings:
@@ -357,9 +357,9 @@ export default function AuditLogs({
 
       if ((action === "updated" || action === "rotated") && before_value && updated_values) {
         if (
-          table_name === "LiteLLM_TeamTable" ||
-          table_name === "LiteLLM_UserTable" ||
-          table_name === "LiteLLM_VerificationToken"
+          table_name === "RemodlAI_TeamTable" ||
+          table_name === "RemodlAI_UserTable" ||
+          table_name === "RemodlAI_VerificationToken"
         ) {
           const changedBefore: Record<string, any> = {};
           const changedUpdated: Record<string, any> = {};
@@ -412,11 +412,11 @@ export default function AuditLogs({
         <div className="-mx-4 p-4 bg-slate-100 border-y border-slate-300 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <h4 className="font-semibold mb-2 text-sm text-slate-700">Before Value:</h4>
-            {renderValue(displayBeforeValue, table_name === "LiteLLM_VerificationToken")}
+            {renderValue(displayBeforeValue, table_name === "RemodlAI_VerificationToken")}
           </div>
           <div>
             <h4 className="font-semibold mb-2 text-sm text-slate-700">Updated Value:</h4>
-            {renderValue(displayUpdatedValue, table_name === "LiteLLM_VerificationToken")}
+            {renderValue(displayUpdatedValue, table_name === "RemodlAI_VerificationToken")}
           </div>
         </div>
       );
@@ -430,7 +430,7 @@ export default function AuditLogs({
       <div style={{ textAlign: "center", marginTop: "20px" }}>
         <h1 style={{ display: "block", marginBottom: "10px" }}>✨ Enterprise Feature.</h1>
         <Text style={{ display: "block", marginBottom: "10px" }}>
-          This is a LiteLLM Enterprise feature, and requires a valid key to use.
+          This is a RemodlAI Enterprise feature, and requires a valid key to use.
         </Text>
         <Text style={{ display: "block", marginBottom: "20px", fontStyle: "italic" }}>
           Here&apos;s a preview of what Audit Logs offer:

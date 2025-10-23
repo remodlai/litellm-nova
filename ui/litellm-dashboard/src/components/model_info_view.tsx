@@ -364,7 +364,7 @@ export default function ModelInfoView({
                 </div>
               </Card>
               <Card>
-                <Text>LiteLLM Model</Text>
+                <Text>RemodlAI Model</Text>
                 <div className="mt-2 overflow-hidden">
                   <Tooltip title={modelData.litellm_model_name || "Not Set"}>
                     <div className="break-all text-sm font-medium leading-relaxed cursor-pointer">
@@ -483,10 +483,10 @@ export default function ModelInfoView({
                       </div>
 
                       <div>
-                        <Text className="font-medium">LiteLLM Model Name</Text>
+                        <Text className="font-medium">RemodlAI Model Name</Text>
                         {isEditing ? (
                           <Form.Item name="litellm_model_name" className="mb-0">
-                            <TextInput placeholder="Enter LiteLLM model name" />
+                            <TextInput placeholder="Enter RemodlAI model name" />
                           </Form.Item>
                         ) : (
                           <div className="mt-1 p-2 bg-gray-50 rounded">{localModelData.litellm_model_name}</div>

@@ -1,0 +1,21 @@
+execution_duration_ms: 6191
+request_preview: 'consider this statement: My name is Brian. I like cheese. My daughters
+  name is Isabel. She loves unicorns. return the cypher statements'
+request_time: '2025-10-23T20:47:35.572Z'
+response_preview: "Here are the Cypher statements to represent the information from
+  that statement:\n\n```cypher\nCREATE (brian:Person {name: 'Brian'})\nCREATE (cheese:Food
+  {name: 'Cheese'})\nCREATE (isabel:Person {name: 'Isabel'})\nCREATE (unicorn:MythicalCreature
+  {name: 'Unicorn'})\n\nCREATE (brian)-[:LIKES]->(cheese)\nCREATE (brian)-[:HAS_DAUGHTER]->(isabel)\nCREATE
+  (isabel)-[:LOVES]->(unicorn)\n```\n\nOr, as a more compact single statement:\n\n```cypher\nCREATE
+  (brian:Person {name: 'Brian'}),\n       (cheese:Food {name: 'Cheese'}),\n       (isabel:Person
+  {name: 'Isabel'}),\n       (unicorn:MythicalCreature {name: 'Unicorn'}),\n       (brian)-[:LIKES]->(cheese),\n
+  \      (brian)-[:HAS_DAUGHTER]->(isabel),\n       (isabel)-[:LOVES]->(unicorn)\n```\n\nThis
+  creates:\n- Two person nodes (Brian and Isabel)\n- A food node (Cheese)\n- A mythical
+  creature node (Unicorn)\n- Relationships showing Brian likes cheese, Brian has a
+  daughter Isabel, and Isabel loves unicorns"
+state: OK
+trace_id: tr-bd5d947d806c600885d6fe7cdd366e5b
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

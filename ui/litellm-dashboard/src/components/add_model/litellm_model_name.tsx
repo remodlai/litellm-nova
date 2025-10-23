@@ -4,13 +4,13 @@ import { TextInput, Text } from "@tremor/react";
 import { Row, Col } from "antd";
 import { Providers } from "../provider_info_helpers";
 
-interface LiteLLMModelNameFieldProps {
+interface RemodlAIModelNameFieldProps {
   selectedProvider: Providers;
   providerModels: string[];
   getPlaceholder: (provider: Providers) => string;
 }
 
-const LiteLLMModelNameField: React.FC<LiteLLMModelNameFieldProps> = ({
+const RemodlAIModelNameField: React.FC<RemodlAIModelNameFieldProps> = ({
   selectedProvider,
   providerModels,
   getPlaceholder,
@@ -101,8 +101,8 @@ const LiteLLMModelNameField: React.FC<LiteLLMModelNameFieldProps> = ({
   return (
     <>
       <Form.Item
-        label="LiteLLM Model Name(s)"
-        tooltip="The model name LiteLLM will send to the LLM API"
+        label="RemodlAI Model Name(s)"
+        tooltip="The model name RemodlAI will send to the LLM API"
         className="mb-0"
       >
         <Form.Item
@@ -183,8 +183,8 @@ const LiteLLMModelNameField: React.FC<LiteLLMModelNameFieldProps> = ({
         <Col span={14}>
           <Text className="mb-3 mt-1">
             {selectedProvider === Providers.Azure
-              ? "Your deployment name will be saved as the public model name, and LiteLLM will use 'azure/deployment-name' internally"
-              : "The model name LiteLLM will send to the LLM API"}
+              ? "Your deployment name will be saved as the public model name, and RemodlAI will use 'azure/deployment-name' internally"
+              : "The model name RemodlAI will send to the LLM API"}
           </Text>
         </Col>
       </Row>
@@ -192,4 +192,4 @@ const LiteLLMModelNameField: React.FC<LiteLLMModelNameFieldProps> = ({
   );
 };
 
-export default LiteLLMModelNameField;
+export default RemodlAIModelNameField;

@@ -409,7 +409,7 @@ const ModelHubTable: React.FC<ModelHubTableProps> = ({ accessToken, publicPage, 
 
 client = openai.OpenAI(
     api_key="your_api_key",
-    base_url="http://0.0.0.0:4000"  # Your LiteLLM Proxy URL
+    base_url="http://0.0.0.0:4000"  # Your RemodlAI Proxy URL
 )
 
 response = client.chat.completions.create(

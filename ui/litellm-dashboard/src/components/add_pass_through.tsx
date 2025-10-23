@@ -123,7 +123,7 @@ const AddPassThroughEndpoint: React.FC<AddFallbacksProps> = ({
         <div className="mt-6">
           <Alert
             message="What is a Pass-Through Endpoint?"
-            description="Route requests from your LiteLLM proxy to any external API. Perfect for custom models, image generation APIs, or any service you want to proxy through LiteLLM."
+            description="Route requests from your RemodlAI proxy to any external API. Perfect for custom models, image generation APIs, or any service you want to proxy through RemodlAI."
             type="info"
             showIcon
             className="mb-6"

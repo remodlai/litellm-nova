@@ -330,3 +330,338 @@ curl --location 'http://0.0.0.0:4000/chat/completions' \
     "usage": {}
 }
 ```
+
+## Creating Built-in Hooks
+
+The examples above show external callback files. For hooks that are part of the LiteLLM codebase (like rate limiters or task routing), follow this pattern:
+
+### Step 1: Create Hook File
+
+**Location:** `litellm/proxy/hooks/your_hook_name.py`
+
+**Example:** Nova Task Routing Hook
+
+```python
+"""
+Nova Embeddings Task-Based Routing Hook
+
+Converts Nova's 'task' parameter to LiteLLM's tag-based routing.
+"""
+
+from typing import TYPE_CHECKING, Any, Literal, Optional
+
+from litellm._logging import verbose_logger
+from litellm.integrations.custom_logger import CustomLogger
+
+if TYPE_CHECKING:
+    from litellm.proxy.proxy_server import DualCache, UserAPIKeyAuth
+else:
+    DualCache = Any
+    UserAPIKeyAuth = Any
+
+
+class NovaTaskRoutingHook(CustomLogger):
+    """
+    Converts Nova Embeddings 'task' parameter to tag-based routing.
+    """
+
+    def __init__(self):
+        super().__init__()
+        verbose_logger.debug("NovaTaskRoutingHook initialized")
+
+    async def async_pre_call_hook(
+        self,
+        user_api_key_dict: UserAPIKeyAuth,
+        cache: DualCache,
+        data: dict,
+        call_type: Literal[
+            "completion",
+            "text_completion",
+            "embeddings",
+            "image_generation",
+            "moderation",
+            "audio_transcription",
+        ],
+    ):
+        # Only process embedding requests
+        if call_type != "embeddings":
+            return data
+        
+        # Only process Nova embedding models
+        if "nova-embeddings" not in data.get("model", ""):
+            return data
+        
+        # Extract the task parameter
+        task = data.get("task")
+        
+        if not task:
+            return data
+        
+        # Initialize metadata if not present
+        if "metadata" not in data:
+            data["metadata"] = {}
+        
+        if "tags" not in data["metadata"]:
+            data["metadata"]["tags"] = []
+        
+        # Add task to tags
+        if task not in data["metadata"]["tags"]:
+            data["metadata"]["tags"].append(task)
+        
+        return data
+
+
+# Create singleton instance
+nova_task_router = NovaTaskRoutingHook()
+```
+
+### Step 2: Register the Hook
+
+#### 2a. Add to Type Literal
+
+**File:** `litellm/__init__.py` (line ~117)
+
+```python
+_custom_logger_compatible_callbacks_literal = Literal[
+    "lago",
+    "openmeter",
+    "dynamic_rate_limiter",
+    "nova_task_router",  # ← Add your hook name
+    "langsmith",
+    # ...
+]
+```
+
+#### 2b. Register in Custom Logger Registry
+
+**File:** `litellm/litellm_core_utils/custom_logger_registry.py`
+
+**Import your hook (top of file):**
+```python
+from litellm.proxy.hooks.nova_task_routing import NovaTaskRoutingHook
+```
+
+**Add to registry (line ~94):**
+```python
+CALLBACK_CLASS_STR_TO_CLASS_TYPE = {
+    "lago": LagoLogger,
+    "dynamic_rate_limiter": _PROXY_DynamicRateLimitHandler,
+    "nova_task_router": NovaTaskRoutingHook,  # ← Add mapping
+    # ...
+}
+```
+
+#### 2c. Export from Hooks Module
+
+**File:** `litellm/proxy/hooks/__init__.py`
+
+```python
+from .nova_task_routing import NovaTaskRoutingHook, nova_task_router
+
+PROXY_HOOKS = {
+    "nova_task_router": NovaTaskRoutingHook,
+}
+
+__all__ = [
+    "NovaTaskRoutingHook",
+    "nova_task_router",
+]
+```
+
+### Step 3: Use in Config
+
+**Method 1: String name (Recommended - allows multiple callbacks)**
+
+```yaml
+litellm_settings:
+  callbacks: ["nova_task_router", "langfuse", "prometheus"]
+```
+
+**Method 2: Direct import (Single callback only)**
+
+```yaml
+litellm_settings:
+  callbacks: litellm.proxy.hooks.nova_task_routing.nova_task_router
+```
+
+### Step 4: Test
+
+```bash
+# Enable verbose logging
+litellm --config proxy_server_config.yaml --detailed_debug
+
+# Make request
+curl -X POST http://localhost:4000/v1/embeddings \
+  -H "Authorization: Bearer sk-1234" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "remodlai/nova-embeddings-v1",
+    "task": "retrieval.query",
+    "input": ["test query"]
+  }'
+
+# Check logs for:
+# - "NovaTaskRoutingHook initialized"
+# - "NovaTaskRoutingHook: Converting task 'retrieval.query' to tag"
+# - "Updated metadata tags: ['retrieval.query']"
+```
+
+## Hook Execution Flow
+
+Understanding when your hook runs (from `litellm/proxy/proxy_server.py`):
+
+```
+/v1/embeddings endpoint:
+├─ Line 4674: Request body parsed
+├─ Line 4736: async_pre_call_hook() ← YOUR HOOK RUNS HERE
+│   └─ Modifies data (add tags, change model, etc.)
+├─ Line 4750: route_request()
+│   └─ Router uses modified data to select deployment
+└─ Line 4756: LLM API call made
+```
+
+**Key Point:** Hook runs BEFORE routing, so modifications affect deployment selection.
+
+## Real-World Example: Nova Task Routing
+
+**Use Case:** Route embedding requests to task-specific LoRA adapters based on `task` parameter.
+
+**Problem:** Clients send `task: "retrieval.query"`, but LiteLLM routes by model name and tags, not custom params.
+
+**Solution:** Hook converts `task` → `metadata.tags`, enabling tag-based routing.
+
+**Config:**
+```yaml
+# Enable tag filtering
+router_settings:
+  enable_tag_filtering: True
+
+# Enable hook
+litellm_settings:
+  callbacks: ["nova_task_router"]
+```
+
+**Deployments (in DB):**
+```
+Model 1: nova-embeddings-v1
+  Backend: nova-embeddings-v1-retrieval
+  Tags: ["retrieval", "retrieval.query", "retrieval.passage"]
+
+Model 2: nova-embeddings-v1
+  Backend: nova-embeddings-v1-text-matching
+  Tags: ["text-matching"]
+
+Model 3: nova-embeddings-v1
+  Backend: nova-embeddings-v1-code  
+  Tags: ["code", "code.query", "code.passage"]
+```
+
+**Request flow:**
+1. Client: `{"model": "nova-embeddings-v1", "task": "retrieval.query"}`
+2. Hook: Adds `metadata.tags: ["retrieval.query"]`
+3. Router: Matches Model 1 (has "retrieval.query" in tags)
+4. Calls: `nova-embeddings-v1-retrieval` backend
+5. Nova: Activates retrieval LoRA adapter
+
+**Code Location:** `litellm/proxy/hooks/nova_task_routing.py`
+
+## Code Reference Locations
+
+| What | File | Line(s) |
+|------|------|---------|
+| Hook class | `litellm/proxy/hooks/nova_task_routing.py` | 43-127 |
+| Literal type | `litellm/__init__.py` | 117-158 |
+| Registry import | `litellm/litellm_core_utils/custom_logger_registry.py` | 53 |
+| Registry mapping | `litellm/litellm_core_utils/custom_logger_registry.py` | 94 |
+| Hook export | `litellm/proxy/hooks/__init__.py` | 23, 62 |
+| Pre-call execution | `litellm/proxy/proxy_server.py` | 4736 (embeddings), similar for other endpoints |
+| Tag filtering | `litellm/router_strategy/tag_based_routing.py` | 39-120 |
+
+## Debugging Tips
+
+**1. Check hook is loaded:**
+```bash
+# Start proxy with verbose logging
+LITELLM_LOG=DEBUG litellm --config config.yaml
+
+# Should see:
+# "NovaTaskRoutingHook initialized"
+```
+
+**2. Trace hook execution:**
+Add verbose logging in your hook:
+```python
+verbose_logger.debug("Hook input: %s", data)
+verbose_logger.debug("Hook output: %s", modified_data)
+```
+
+**3. Verify registration:**
+```python
+# In Python console
+from litellm.litellm_core_utils.custom_logger_registry import CustomLoggerRegistry
+print("nova_task_router" in CustomLoggerRegistry.CALLBACK_CLASS_STR_TO_CLASS_TYPE)
+# Should print: True
+```
+
+**4. Test hook directly:**
+```python
+import asyncio
+from litellm.proxy.hooks.nova_task_routing import NovaTaskRoutingHook
+
+async def test():
+    hook = NovaTaskRoutingHook()
+    data = {"model": "nova-embeddings-v1", "task": "retrieval"}
+    result = await hook.async_pre_call_hook(None, None, data, "embeddings")
+    print(result)
+
+asyncio.run(test())
+```
+
+## Common Patterns
+
+### Pattern: Conditional Processing
+
+```python
+async def async_pre_call_hook(self, user_api_key_dict, cache, data, call_type):
+    # Process only specific call types
+    if call_type != "embeddings":
+        return data
+    
+    # Process only specific models
+    if not data.get("model", "").startswith("your-prefix/"):
+        return data
+    
+    # Your logic here
+    return data
+```
+
+### Pattern: Safe Metadata Modification
+
+```python
+async def async_pre_call_hook(self, user_api_key_dict, cache, data, call_type):
+    # Safely initialize nested structures
+    if "metadata" not in data:
+        data["metadata"] = {}
+    
+    if "tags" not in data["metadata"]:
+        data["metadata"]["tags"] = []
+    
+    # Add without duplicates
+    new_tag = compute_tag(data)
+    if new_tag not in data["metadata"]["tags"]:
+        data["metadata"]["tags"].append(new_tag)
+    
+    return data
+```
+
+### Pattern: Parameter Transformation
+
+```python
+async def async_pre_call_hook(self, user_api_key_dict, cache, data, call_type):
+    # Convert custom param to standard param
+    if "custom_param" in data:
+        custom_value = data.pop("custom_param")  # Remove from data
+        data["standard_param"] = transform(custom_value)
+    
+    return data
+```

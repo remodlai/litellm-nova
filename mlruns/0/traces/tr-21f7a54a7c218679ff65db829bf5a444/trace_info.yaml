@@ -1,0 +1,10 @@
+execution_duration_ms: 3277
+request_preview: whats the weather in portland aine tomrrow
+request_time: '2025-10-23T21:12:29.989Z'
+response_preview: 'Let me get the detailed weather forecast for you:'
+state: OK
+trace_id: tr-21f7a54a7c218679ff65db829bf5a444
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

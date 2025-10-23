@@ -24,7 +24,7 @@ export const handleEditModelSubmit = async (
     return;
   }
 
-  let newLiteLLMParams: Record<string, any> = {};
+  let newRemodlAIParams: Record<string, any> = {};
   let model_info_model_id = null;
 
   if (formValues.input_cost_per_token) {
@@ -39,7 +39,7 @@ export const handleEditModelSubmit = async (
   for (const [key, value] of Object.entries(formValues)) {
     if (key !== "model_id") {
       // Empty string means user wants to null the value
-      newLiteLLMParams[key] = value === "" ? null : value;
+      newRemodlAIParams[key] = value === "" ? null : value;
     } else {
       model_info_model_id = value === "" ? null : value;
     }
@@ -49,7 +49,7 @@ export const handleEditModelSubmit = async (
     litellm_params: Record<string, any> | undefined;
     model_info: { id: any } | undefined;
   } = {
-    litellm_params: Object.keys(newLiteLLMParams).length > 0 ? newLiteLLMParams : undefined,
+    litellm_params: Object.keys(newRemodlAIParams).length > 0 ? newRemodlAIParams : undefined,
     model_info:
       model_info_model_id !== undefined
         ? {
@@ -118,7 +118,7 @@ const EditModelModal: React.FC<EditModelModalProps> = ({ visible, onCancel, mode
 
   return (
     <Modal
-      title={"Edit '" + model_name + "' LiteLLM Params"}
+      title={"Edit '" + model_name + "' RemodlAI Params"}
       visible={visible}
       width={800}
       footer={null}

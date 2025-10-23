@@ -1,0 +1,38 @@
+execution_duration_ms: 5298
+request_preview: whats the weather in maine tomrrow
+request_time: '2025-10-23T21:15:57.023Z'
+response_preview: 'Based on the search results, here''s the weather forecast for Maine
+  tomorrow:
+
+
+  **Tomorrow''s Weather in Maine:**
+
+
+  According to WMTW News 8 (Portland area):
+
+  - **Mostly Sunny** ☀️
+
+  - **High:** 60°F
+
+  - **Chance of Precipitation:** 4%
+
+  - **Wind:** ESE 2 mph
+
+  - **Humidity:** 87%
+
+
+  The forecast shows mostly sunny conditions with mild temperatures in the 60s (in
+  the southern part of Maine). Other sources indicate a mix of sun and clouds with
+  highs generally in the 50s across different parts of the state, and possibly a few
+  isolated showers in northern Maine.
+
+
+  The weather varies slightly depending on which part of Maine you''re interested
+  in (northern vs. southern regions), but overall it looks like a pleasant day with
+  mostly sunny to partly cloudy skies and mild temperatures.'
+state: OK
+trace_id: tr-1955985f09b25e45df5bbe51fa5a7376
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,10 @@
+execution_duration_ms: 261
+request_preview: whats the weather in portland maie tomorrow
+request_time: '2025-10-23T21:15:22.370Z'
+response_preview: ''
+state: ERROR
+trace_id: tr-9c6b57466ffaa8a92158152de5737b10
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

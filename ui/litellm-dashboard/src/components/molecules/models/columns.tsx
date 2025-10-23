@@ -51,7 +51,7 @@ export const columns = (
             <strong>Public Model Name:</strong> {displayName}
           </div>
           <div>
-            <strong>LiteLLM Model Name:</strong> {model.litellm_model_name || "-"}
+            <strong>RemodlAI Model Name:</strong> {model.litellm_model_name || "-"}
           </div>
         </div>
       );
@@ -87,7 +87,7 @@ export const columns = (
             <div className="flex flex-col min-w-0 flex-1">
               {/* Public Model Name */}
               <div className="text-xs font-medium text-gray-900 truncate max-w-[210px]">{displayName}</div>
-              {/* LiteLLM Model Name */}
+              {/* RemodlAI Model Name */}
               <div className="text-xs text-gray-500 truncate mt-0.5 max-w-[210px]">
                 {model.litellm_model_name || "-"}
               </div>

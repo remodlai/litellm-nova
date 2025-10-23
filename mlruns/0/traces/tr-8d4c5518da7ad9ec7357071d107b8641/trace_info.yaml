@@ -1,0 +1,21 @@
+execution_duration_ms: 2954
+request_preview: its getting chilly
+request_time: '2025-10-23T21:16:54.785Z'
+response_preview: '{"id": "chatcmpl-cd60bb6d-5802-446c-963e-8e423bd8750a", "created":
+  1761254216, "model": "claude-sonnet-4-5", "object": "chat.completion", "system_fingerprint":
+  null, "choices": [{"finish_reason": "tool_calls", "index": 0, "message": {"content":
+  "", "role": "assistant", "tool_calls": [{"function": {"arguments": "{\"query\":
+  \"Maine weather forecast next week cold temperature winter\", \"limit\": 5, \"sources\":
+  [{\"type\":\"web\"}]}", "name": "firecrawl_search"}, "id": "toolu_01LhEkb2JnWACMMug8fEQTsb",
+  "type": "function"}], "function_call": null}}], "usage": {"completion_tokens": 89,
+  "prompt_tokens": 2387, "total_tokens": 2476, "completion_tokens_details": {"accepted_prediction_tokens":
+  null, "audio_tokens": null, "reasoning_tokens": 0, "rejected_prediction_tokens":
+  null, "text_tokens": null}, "prompt_tokens_details": {"audio_tokens": null, "cached_tokens":
+  0, "text_tokens": null, "image_tokens": null, "cache_creation_tokens": 0}, "cache_creation_input_tokens":
+  0, "cache_read_input_t...'
+state: OK
+trace_id: tr-8d4c5518da7ad9ec7357071d107b8641
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

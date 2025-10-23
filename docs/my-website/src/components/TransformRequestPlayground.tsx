@@ -60,7 +60,7 @@ const TransformRequestPlayground: React.FC = () => {
           <div className={styles.panel}>
             <div className={styles['panel-header']}>
               <h2>Original Request</h2>
-              <p>The request you would send to LiteLLM /chat/completions endpoint.</p>
+              <p>The request you would send to RemodlAI /chat/completions endpoint.</p>
             </div>
             <textarea
               className={styles['code-input']}
@@ -80,7 +80,7 @@ const TransformRequestPlayground: React.FC = () => {
           <div className={styles.panel}>
             <div className={styles['panel-header']}>
               <h2>Transformed Request</h2>
-              <p>How LiteLLM transforms your request for the specified provider.</p>
+              <p>How RemodlAI transforms your request for the specified provider.</p>
               <p className={styles.note}>Note: Sensitive headers are not shown.</p>
             </div>
             <div className={styles['code-output-container']}>
@@ -97,7 +97,7 @@ const TransformRequestPlayground: React.FC = () => {
             <div className={styles.panel}>
               <div className={styles['panel-header']}>
                 <h2>Original Request</h2>
-                <p>The request you would send to LiteLLM /chat/completions endpoint.</p>
+                <p>The request you would send to RemodlAI /chat/completions endpoint.</p>
               </div>
               <textarea
                 className={styles['code-input']}
@@ -114,7 +114,7 @@ const TransformRequestPlayground: React.FC = () => {
             <div className={styles.panel}>
               <div className={styles['panel-header']}>
                 <h2>Transformed Request</h2>
-                <p>How LiteLLM transforms your request for the specified provider.</p>
+                <p>How RemodlAI transforms your request for the specified provider.</p>
                 <p className={styles.note}>Note: Sensitive headers are not shown.</p>
               </div>
               <div className={styles['code-output-container']}>

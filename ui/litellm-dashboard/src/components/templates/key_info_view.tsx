@@ -329,7 +329,7 @@ export default function KeyInfoView({
         {userRole && rolesWithWriteAccess.includes(userRole) && (
           <div className="flex gap-2">
             <Tooltip
-              title={!premiumUser ? "This is a LiteLLM Enterprise feature, and requires a valid key to use." : ""}
+              title={!premiumUser ? "This is a RemodlAI Enterprise feature, and requires a valid key to use." : ""}
             >
               <span className="inline-block">
                 <Button

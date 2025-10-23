@@ -46,7 +46,7 @@ interface GuardrailSettings {
   }>;
 }
 
-interface LiteLLMParams {
+interface RemodlAIParams {
   guardrail: string;
   mode: string;
   default_on: boolean;

@@ -163,7 +163,7 @@ const Navbar: React.FC<NavbarProps> = ({
             )}
 
             <Link href="/" className="flex items-center">
-              <img src={imageUrl} alt="LiteLLM Brand" className="h-10 w-auto" />
+              <img src={imageUrl} alt="RemodlAI Brand" className="h-10 w-auto" />
             </Link>
           </div>
           {/* Right side nav items */}

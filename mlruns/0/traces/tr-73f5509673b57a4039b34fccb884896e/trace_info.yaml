@@ -1,0 +1,19 @@
+execution_duration_ms: 101
+request_preview: whats the weather in portland aine tomrrow
+request_time: '2025-10-23T21:13:53.974Z'
+response_preview: '{"id": "chatcmpl-2e44148e-b7af-4e35-bd5f-187a24f56a6e", "created":
+  1761254033, "model": "claude-sonnet-4-5", "object": "chat.completion", "system_fingerprint":
+  null, "choices": [{"finish_reason": "stop", "index": 0, "message": {"content": "",
+  "role": "assistant", "tool_calls": [{"function": {"arguments": "{\"query\": \"weather
+  Portland Maine tomorrow\", \"limit\": 3, \"sources\": [{\"type\":\"web\"}]}", "name":
+  "firecrawl_search"}, "id": "toolu_01BUQLh5tuHqfSQa4d8ML3v4", "type": "function"}],
+  "function_call": null}}], "usage": {"completion_tokens": 66, "prompt_tokens": 19,
+  "total_tokens": 85, "completion_tokens_details": {"accepted_prediction_tokens":
+  null, "audio_tokens": null, "reasoning_tokens": 0, "rejected_prediction_tokens":
+  null, "text_tokens": null}, "prompt_tokens_details": null}}'
+state: OK
+trace_id: tr-73f5509673b57a4039b34fccb884896e
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

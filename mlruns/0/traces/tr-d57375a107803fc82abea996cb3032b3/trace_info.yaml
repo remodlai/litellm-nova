@@ -1,0 +1,21 @@
+execution_duration_ms: 3677
+request_preview: whats going on with graham platner? Hes losing his mind
+request_time: '2025-10-23T21:17:22.038Z'
+response_preview: '{"id": "chatcmpl-c2747032-7155-4900-9883-cb6d7aac7104", "created":
+  1761254243, "model": "claude-sonnet-4-5", "object": "chat.completion", "system_fingerprint":
+  null, "choices": [{"finish_reason": "tool_calls", "index": 0, "message": {"content":
+  "", "role": "assistant", "tool_calls": [{"function": {"arguments": "{\"query\":
+  \"Graham Platner losing his mind\", \"limit\": 5, \"sources\": [{\"type\":\"web\"}]}",
+  "name": "firecrawl_search"}, "id": "toolu_01KU5gN79poHL6U2MS6JZFAf", "type": "function"},
+  {"function": {"arguments": "{\"query\": \"Graham Platner news recent\", \"limit\":
+  5, \"sources\": [{\"type\":\"news\"}]}", "name": "firecrawl_search"}, "id": "toolu_01JXyJeYVpPyZ1XzPCkwfSm4",
+  "type": "function"}], "function_call": null}}], "usage": {"completion_tokens": 173,
+  "prompt_tokens": 2361, "total_tokens": 2534, "completion_tokens_details": {"accepted_prediction_tokens":
+  null, "audio_tokens": null, "reasoning_tokens": 0, "rejected_prediction_tokens":
+  null, "text_tokens": null}, "pro...'
+state: OK
+trace_id: tr-d57375a107803fc82abea996cb3032b3
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT
