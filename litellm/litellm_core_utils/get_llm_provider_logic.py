@@ -641,6 +641,14 @@ def _get_openai_compatible_provider_info(  # noqa: PLR0915
         ) = litellm.JinaAIEmbeddingConfig()._get_openai_compatible_provider_info(
             api_base, api_key
         )
+    elif custom_llm_provider == "remodlai_embeddings":
+        (
+            custom_llm_provider,
+            api_base,
+            dynamic_api_key,
+        ) = litellm.RemodlaiEmbeddingsConfig()._get_openai_compatible_provider_info(
+            api_base, api_key
+        )
     elif custom_llm_provider == "xai":
         (
             api_base,

@@ -20,9 +20,9 @@ export enum Providers {
   Groq = "Groq",
   Hosted_Vllm = "vllm",
   RemodlAI = "RemodlAI",
+  RemodlAI_Embeddings = "RemodlAI Embeddings",
   Infinity = "Infinity",
   JinaAI = "Jina AI",
-  Lexiq_Nova = "RemodlAI (Local)",
   MistralAI = "Mistral AI",
   Ollama = "Ollama",
   OpenAI = "OpenAI",
@@ -82,7 +82,7 @@ export const provider_map: Record<string, string> = {
   DeepInfra: "deepinfra",
   Hosted_Vllm: "hosted_vllm",
   RemodlAI: "remodlai",
-  Lexiq_Nova: "lexiq_nova",
+  RemodlAI_Embeddings: "remodlai_embeddings",
   Infinity: "infinity",
 };
 
@@ -106,7 +106,7 @@ export const providerLogoMap: Record<string, string> = {
   [Providers.Google_AI_Studio]: `${asset_logos_folder}google.svg`,
   [Providers.Hosted_Vllm]: `${asset_logos_folder}vllm.png`,
   [Providers.RemodlAI]: `${asset_logos_folder}remodl_icon_128.png`,
-  [Providers.Lexiq_Nova]: `${asset_logos_folder}remodl_icon_128.png`,
+  [Providers.RemodlAI_Embeddings]: `${asset_logos_folder}remodl_icon_128.png`,
   [Providers.Infinity]: `${asset_logos_folder}infinity.png`,
   [Providers.MistralAI]: `${asset_logos_folder}mistral.svg`,
   [Providers.Ollama]: `${asset_logos_folder}ollama.svg`,
@@ -189,10 +189,8 @@ export const getPlaceholder = (selectedProvider: string): string => {
     return "volcengine/<any-model-on-volcengine>";
   } else if (selectedProvider == Providers.DeepInfra) {
     return "deepinfra/<any-model-on-deepinfra>";
-  } else if (selectedProvider == Providers.RemodlAI) {
+  } else if (selectedProvider == Providers.RemodlAI_Embeddings) {
     return "nova-embeddings-v1";
-  } else if (selectedProvider == Providers.Lexiq_Nova) {
-    return "remodlai/nova-embeddings-v1";
   } else if (selectedProvider == Providers.Hosted_Vllm) {
     return "llama-3.1-70b-instruct";
   } else {

@@ -514,7 +514,7 @@ const PROVIDER_CREDENTIAL_FIELDS: Record<Providers, ProviderCredentialField[]> =
     {
       key: "api_base",
       label: "API Base",
-      placeholder: "https://api.lexiq-nova.com",
+      placeholder: "https://api.remodl.ai/v1",
       required: true,
     },
     {
@@ -524,18 +524,12 @@ const PROVIDER_CREDENTIAL_FIELDS: Record<Providers, ProviderCredentialField[]> =
       required: false,
     },
   ],
-  [Providers.Lexiq_Nova]: [
+  [Providers.RemodlAI_Embeddings]: [
     {
       key: "api_base",
       label: "API Base",
-      placeholder: "http://localhost:8000",
+      placeholder: "https://api.remodl.ai/v1",
       required: true,
-    },
-    {
-      key: "api_key",
-      label: "API Key",
-      type: "password",
-      required: false,
     },
   ],
   [Providers.Voyage]: [

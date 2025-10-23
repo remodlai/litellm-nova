@@ -505,7 +505,7 @@ nvidia_nim_models: Set = set()
 sambanova_models: Set = set()
 sambanova_embedding_models: Set = set()
 remodlai_models: Set = set()
-remodlai_embedding_models: Set = set()
+remodlai_embeddings_models: Set = set()
 novita_models: Set = set()
 assemblyai_models: Set = set()
 snowflake_models: Set = set()
@@ -706,8 +706,8 @@ def add_known_models():
             sambanova_embedding_models.add(key)
         elif value.get("litellm_provider") == "remodlai":
             remodlai_models.add(key)
-        elif value.get("litellm_provider") == "remodlai-embedding-models":
-            remodlai_embedding_models.add(key)
+        elif value.get("litellm_provider") == "remodlai_embeddings":
+            remodlai_embeddings_models.add(key)
         elif value.get("litellm_provider") == "novita":
             novita_models.add(key)
         elif value.get("litellm_provider") == "nebius-chat-models":
@@ -921,7 +921,8 @@ models_by_provider: dict = {
     "galadriel": galadriel_models,
     "nvidia_nim": nvidia_nim_models,
     "sambanova": sambanova_models | sambanova_embedding_models,
-    "remodlai": remodlai_models | remodlai_embedding_models,
+    "remodlai": remodlai_models,
+    "remodlai_embeddings": remodlai_embeddings_models,
     "novita": novita_models,
     "nebius": nebius_models | nebius_embedding_models,
     "aiml": aiml_models,
@@ -983,7 +984,7 @@ all_embedding_models = (
     | fireworks_ai_embedding_models
     | nebius_embedding_models
     | sambanova_embedding_models
-    | remodlai_embedding_models
+    | remodlai_embeddings_models
     | ovhcloud_embedding_models
 )
 
@@ -1281,7 +1282,8 @@ from .llms.azure.chat.gpt_5_transformation import AzureOpenAIGPT5Config
 from .llms.azure.completion.transformation import AzureOpenAITextConfig
 from .llms.hosted_vllm.chat.transformation import HostedVLLMChatConfig
 from .llms.remodlai.chat.transformation import RemodlAIChatConfig
-from .llms.remodlai.embedding.transformation import RemodlAIEmbeddingConfig
+#from .llms.remodlai.embedding.transformation import RemodlAIEmbeddingConfig
+from .llms.remodlai_embeddings.embedding.transformation import RemodlaiEmbeddingsConfig
 from .llms.llamafile.chat.transformation import LlamafileChatConfig
 from .llms.litellm_proxy.chat.transformation import LiteLLMProxyChatConfig
 from .llms.vllm.completion.transformation import VLLMConfig

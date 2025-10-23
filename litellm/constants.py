@@ -277,6 +277,7 @@ LITELLM_CHAT_PROVIDERS = [
     "cohere_chat",
     "clarifai",
     "anthropic",
+    "remodlai_embeddings",
     "anthropic_text",
     "replicate",
     "huggingface",

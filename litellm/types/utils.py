@@ -2502,6 +2502,7 @@ class LlmProviders(str, Enum):
     LITELLM_PROXY = "litellm_proxy"
     HOSTED_VLLM = "hosted_vllm"
     REMODL_AI = "remodlai"
+    REMODLAI_EMBEDDINGS = "remodlai_embeddings"
     LLAMAFILE = "llamafile"
     LM_STUDIO = "lm_studio"
     GALADRIEL = "galadriel"
