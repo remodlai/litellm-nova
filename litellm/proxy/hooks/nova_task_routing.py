@@ -12,15 +12,15 @@ Usage:
    model_list:
      - model_name: nova-embeddings-v1
        litellm_params:
-         model: hosted_lexiq_nova/nova-embeddings-retrieval
+         model: remodlai/nova-embeddings-retrieval
          tags: ["retrieval", "retrieval.query", "retrieval.passage"]
      - model_name: nova-embeddings-v1
        litellm_params:
-         model: hosted_lexiq_nova/nova-embeddings-text-matching
+         model: remodlai/nova-embeddings-text-matching
          tags: ["text-matching"]
      - model_name: nova-embeddings-v1
        litellm_params:
-         model: hosted_lexiq_nova/nova-embeddings-code
+         model: remodlai/nova-embeddings-code
          tags: ["code", "code.query", "code.passage"]
 
 3. Enable tag filtering:
@@ -28,11 +28,16 @@ Usage:
      enable_tag_filtering: True
 """
 
-from typing import Literal, Optional
+from typing import TYPE_CHECKING, Any, Literal, Optional
 
 from litellm._logging import verbose_logger
 from litellm.integrations.custom_logger import CustomLogger
-from litellm.proxy.proxy_server import DualCache, UserAPIKeyAuth
+
+if TYPE_CHECKING:
+    from litellm.proxy.proxy_server import DualCache, UserAPIKeyAuth
+else:
+    DualCache = Any
+    UserAPIKeyAuth = Any
 
 
 class NovaTaskRoutingHook(CustomLogger):

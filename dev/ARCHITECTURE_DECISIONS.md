@@ -51,7 +51,7 @@ How do we route embedding requests to the correct Nova adapter endpoint based on
 model_list:
   - model_name: nova-embeddings-v1
     litellm_params:
-      model: hosted_lexiq_nova/nova-embeddings-retrieval
+      model: remodlai/nova-embeddings-retrieval
       tags: ["retrieval", "retrieval.query", "retrieval.passage"]
 
 litellm_settings:
@@ -161,11 +161,11 @@ Nova Embeddings V1 is built on Jina Embeddings V4 architecture with added featur
 litellm.embedding(model="jina_ai/jina-embeddings-v4", input=["text"], dimensions=512)
 
 # ...works identically with Nova V1
-litellm.embedding(model="hosted_lexiq_nova/nova-embeddings-v1", input=["text"], dimensions=512)
+litellm.embedding(model="remodlai/nova-embeddings-v1", input=["text"], dimensions=512)
 
 # Plus you can add Nova features
 litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     input=["text"],
     dimensions=512,
     instructions="Focus on legal terminology",  # Nova-specific

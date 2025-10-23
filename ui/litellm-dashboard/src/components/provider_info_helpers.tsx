@@ -81,7 +81,7 @@ export const provider_map: Record<string, string> = {
   VolcEngine: "volcengine",
   DeepInfra: "deepinfra",
   Hosted_Vllm: "hosted_vllm",
-  Hosted_Lexiq_Nova: "hosted_lexiq_nova",
+  Hosted_Lexiq_Nova: "remodlai",
   Lexiq_Nova: "lexiq_nova",
   Infinity: "infinity",
 };

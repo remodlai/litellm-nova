@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from litellm.llms.hosted_lexiq_nova.rerank.transformation import HostedLexiqNovaRerankConfig
+from litellm.llms.remodlai.rerank.transformation import RemodlAIRerankConfig
 from litellm.types.rerank import (
     OptionalRerankParams,
     RerankBilledUnits,
@@ -15,9 +15,9 @@ from litellm.types.rerank import (
 )
 
 
-class TestHostedLexiqNovaRerankTransform:
+class TestRemodlAIRerankTransform:
     def setup_method(self):
-        self.config = HostedLexiqNovaRerankConfig()
+        self.config = RemodlAIRerankConfig()
         self.model = "hosted-lexiq-nova-model"
 
     def test_map_cohere_rerank_params_basic(self):

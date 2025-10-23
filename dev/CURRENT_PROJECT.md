@@ -1,8 +1,8 @@
 # This describes the current project you are working on. It is a living document.
 
 
-# Objective: Integrate Nova-embeddings-v1 properly for lexiq_nova and hosted_lexiq_nova providers
-Correctly integrate the jinaai/jina-embeddings-v4 based model from Remodl AI called nova-embeddings-v1 into `litellm/llms/hosted_lexiq_nova` and `litellm/llms/lexiq_nova`, ensuring that the proper handing and integration is completed, respecting the unique functionality of this model.
+# Objective: Integrate Nova-embeddings-v1 properly for remodlai and remodlai providers
+Correctly integrate the jinaai/jina-embeddings-v4 based model from Remodl AI called nova-embeddings-v1 into `litellm/llms/remodlai` and `litellm/llms/remodlai`, ensuring that the proper handing and integration is completed, respecting the unique functionality of this model.
 
 
 ## What is this model?

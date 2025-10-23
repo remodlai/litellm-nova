@@ -23,7 +23,7 @@ from litellm.types.rerank import (
 )
 
 
-class HostedLexiqNovaRerankError(BaseLLMException):
+class RemodlAIRerankError(BaseLLMException):
     def __init__(
         self,
         status_code: int,
@@ -33,7 +33,7 @@ class HostedLexiqNovaRerankError(BaseLLMException):
         super().__init__(status_code=status_code, message=message, headers=headers)
 
 
-class HostedLexiqNovaRerankConfig(BaseRerankConfig):
+class RemodlAIRerankConfig(BaseRerankConfig):
     def __init__(self) -> None:
         pass
 
@@ -155,7 +155,7 @@ class HostedLexiqNovaRerankConfig(BaseRerankConfig):
     def get_error_class(
         self, error_message: str, status_code: int, headers: Union[dict, httpx.Headers]
     ) -> BaseLLMException:
-        return HostedLexiqNovaRerankError(message=error_message, status_code=status_code, headers=headers)
+        return RemodlAIRerankError(message=error_message, status_code=status_code, headers=headers)
 
     def _transform_response(self, response: dict) -> RerankResponse:
         # Extract usage information

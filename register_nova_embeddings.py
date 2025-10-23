@@ -8,10 +8,10 @@ import litellm
 
 # Register nova-embeddings-v1 models
 nova_embedding_models = {
-    "hosted_lexiq_nova/nova-embeddings-v1": {
+    "remodlai/nova-embeddings-v1": {
         "input_cost_per_token": 0.0,
         "output_cost_per_token": 0.0,
-        "litellm_provider": "hosted_lexiq_nova",
+        "litellm_provider": "remodlai",
         "mode": "embedding",
         "max_input_tokens": 8192,
         "max_tokens": 8192,
@@ -21,10 +21,10 @@ nova_embedding_models = {
             "notes": "Multivector, multimodal embedding model. Alias for remodlai/nova-embeddings-v1."
         }
     },
-    "hosted_lexiq_nova/remodlai/nova-embeddings-v1": {
+    "remodlai/remodlai/nova-embeddings-v1": {
         "input_cost_per_token": 0.0,
         "output_cost_per_token": 0.0,
-        "litellm_provider": "hosted_lexiq_nova",
+        "litellm_provider": "remodlai",
         "mode": "embedding",
         "max_input_tokens": 8192,
         "max_tokens": 8192,
@@ -34,10 +34,10 @@ nova_embedding_models = {
             "notes": "Nova Embeddings V1: Industry-first multimodal multi-vector embeddings with runtime instruction tuning. Supports text, images, code. Task adapters: retrieval, text-matching, code. Dense (pooled up to 2048d) or multivector (128d per token)."
         }
     },
-    "lexiq_nova/nova-embeddings-v1": {
+    "remodlai/nova-embeddings-v1": {
         "input_cost_per_token": 0.0,
         "output_cost_per_token": 0.0,
-        "litellm_provider": "lexiq_nova",
+        "litellm_provider": "remodlai",
         "mode": "embedding",
         "max_input_tokens": 8192,
         "max_tokens": 8192,
@@ -47,10 +47,10 @@ nova_embedding_models = {
             "notes": "Local SDK version. Alias for remodlai/nova-embeddings-v1."
         }
     },
-    "lexiq_nova/remodlai/nova-embeddings-v1": {
+    "remodlai/remodlai/nova-embeddings-v1": {
         "input_cost_per_token": 0.0,
         "output_cost_per_token": 0.0,
-        "litellm_provider": "lexiq_nova",
+        "litellm_provider": "remodlai",
         "mode": "embedding",
         "max_input_tokens": 8192,
         "max_tokens": 8192,
@@ -83,5 +83,5 @@ for model_name in nova_embedding_models.keys():
 
 print("\n✅ Nova Embeddings V1 registration complete!")
 print("\nYou can now use these models:")
-print("  litellm.embedding(model='hosted_lexiq_nova/nova-embeddings-v1', input=[...], task='retrieval')")
+print("  litellm.embedding(model='remodlai/nova-embeddings-v1', input=[...], task='retrieval')")
 

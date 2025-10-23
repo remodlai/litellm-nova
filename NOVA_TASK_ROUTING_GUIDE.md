@@ -69,9 +69,9 @@ model_list:
   # Retrieval adapter - handles retrieval, retrieval.query, retrieval.passage
   - model_name: nova-embeddings-v1
     litellm_params:
-      model: hosted_lexiq_nova/nova-embeddings-retrieval
-      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
-      api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
+      model: remodlai/nova-embeddings-retrieval
+      api_base: os.environ/REMODLAI_API_BASE
+      api_key: os.environ/REMODLAI_API_KEY
       tags: ["retrieval", "retrieval.query", "retrieval.passage"]
     model_info:
       mode: embedding
@@ -80,9 +80,9 @@ model_list:
   # Text-matching adapter
   - model_name: nova-embeddings-v1
     litellm_params:
-      model: hosted_lexiq_nova/nova-embeddings-text-matching
-      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
-      api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
+      model: remodlai/nova-embeddings-text-matching
+      api_base: os.environ/REMODLAI_API_BASE
+      api_key: os.environ/REMODLAI_API_KEY
       tags: ["text-matching"]
     model_info:
       mode: embedding
@@ -91,9 +91,9 @@ model_list:
   # Code adapter - handles code, code.query, code.passage
   - model_name: nova-embeddings-v1
     litellm_params:
-      model: hosted_lexiq_nova/nova-embeddings-code
-      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
-      api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
+      model: remodlai/nova-embeddings-code
+      api_base: os.environ/REMODLAI_API_BASE
+      api_key: os.environ/REMODLAI_API_KEY
       tags: ["code", "code.query", "code.passage"]
     model_info:
       mode: embedding
@@ -267,14 +267,14 @@ model_list:
   # Server 1: Retrieval on GPU 0
   - model_name: nova-embeddings-v1
     litellm_params:
-      model: hosted_lexiq_nova/nova-embeddings-retrieval
+      model: remodlai/nova-embeddings-retrieval
       api_base: https://nova-server-1.com  # ← Server 1
       tags: ["retrieval", "retrieval.query", "retrieval.passage"]
 
   # Server 2: Code on GPU 1
   - model_name: nova-embeddings-v1
     litellm_params:
-      model: hosted_lexiq_nova/nova-embeddings-code
+      model: remodlai/nova-embeddings-code
       api_base: https://nova-server-2.com  # ← Server 2
       tags: ["code", "code.query", "code.passage"]
 ```
@@ -290,8 +290,8 @@ model_list:
   # Default: route untagged requests to retrieval
   - model_name: nova-embeddings-v1
     litellm_params:
-      model: hosted_lexiq_nova/nova-embeddings-retrieval
-      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
+      model: remodlai/nova-embeddings-retrieval
+      api_base: os.environ/REMODLAI_API_BASE
       tags: ["default"]  # ← Catches requests without task
 ```
 

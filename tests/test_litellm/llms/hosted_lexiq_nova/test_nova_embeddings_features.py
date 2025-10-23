@@ -15,8 +15,8 @@ sys.path.insert(
     0, os.path.abspath("../../../..")
 )  # Adds the parent directory to the system path
 
-from litellm.llms.hosted_lexiq_nova.embedding.transformation import (
-    HostedLexiqNovaEmbeddingConfig,
+from litellm.llms.remodlai.embedding.transformation import (
+    RemodlAIEmbeddingConfig,
 )
 
 
@@ -24,8 +24,8 @@ class TestNovaEmbeddingsFeatures:
     """Test Nova Embeddings V1 unique capabilities"""
 
     def setup_method(self):
-        self.config = HostedLexiqNovaEmbeddingConfig()
-        self.model = "hosted_lexiq_nova/nova-embeddings-v1"
+        self.config = RemodlAIEmbeddingConfig()
+        self.model = "remodlai/nova-embeddings-v1"
 
     def test_supported_params_include_nova_features(self):
         """Verify all Nova-specific parameters are supported"""
@@ -181,7 +181,7 @@ def test_nova_jina_v4_compatibility():
     
     Since Nova is built on Jina V4, it should handle the same inputs
     """
-    config = HostedLexiqNovaEmbeddingConfig()
+    config = RemodlAIEmbeddingConfig()
     
     # Test dimensions parameter (Jina V4 feature)
     non_default = {"dimensions": 512}
@@ -220,7 +220,7 @@ def test_nova_embeddings_usage_example():
     # This is a documentation/example test - actual execution requires API key
     example_usage = {
         "legal_retrieval": {
-            "model": "hosted_lexiq_nova/nova-embeddings-v1",
+            "model": "remodlai/nova-embeddings-v1",
             "instructions": "Focus on case law, statutory citations, and judicial precedents",
             "task": "retrieval",
             "return_multivector": False,
@@ -231,13 +231,13 @@ def test_nova_embeddings_usage_example():
             ]
         },
         "medical_search": {
-            "model": "hosted_lexiq_nova/nova-embeddings-v1",
+            "model": "remodlai/nova-embeddings-v1",
             "instructions": "Prioritize clinical evidence and treatment protocols",
             "task": "retrieval",
             "input": ["patient presents with acute symptoms"]
         },
         "multimodal_chart_analysis": {
-            "model": "hosted_lexiq_nova/nova-embeddings-v1",
+            "model": "remodlai/nova-embeddings-v1",
             "task": "retrieval",
             "instructions": "Extract quantitative trends from visualizations",
             "input": [
@@ -248,7 +248,7 @@ def test_nova_embeddings_usage_example():
             ]
         },
         "code_search": {
-            "model": "hosted_lexiq_nova/nova-embeddings-v1",
+            "model": "remodlai/nova-embeddings-v1",
             "task": "code",
             "adapter": "code",
             "return_multivector": True,  # Token-level for precise matching

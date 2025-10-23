@@ -1,0 +1,58 @@
+{
+    "mcpServers": {
+      "firecrawl-mcp": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "firecrawl-mcp"
+        ],
+        "env": {
+          "FIRECRAWL_API_KEY": "fc-c2b139dc683a43c195b3acf8ec8da06b"
+        }
+      },
+      "context7-mcp": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@smithery/cli@latest",
+          "run",
+          "@upstash/context7-mcp",
+          "--key",
+          "df828e68-71a3-4d4e-8aa2-36472623e72d",
+          "--profile",
+          "harsh-goose-KDfASJ"
+        ]
+      },
+      "graphiti-new": {
+        "type": "sse",
+        "url": "http://localhost:8000/sse"
+      },
+      "memgraph": {
+        "type": "http",
+        "url": "http://localhost:8080/mcp"
+      },
+      "sequential-thinking": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@modelcontextprotocol/server-sequential-thinking"
+        ]
+      },
+      "supabase-db": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@supabase/mcp-server-supabase@latest",
+          "--access-token",
+          "sbp_ffe7961d1a4821c1833db98b55a2c12dc2ddf2b1"
+        ]
+      },
+      "human-in-the-loop": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "interactive-mcp"
+        ]
+      }
+    }
+  }

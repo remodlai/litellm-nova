@@ -1,90 +1,115 @@
 model_list:
   # Nova Embeddings V1 - Multimodal, multivector embeddings with runtime instructions
-  - model_name: nova-embeddings-v1
-    litellm_params:
-      model: hosted_lexiq_nova/nova-embeddings-v1
-      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE  # e.g., https://api.lexiq-nova.com
-      api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
-    model_info:
-      mode: embedding
-      id: nova-embeddings-v1
-      description: "Industry-first multimodal multi-vector embeddings with runtime instruction tuning. Supports text, images, code with task adapters (retrieval, text-matching, code). Dense or multivector output."
+  # - model_name: nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1
+  #     api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE  # e.g., https://api.lexiq-nova.com
+  #     api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
+  #   model_info:
+  #     mode: embedding
+  #     id: nova-embeddings-v1
+  #     description: "Industry-first multimodal multi-vector embeddings with runtime instruction tuning. Supports text, images, code with task adapters (retrieval, text-matching, code). Dense or multivector output."
 
-  # Alternative: Full model path
-  - model_name: remodlai/nova-embeddings-v1
-    litellm_params:
-      model: hosted_lexiq_nova/remodlai/nova-embeddings-v1
-      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
-      api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
-    model_info:
-      mode: embedding
-      id: remodlai-nova-embeddings-v1
+  # # Alternative: Full model path - Retrieval
+  # - model_name: remodlai/nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1-retrieval
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+  #     tags: ["retrieval", "retrieval.query", "retrieval.passage"]
+  #   model_info:
+  #     mode: embedding
+  #     id: remodlai-nova-embeddings-v1-retrieval
+
+  # # Alternative: Full model path - Text Matching
+  # - model_name: remodlai/nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1-text-matching
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+  #     tags: ["text-matching"]
+  #   model_info:
+  #     mode: embedding
+  #     id: remodlai-nova-embeddings-v1-text-matching
+
+  # # Alternative: Full model path - Code
+  # - model_name: remodlai/nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1-code
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+  #     tags: ["code", "code.query", "code.passage"]
+  #   model_info:
+  #     mode: embedding
+  #     id: remodlai-nova-embeddings-v1-code
 
   # Lexiq Nova chat models (add your chat models here)
   # - model_name: lexiq-chat
   #   litellm_params:
-  #     model: hosted_lexiq_nova/your-chat-model
+  #     model: remodlai/your-chat-model
   #     api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
   #     api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
   #   model_info:
   #     mode: chat
 
   # Nova Embeddings V1 - Retrieval Task Adapter
-  - model_name: nova-embeddings-v1
-    litellm_params:
-      model: hosted_lexiq_nova/nova-embeddings-retrieval
-      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
-      api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
-      tags: ["retrieval", "retrieval.query", "retrieval.passage"]  # Task-based routing
-    model_info:
-      mode: embedding
-      id: nova-embeddings-retrieval
+  # - model_name: nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1-retrieval
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+  #     tags: ["retrieval", "retrieval.query", "retrieval.passage"]  # Task-based routing
+  #   model_info:
+  #     mode: embedding
+  #     id: nova-embeddings-retrieval
 
-  # Nova Embeddings V1 - Text Matching Task Adapter
-  - model_name: nova-embeddings-v1
-    litellm_params:
-      model: hosted_lexiq_nova/nova-embeddings-text-matching
-      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
-      api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
-      tags: ["text-matching"]  # Task-based routing
-    model_info:
-      mode: embedding
-      id: nova-embeddings-text-matching
+  # # Nova Embeddings V1 - Text Matching Task Adapter
+  # - model_name: nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1-text-matching
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+  #     tags: ["text-matching"]  # Task-based routing
+  #   model_info:
+  #     mode: embedding
+  #     id: nova-embeddings-text-matching
 
-  # Nova Embeddings V1 - Code Task Adapter
-  - model_name: nova-embeddings-v1
-    litellm_params:
-      model: hosted_lexiq_nova/nova-embeddings-code
-      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
-      api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
-      tags: ["code", "code.query", "code.passage"]  # Task-based routing
-    model_info:
-      mode: embedding
-      id: nova-embeddings-code
+  # # Nova Embeddings V1 - Code Task Adapter
+  # - model_name: nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1-code
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+  #     tags: ["code", "code.query", "code.passage"]  # Task-based routing
+  #   model_info:
+  #     mode: embedding
+  #     id: nova-embeddings-code
 
   # Wildcard routing for other Lexiq Nova models (chat, etc.)
-  - model_name: "hosted_lexiq_nova/*"
-    litellm_params:
-      model: "hosted_lexiq_nova/*"
-      api_base: os.environ/HOSTED_LEXIQ_NOVA_API_BASE
-      api_key: os.environ/HOSTED_LEXIQ_NOVA_API_KEY
+  # - model_name: "remodlai/*"
+  #   litellm_params:
+  #     model: "remodlai/*"
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
 
 litellm_settings:
   drop_params: True  # Drop unsupported params instead of erroring
   num_retries: 3
+  store_audit_logs: true
   request_timeout: 600
   telemetry: False
-  callbacks: litellm.proxy.hooks.nova_task_routing.nova_task_router  # Enable Nova task routing
+  #callbacks: litellm.proxy.hooks.nova_task_routing.nova_task_router  # Enable Nova task routing
   # set_verbose: True  # Uncomment for debugging
 general_settings:
   master_key: sk-1234  # Change this to a secure key in production
-  local_model_cost_map: True
-  store_model_in_db: True
+  local_model_cost_map: true
+  store_prompts_in_spend_logs: true
+  store_model_in_db: true
   database_url: postgresql://neondb_owner:npg_YIynbl1f3MUc@ep-autumn-king-a4xm63yd-pooler.us-east-1.aws.neon.tech/litellm?sslmode=require&channel_binding=require'  # Uncomment for production
 
 # Router settings for Nova task-based routing
 router_settings:
-  enable_tag_filtering: True  # Required for task-based routing
-  routing_strategy: simple-shuffle
+ # enable_tag_filtering: True  # Required for task-based routing
+  # routing_strategy: simple-shuffle
   # model_group_alias:
   #   "nova-embed": "nova-embeddings-v1"

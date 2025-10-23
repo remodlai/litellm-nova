@@ -53,7 +53,7 @@ general_settings:
 2. **Provider map** (lowercase):
    ```typescript
    export const provider_map: Record<string, string> = {
-     Hosted_Lexiq_Nova: "hosted_lexiq_nova",
+     Hosted_Lexiq_Nova: "remodlai",
    }
    ```
 
@@ -116,7 +116,7 @@ callbacks: litellm.proxy.hooks.nova_task_routing.nova_task_router  # ✅
 
 **What:** The hook checks `if "nova-embeddings" in model`, which means it activates for:
 - ✅ `nova-embeddings-v1`
-- ✅ `hosted_lexiq_nova/nova-embeddings-v1`  
+- ✅ `remodlai/nova-embeddings-v1`  
 - ✅ `nova-embeddings-retrieval`
 - ❌ `my-nova-model` (false positive)
 
@@ -152,6 +152,6 @@ callbacks: litellm.proxy.hooks.nova_task_routing.nova_task_router  # ✅
 **What:** Python can't import modules with hyphens in directory names.
 
 **Wrong:** `litellm/llms/lexiq-nova/` ❌  
-**Correct:** `litellm/llms/lexiq_nova/` ✅
+**Correct:** `litellm/llms/remodlai/` ✅
 
-**Impact:** Had to rename `lexiq-nova` → `lexiq_nova` before imports worked.
+**Impact:** Had to rename `lexiq-nova` → `remodlai` before imports worked.

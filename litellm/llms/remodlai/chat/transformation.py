@@ -20,7 +20,7 @@ from ....utils import _remove_additional_properties, _remove_strict_from_schema
 from ...openai.chat.gpt_transformation import OpenAIGPTConfig
 
 
-class HostedLexiqNovaChatConfig(OpenAIGPTConfig):
+class RemodlAIChatConfig(OpenAIGPTConfig):
     def get_supported_openai_params(self, model: str) -> List[str]:
         params = super().get_supported_openai_params(model)
         params.append("reasoning_effort")

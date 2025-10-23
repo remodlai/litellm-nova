@@ -16,7 +16,7 @@ from litellm.llms.openai.transcriptions.whisper_transformation import (
 from litellm.types.utils import FileTypes
 
 
-class HostedLexiqNovaAudioTranscriptionError(BaseLLMException):
+class RemodlAIAudioTranscriptionError(BaseLLMException):
     def __init__(
         self,
         status_code: int,
@@ -26,7 +26,7 @@ class HostedLexiqNovaAudioTranscriptionError(BaseLLMException):
         super().__init__(status_code=status_code, message=message, headers=headers)
 
 
-class HostedLexiqNovaAudioTranscriptionConfig(OpenAIWhisperAudioTranscriptionConfig):
+class RemodlAIAudioTranscriptionConfig(OpenAIWhisperAudioTranscriptionConfig):
     def __init__(self) -> None:
         pass
 

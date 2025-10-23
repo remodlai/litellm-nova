@@ -24,7 +24,7 @@ from litellm.types.utils import EmbeddingResponse
 from litellm.utils import is_base64_encoded
 
 
-class HostedLexiqNovaEmbeddingError(BaseLLMException):
+class RemodlAIEmbeddingError(BaseLLMException):
     def __init__(
         self,
         status_code: int,
@@ -34,7 +34,7 @@ class HostedLexiqNovaEmbeddingError(BaseLLMException):
         super().__init__(status_code=status_code, message=message, headers=headers)
 
 
-class HostedLexiqNovaEmbeddingConfig(BaseEmbeddingConfig):
+class RemodlAIEmbeddingConfig(BaseEmbeddingConfig):
     """
     Configuration for Hosted Lexiq Nova embedding models.
     
@@ -270,7 +270,7 @@ class HostedLexiqNovaEmbeddingConfig(BaseEmbeddingConfig):
         status_code: int,
         headers: Union[dict, httpx.Headers],
     ) -> BaseLLMException:
-        return HostedLexiqNovaEmbeddingError(
+        return RemodlAIEmbeddingError(
             message=error_message, status_code=status_code, headers=headers
         )
 

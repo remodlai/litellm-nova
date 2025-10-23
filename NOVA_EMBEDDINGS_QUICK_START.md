@@ -18,8 +18,8 @@ Create a `.env` file:
 
 ```bash
 # Hosted Lexiq Nova
-HOSTED_LEXIQ_NOVA_API_BASE=https://api.lexiq-nova.com
-HOSTED_LEXIQ_NOVA_API_KEY=your-api-key-here
+REMODLAI_API_BASE=https://api.lexiq-nova.com
+REMODLAI_API_KEY=your-api-key-here
 ```
 
 ### 2. Start the Proxy
@@ -50,7 +50,7 @@ curl -X POST http://localhost:4000/v1/embeddings \
 import litellm
 
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     input=["Hello world", "How are you?"],
     task="retrieval"
 )
@@ -63,7 +63,7 @@ print(response['data'][0]['embedding'][:5])  # First 5 dimensions
 ```python
 # Legal domain
 legal_response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     instructions="Focus on case law, statutory citations, and judicial precedents",
     task="retrieval",
     input=[
@@ -74,7 +74,7 @@ legal_response = litellm.embedding(
 
 # Medical domain - same model, different instructions
 medical_response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     instructions="Prioritize clinical evidence and treatment protocols",
     task="retrieval",
     input=["patient presents with acute symptoms"]
@@ -85,7 +85,7 @@ medical_response = litellm.embedding(
 
 ```python
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     task="retrieval",
     return_multivector=True,  # Returns 128d per token
     input=["long document for precise matching"]
@@ -100,7 +100,7 @@ print(f"Dimensions per token: {len(response['data'][0]['embedding'][0])}")
 
 ```python
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     task="retrieval",
     return_multivector=False,  # Pooled vector
     dimensions=512,  # Matryoshka truncation (256/512/1024/2048)
@@ -114,7 +114,7 @@ print(f"Dimensions: {len(response['data'][0]['embedding'])}")  # 512
 
 ```python
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     task="retrieval",
     instructions="Extract technical specifications from charts",
     input=[
@@ -133,7 +133,7 @@ response = litellm.embedding(
 
 ```python
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     task="code",
     adapter="code",
     instructions="Focus on function signatures and API patterns",
@@ -161,8 +161,8 @@ All models are now available via the proxy:
 
 ```
 nova-embeddings-v1                           # Alias
-hosted_lexiq_nova/nova-embeddings-v1         # Short form  
-hosted_lexiq_nova/remodlai/nova-embeddings-v1  # Full path
+remodlai/nova-embeddings-v1         # Short form  
+remodlai/remodlai/nova-embeddings-v1  # Full path
 ```
 
 ## Task Adapters
@@ -206,6 +206,6 @@ A: Check that your API endpoint supports Nova's extended parameters
 4. Monitor performance improvements with your specific domain instructions
 
 For full documentation, see:
-- `litellm/llms/hosted_lexiq_nova/embedding/README.md`
+- `litellm/llms/remodlai/embedding/README.md`
 - Model card: https://huggingface.co/remodlai/nova-embeddings-v1
 

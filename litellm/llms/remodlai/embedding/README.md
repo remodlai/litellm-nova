@@ -31,7 +31,7 @@ Nova extends OpenAI's embedding API with:
 import litellm
 
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     input=["search query", "document text"],
     task="retrieval",
     return_multivector=False,
@@ -43,7 +43,7 @@ response = litellm.embedding(
 ```python
 # Legal domain
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     instructions="Focus on case law, statutory citations, and judicial precedents",
     task="retrieval",
     input=[
@@ -56,7 +56,7 @@ response = litellm.embedding(
 ### Multivector (Token-Level) Embeddings
 ```python
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     task="retrieval",
     return_multivector=True,  # Returns 128d per token
     input=["long document for late interaction"]
@@ -66,7 +66,7 @@ response = litellm.embedding(
 ### Multimodal with Images
 ```python
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     task="retrieval",
     instructions="Extract technical specifications from charts",
     input=[

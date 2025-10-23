@@ -14325,9 +14325,9 @@
             "/v1/images/generations"
         ]
     },
-    "hosted_lexiq_nova/nova-embeddings-v1": {
+    "remodlai/nova-embeddings-v1": {
         "input_cost_per_token": 0.0,
-        "litellm_provider": "hosted_lexiq_nova-embedding-models",
+        "litellm_provider": "remodlai-embedding-models",
         "max_input_tokens": 8192,
         "max_tokens": 8192,
         "mode": "embedding",
@@ -14338,9 +14338,9 @@
             "notes": "Multivector, multimodal embedding model. Alias for remodlai/nova-embeddings-v1."
         }
     },
-    "hosted_lexiq_nova/remodlai/nova-embeddings-v1": {
+    "remodlai/remodlai/nova-embeddings-v1": {
         "input_cost_per_token": 0.0,
-        "litellm_provider": "hosted_lexiq_nova-embedding-models",
+        "litellm_provider": "remodlai-embedding-models",
         "max_input_tokens": 8192,
         "max_tokens": 8192,
         "mode": "embedding",

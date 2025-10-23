@@ -31,8 +31,8 @@ Nova Embeddings V1 (Enhanced)
 ```
 litellm/llms/
 ├─ jina_ai/embedding/transformation.py          # Jina V4 base implementation
-└─ hosted_lexiq_nova/embedding/transformation.py # Nova = Jina V4 + extensions
-   └─ lexiq_nova/embedding/transformation.py     # Inherits from hosted
+└─ remodlai/embedding/transformation.py # Nova = Jina V4 + extensions
+   └─ remodlai/embedding/transformation.py     # Inherits from hosted
 ```
 
 ### Code Alignment Points
@@ -133,14 +133,14 @@ import litellm
 
 # Same as Jina V4 - fully compatible
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     input=["text to embed"],
     dimensions=512
 )
 
 # With images (Jina V4 compatible)
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     input=["data:image/png;base64,iVBORw0KGg..."],
     dimensions=1024
 )
@@ -150,7 +150,7 @@ response = litellm.embedding(
 ```python
 # Runtime instructions (Nova-specific)
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     instructions="Focus on legal precedents and case citations",
     task="retrieval",
     input=["contract breach remedies"]
@@ -158,7 +158,7 @@ response = litellm.embedding(
 
 # Multivector output (Nova-specific)
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     task="retrieval",
     return_multivector=True,  # 128d per token instead of pooled
     input=["long document"]
@@ -166,7 +166,7 @@ response = litellm.embedding(
 
 # Task adapters (Nova-specific)
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     task="code",
     adapter="code",
     input=[
@@ -177,7 +177,7 @@ response = litellm.embedding(
 
 # Enhanced multimodal (Nova-specific)
 response = litellm.embedding(
-    model="hosted_lexiq_nova/nova-embeddings-v1",
+    model="remodlai/nova-embeddings-v1",
     task="retrieval",
     instructions="Extract technical specs from charts",
     input=[
@@ -199,7 +199,7 @@ Any code written for Jina V4 will work with Nova V1:
 litellm.embedding(model="jina_ai/jina-embeddings-v4", input=["text"], dimensions=512)
 
 # ...works identically with Nova V1
-litellm.embedding(model="hosted_lexiq_nova/nova-embeddings-v1", input=["text"], dimensions=512)
+litellm.embedding(model="remodlai/nova-embeddings-v1", input=["text"], dimensions=512)
 ```
 
 ## Migration from Jina V4
@@ -210,13 +210,13 @@ litellm.embedding(model="hosted_lexiq_nova/nova-embeddings-v1", input=["text"], 
 model="jina_ai/jina-embeddings-v4"
 
 # After (Nova V1)
-model="hosted_lexiq_nova/nova-embeddings-v1"
+model="remodlai/nova-embeddings-v1"
 ```
 
 ### Leverage Nova Features
 ```python
 # Add instructions for domain adaptation
-model="hosted_lexiq_nova/nova-embeddings-v1"
+model="remodlai/nova-embeddings-v1"
 instructions="Focus on medical terminology and clinical evidence"
 task="retrieval"
 ```

@@ -46,7 +46,7 @@ else:
     LiteLLMLoggingObj = Any
 
 
-class HostedLexiqNovaResponsesAPIError(BaseLLMException):
+class RemodlAIResponsesAPIError(BaseLLMException):
     def __init__(
         self,
         status_code: int,
@@ -66,7 +66,7 @@ class HostedLexiqNovaResponsesAPIError(BaseLLMException):
         )
 
 
-class HostedLexiqNovaResponsesAPIConfig(BaseResponsesAPIConfig):
+class RemodlAIResponsesAPIConfig(BaseResponsesAPIConfig):
     @property
     def custom_llm_provider(self) -> LlmProviders:
         return LlmProviders.HOSTED_LEXIQ_NOVA
@@ -190,7 +190,7 @@ class HostedLexiqNovaResponsesAPIConfig(BaseResponsesAPIConfig):
                 raw_response_json["created_at"]
             )
         except Exception:
-            raise HostedLexiqNovaResponsesAPIError(
+            raise RemodlAIResponsesAPIError(
                 message=raw_response.text,
                 status_code=raw_response.status_code,
                 headers=raw_response.headers,
@@ -260,7 +260,7 @@ class HostedLexiqNovaResponsesAPIConfig(BaseResponsesAPIConfig):
         """
         verbose_logger.debug("Raw Hosted Lexiq Nova chunk=%s", parsed_chunk)
         event_type = str(parsed_chunk.get("type"))
-        event_pydantic_model = HostedLexiqNovaResponsesAPIConfig.get_event_model_class(
+        event_pydantic_model = RemodlAIResponsesAPIConfig.get_event_model_class(
             event_type=event_type
         )
         return event_pydantic_model(**parsed_chunk)
@@ -366,7 +366,7 @@ class HostedLexiqNovaResponsesAPIConfig(BaseResponsesAPIConfig):
         try:
             raw_response_json = raw_response.json()
         except Exception:
-            raise HostedLexiqNovaResponsesAPIError(
+            raise RemodlAIResponsesAPIError(
                 message=raw_response.text,
                 status_code=raw_response.status_code,
                 headers=raw_response.headers,
@@ -396,7 +396,7 @@ class HostedLexiqNovaResponsesAPIConfig(BaseResponsesAPIConfig):
         try:
             raw_response_json = raw_response.json()
         except Exception:
-            raise HostedLexiqNovaResponsesAPIError(
+            raise RemodlAIResponsesAPIError(
                 message=raw_response.text,
                 status_code=raw_response.status_code,
                 headers=raw_response.headers,
@@ -441,7 +441,7 @@ class HostedLexiqNovaResponsesAPIConfig(BaseResponsesAPIConfig):
         try:
             return raw_response.json()
         except Exception:
-            raise HostedLexiqNovaResponsesAPIError(
+            raise RemodlAIResponsesAPIError(
                 message=raw_response.text,
                 status_code=raw_response.status_code,
                 headers=raw_response.headers,
@@ -470,7 +470,7 @@ class HostedLexiqNovaResponsesAPIConfig(BaseResponsesAPIConfig):
         try:
             raw_response_json = raw_response.json()
         except Exception:
-            raise HostedLexiqNovaResponsesAPIError(
+            raise RemodlAIResponsesAPIError(
                 message=raw_response.text,
                 status_code=raw_response.status_code,
                 headers=raw_response.headers,
@@ -487,7 +487,7 @@ class HostedLexiqNovaResponsesAPIConfig(BaseResponsesAPIConfig):
         status_code: int,
         headers: Union[dict, httpx.Headers],
     ) -> BaseLLMException:
-        return HostedLexiqNovaResponsesAPIError(
+        return RemodlAIResponsesAPIError(
             status_code=status_code,
             message=error_message,
             headers=headers,

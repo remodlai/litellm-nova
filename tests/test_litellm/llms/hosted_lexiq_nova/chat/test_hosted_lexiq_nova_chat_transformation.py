@@ -10,11 +10,11 @@ sys.path.insert(
     0, os.path.abspath("../../../../..")
 )  # Adds the parent directory to the system path
 
-from litellm.llms.hosted_lexiq_nova.chat.transformation import HostedLexiqNovaChatConfig
+from litellm.llms.remodlai.chat.transformation import RemodlAIChatConfig
 
 
-def test_hosted_lexiq_nova_chat_transformation_file_url():
-    config = HostedLexiqNovaChatConfig()
+def test_remodlai_chat_transformation_file_url():
+    config = RemodlAIChatConfig()
     video_url = "https://example.com/video.mp4"
     video_data = f"data:video/mp4;base64,{video_url}"
     messages = [
@@ -31,7 +31,7 @@ def test_hosted_lexiq_nova_chat_transformation_file_url():
         }
     ]
     transformed_response = config.transform_request(
-        model="hosted_lexiq_nova/llama-3.1-70b-instruct",
+        model="remodlai/llama-3.1-70b-instruct",
         messages=messages,
         optional_params={},
         litellm_params={},
@@ -45,7 +45,7 @@ def test_hosted_lexiq_nova_chat_transformation_file_url():
     ]
 
 
-def test_hosted_lexiq_nova_chat_transformation_with_audio_url():
+def test_remodlai_chat_transformation_with_audio_url():
     from litellm import completion
     from litellm.llms.custom_httpx.http_handler import HTTPHandler
 
@@ -56,7 +56,7 @@ def test_hosted_lexiq_nova_chat_transformation_with_audio_url():
     ) as mock_post:
         try:
             response = completion(
-                model="hosted_lexiq_nova/llama-3.1-70b-instruct",
+                model="remodlai/llama-3.1-70b-instruct",
                 messages=[
                     {
                         "role": "user",
@@ -88,16 +88,16 @@ def test_hosted_lexiq_nova_chat_transformation_with_audio_url():
         ]
 
 
-def test_hosted_lexiq_nova_supports_reasoning_effort():
-    config = HostedLexiqNovaChatConfig()
+def test_remodlai_supports_reasoning_effort():
+    config = RemodlAIChatConfig()
     supported_params = config.get_supported_openai_params(
-        model="hosted_lexiq_nova/gpt-oss-120b"
+        model="remodlai/gpt-oss-120b"
     )
     assert "reasoning_effort" in supported_params
     optional_params = config.map_openai_params(
         non_default_params={"reasoning_effort": "high"},
         optional_params={},
-        model="hosted_lexiq_nova/gpt-oss-120b",
+        model="remodlai/gpt-oss-120b",
         drop_params=False,
     )
     assert optional_params["reasoning_effort"] == "high"
