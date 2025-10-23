@@ -117,9 +117,7 @@ const LiteLLMModelNameField: React.FC<LiteLLMModelNameFieldProps> = ({
         >
           {selectedProvider === Providers.Azure ||
           selectedProvider === Providers.OpenAI_Compatible ||
-          selectedProvider === Providers.Ollama ||
-          selectedProvider === Providers.RemodlAI ||
-          selectedProvider === Providers.RemodlAI_Embeddings ? (
+          selectedProvider === Providers.Ollama   ? (
             <>
               <TextInput
                 placeholder={getPlaceholder(selectedProvider)}

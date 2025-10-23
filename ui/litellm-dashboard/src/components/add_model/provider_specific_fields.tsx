@@ -524,14 +524,6 @@ const PROVIDER_CREDENTIAL_FIELDS: Record<Providers, ProviderCredentialField[]> =
       required: false,
     },
   ],
-  [Providers.RemodlAI_Embeddings]: [
-    {
-      key: "api_base",
-      label: "API Base",
-      placeholder: "https://api.remodl.ai/v1",
-      required: true,
-    },
-  ],
   [Providers.Voyage]: [
     {
       key: "api_key",

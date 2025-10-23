@@ -1,6 +1,7 @@
 """
 Transformation logic for Remodl AI Embeddings (Nova Embeddings V1).
 
+Based on Jina AI Embeddings V4 architecture.
 """
 
 import types
@@ -17,10 +18,18 @@ from litellm.types.llms.openai import AllEmbeddingInputValues, AllMessageValues
 from litellm.types.utils import EmbeddingResponse
 from litellm.utils import is_base64_encoded
 
-from ..common_utils import RemodlaiEmbeddingsError
+
+class RemodlAIEmbeddingError(BaseLLMException):
+    def __init__(
+        self,
+        status_code: int,
+        message: str,
+        headers: Optional[Union[dict, httpx.Headers]] = None,
+    ):
+        super().__init__(status_code=status_code, message=message, headers=headers)
 
 
-class RemodlaiEmbeddingsConfig(BaseEmbeddingConfig):
+class RemodlAIEmbeddingConfig(BaseEmbeddingConfig):
     """
     Configuration for Remodl AI Embeddings (Nova Embeddings V1).
     Based on Jina Embeddings V4 architecture.
@@ -78,9 +87,9 @@ class RemodlaiEmbeddingsConfig(BaseEmbeddingConfig):
                 - api_base: str
                 - dynamic_api_key: str
         """
-        api_base = api_base or get_secret_str("REMODLAI_EMBEDDINGS_API_BASE")
-        dynamic_api_key = api_key or get_secret_str("REMODLAI_EMBEDDINGS_API_KEY") or "fake-api-key"
-        return LlmProviders.REMODLAI_EMBEDDINGS.value, api_base, dynamic_api_key
+        api_base = api_base or get_secret_str("REMODLAI_API_BASE")
+        dynamic_api_key = api_key or get_secret_str("REMODLAI_API_KEY") or "fake-api-key"
+        return LlmProviders.REMODL_AI.value, api_base, dynamic_api_key
 
     def get_complete_url(
         self,
@@ -102,11 +111,7 @@ class RemodlaiEmbeddingsConfig(BaseEmbeddingConfig):
         optional_params: dict,
         headers: dict,
     ) -> dict:
-        data = {
-            "model": model,
-            "input": input,
-            **optional_params
-        }
+        data = {"model": model, **optional_params}
         input = cast(List[str], input) if isinstance(input, List) else [input]
         if any((is_base64_encoded(x) for x in input)):
             transformed_input = []
@@ -164,7 +169,7 @@ class RemodlaiEmbeddingsConfig(BaseEmbeddingConfig):
     def get_error_class(
         self, error_message: str, status_code: int, headers: Union[dict, httpx.Headers]
     ) -> BaseLLMException:
-        return RemodlaiEmbeddingsError(
+        return RemodlAIEmbeddingError(
             status_code=status_code,
             message=error_message,
             headers=headers,

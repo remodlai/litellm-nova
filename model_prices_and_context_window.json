@@ -23676,10 +23676,10 @@
         "supports_vision": true,
         "supports_web_search": true
     },
-    "remodlai_embeddings/nova-embeddings-v1": {
+    "remodlai/nova-embeddings-v1": {
         "input_cost_per_image": 5e-06,
         "input_cost_per_token": 5e-06,
-        "litellm_provider": "remodlai_embeddings",
+        "litellm_provider": "remodlai",
         "max_input_tokens": 8192,
         "max_output_tokens": 8192,
         "max_tokens": 8192,
@@ -23689,7 +23689,10 @@
         "supports_tool_choice": false,
         "supports_vision": true,
         "supports_web_search": false,
-        "supports_embedding_image_input": true
+        "supports_embedding_image_input": true,
+        "supports_embedding_text_input": true,
+        "supports_embedding_multivector": true,
+        "supports_instructions": true
        
     }
 }

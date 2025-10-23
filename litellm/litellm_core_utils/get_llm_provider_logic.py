@@ -363,8 +363,6 @@ def get_llm_provider(  # noqa: PLR0915
             custom_llm_provider = "empower"
         elif model in litellm.gradient_ai_models:
             custom_llm_provider = "gradient_ai"
-        elif model in litellm.remodlai_embeddings_models:
-            custom_llm_provider = "remodlai_embeddings"
         elif model == "*":
             custom_llm_provider = "openai"
         # bytez models
@@ -641,14 +639,6 @@ def _get_openai_compatible_provider_info(  # noqa: PLR0915
             api_base,
             dynamic_api_key,
         ) = litellm.JinaAIEmbeddingConfig()._get_openai_compatible_provider_info(
-            api_base, api_key
-        )
-    elif custom_llm_provider == "remodlai_embeddings":
-        (
-            api_base,
-            dynamic_api_key,
-            custom_llm_provider,
-        ) = litellm.RemodlaiEmbeddingsConfig()._get_openai_compatible_provider_info(
             api_base, api_key
         )
     elif custom_llm_provider == "xai":
