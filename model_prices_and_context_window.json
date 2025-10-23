@@ -23689,6 +23689,7 @@
         "supports_tool_choice": false,
         "supports_vision": true,
         "supports_web_search": false,
+        "supports_embedding_image_input": true
        
     }
 }

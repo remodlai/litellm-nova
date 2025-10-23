@@ -102,7 +102,11 @@ class RemodlaiEmbeddingsConfig(BaseEmbeddingConfig):
         optional_params: dict,
         headers: dict,
     ) -> dict:
-        data = {"model": model, **optional_params}
+        data = {
+            "model": model,
+            "input": input,
+            **optional_params
+        }
         input = cast(List[str], input) if isinstance(input, List) else [input]
         if any((is_base64_encoded(x) for x in input)):
             transformed_input = []
