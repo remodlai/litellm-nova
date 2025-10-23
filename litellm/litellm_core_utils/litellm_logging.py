@@ -1403,7 +1403,7 @@ class Logging(LiteLLMLoggingBaseClass):
             )
         ):
             verbose_logger.debug(
-                f"Callback {callback} disabled via x-litellm-disable-callbacks header for {event_hook} event"
+                f"Callback {callback} disabled via x-remodl-disable-callbacks header for {event_hook} event"
             )
             return False
 

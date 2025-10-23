@@ -308,7 +308,7 @@ class HttpPassThroughEndpointHelpers(BasePassthroughUtils):
             if key.lower() not in excluded_headers
         }
         if litellm_call_id:
-            return_headers["x-litellm-call-id"] = litellm_call_id
+            return_headers["x-remodl-call-id"] = litellm_call_id
         if custom_headers:
             return_headers.update(custom_headers)
 
@@ -843,7 +843,7 @@ async def pass_through_request(  # noqa: PLR0915
             )
         )
 
-        ## CUSTOM HEADERS - `x-litellm-*`
+        ## CUSTOM HEADERS - `x-remodl-*`
         custom_headers = ProxyBaseLLMRequestProcessing.get_custom_headers(
             user_api_key_dict=user_api_key_dict,
             call_id=litellm_call_id,

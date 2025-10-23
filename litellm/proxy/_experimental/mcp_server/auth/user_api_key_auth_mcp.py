@@ -257,7 +257,7 @@ class MCPRequestHandler:
         """
         Get the Litellm API key from the headers using case-insensitive lookup
 
-        1. Check if `x-litellm-api-key` is in the headers
+        1. Check if `x-remodl-api-key` is in the headers
         2. If not, check if `Authorization` is in the headers
 
         Args:

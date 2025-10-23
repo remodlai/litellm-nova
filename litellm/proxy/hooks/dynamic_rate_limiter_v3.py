@@ -388,7 +388,7 @@ class _PROXY_DynamicRateLimitHandlerV3(CustomLogger):
                             headers={
                                 "retry-after": str(self.v3_limiter.window_size),
                                 "rate_limit_type": str(status["rate_limit_type"]),
-                                "x-litellm-priority": key_priority or "default",
+                                "x-remodl-priority": key_priority or "default",
                             },
                         )
                     
@@ -410,8 +410,8 @@ class _PROXY_DynamicRateLimitHandlerV3(CustomLogger):
                             headers={
                                 "retry-after": str(self.v3_limiter.window_size),
                                 "rate_limit_type": str(status["rate_limit_type"]),
-                                "x-litellm-priority": key_priority or "default",
-                                "x-litellm-saturation": f"{saturation:.2%}",
+                                "x-remodl-priority": key_priority or "default",
+                                "x-remodl-saturation": f"{saturation:.2%}",
                             },
                         )
         
@@ -568,8 +568,8 @@ class _PROXY_DynamicRateLimitHandlerV3(CustomLogger):
                 additional_headers = getattr(response, "_hidden_params", {}).get("additional_headers", {}) or {}
                 
                 # Add priority information
-                additional_headers["x-litellm-priority"] = key_priority or "default"
-                additional_headers["x-litellm-rate-limiter-version"] = "v3"
+                additional_headers["x-remodl-priority"] = key_priority or "default"
+                additional_headers["x-remodl-rate-limiter-version"] = "v3"
                 
                 # Update response
                 if not hasattr(response, "_hidden_params"):

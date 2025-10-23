@@ -123,7 +123,7 @@ class CustomStreamWrapper:
         self._hidden_params = {
             "model_id": (_model_info.get("id", None)),
             "api_base": _api_base,
-        }  # returned as x-litellm-model-id response header in proxy
+        }  # returned as x-remodl-model-id response header in proxy
 
         self._hidden_params["additional_headers"] = process_response_headers(
             _response_headers or {}

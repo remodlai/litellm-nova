@@ -204,7 +204,7 @@ class OpenrouterConfig(OpenAIGPTConfig):
                         model_response._hidden_params = {}
                     if "additional_headers" not in model_response._hidden_params:
                         model_response._hidden_params["additional_headers"] = {}
-                    model_response._hidden_params["additional_headers"]["llm_provider-x-litellm-response-cost"] = float(response_cost)
+                    model_response._hidden_params["additional_headers"]["llm_provider-x-remodl-response-cost"] = float(response_cost)
         except Exception:
             # If we can't extract cost, continue without it - don't fail the response
             pass

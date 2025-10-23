@@ -308,7 +308,7 @@ def get_model_group_from_request_data(data: dict) -> Optional[str]:
 
 def get_remaining_tokens_and_requests_from_request_data(data: Dict) -> Dict[str, str]:
     """
-    Helper function to return x-litellm-key-remaining-tokens-{model_group} and x-litellm-key-remaining-requests-{model_group}
+    Helper function to return x-remodl-key-remaining-tokens-{model_group} and x-remodl-key-remaining-requests-{model_group}
 
     Returns {} when api_key + model rpm/tpm limit is not set
 
@@ -326,7 +326,7 @@ def get_remaining_tokens_and_requests_from_request_data(data: Dict) -> Dict[str,
     remaining_requests_variable_name = f"litellm-key-remaining-requests-{model_group}"
     remaining_requests = _metadata.get(remaining_requests_variable_name, None)
     if remaining_requests:
-        headers[f"x-litellm-key-remaining-requests-{h11_model_group_name}"] = (
+        headers[f"x-remodl-key-remaining-requests-{h11_model_group_name}"] = (
             remaining_requests
         )
 
@@ -334,7 +334,7 @@ def get_remaining_tokens_and_requests_from_request_data(data: Dict) -> Dict[str,
     remaining_tokens_variable_name = f"litellm-key-remaining-tokens-{model_group}"
     remaining_tokens = _metadata.get(remaining_tokens_variable_name, None)
     if remaining_tokens:
-        headers[f"x-litellm-key-remaining-tokens-{h11_model_group_name}"] = (
+        headers[f"x-remodl-key-remaining-tokens-{h11_model_group_name}"] = (
             remaining_tokens
         )
 
@@ -345,12 +345,12 @@ def get_logging_caching_headers(request_data: Dict) -> Optional[Dict]:
     _metadata = request_data.get("metadata", None) or {}
     headers = {}
     if "applied_guardrails" in _metadata:
-        headers["x-litellm-applied-guardrails"] = ",".join(
+        headers["x-remodl-applied-guardrails"] = ",".join(
             _metadata["applied_guardrails"]
         )
 
     if "semantic-similarity" in _metadata:
-        headers["x-litellm-semantic-similarity"] = str(_metadata["semantic-similarity"])
+        headers["x-remodl-semantic-similarity"] = str(_metadata["semantic-similarity"])
 
     return headers
 

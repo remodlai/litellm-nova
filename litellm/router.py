@@ -1870,7 +1870,7 @@ class Router:
                 )
                 _response._hidden_params.setdefault("additional_headers", {})
                 _response._hidden_params["additional_headers"].update(
-                    {"x-litellm-request-prioritization-used": True}
+                    {"x-remodl-request-prioritization-used": True}
                 )
                 return _response
             except Exception as e:
@@ -1931,7 +1931,7 @@ class Router:
                 if isinstance(_response._hidden_params, dict):
                     _response._hidden_params.setdefault("additional_headers", {})
                     _response._hidden_params["additional_headers"].update(
-                        {"x-litellm-request-prioritization-used": True}
+                        {"x-remodl-request-prioritization-used": True}
                     )
                 return _response
             except Exception as e:
@@ -6180,7 +6180,7 @@ class Router:
         ):
             response._hidden_params.setdefault("additional_headers", {})  # type: ignore
             response._hidden_params["additional_headers"][  # type: ignore
-                "x-litellm-model-group"
+                "x-remodl-model-group"
             ] = model_group
 
             additional_headers = response._hidden_params["additional_headers"]  # type: ignore

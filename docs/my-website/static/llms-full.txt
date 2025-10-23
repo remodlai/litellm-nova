@@ -1239,7 +1239,7 @@ This release brings improvements to our Presidio PII Integration. As a Proxy Adm
 ## General Proxy Improvements [​](https://docs.litellm.ai/release_notes\#general-proxy-improvements "Direct link to General Proxy Improvements")
 
 - **Authentication**
-  - Handle Bearer $LITELLM\_API\_KEY in x-litellm-api-key custom header [PR](https://github.com/BerriAI/litellm/pull/10776)
+  - Handle Bearer $LITELLM\_API\_KEY in x-remodl-api-key custom header [PR](https://github.com/BerriAI/litellm/pull/10776)
 - **New Enterprise pip package** \- `litellm-enterprise` \- fixes issue where `enterprise` folder was not found when using pip package
 - **[Proxy CLI](https://docs.litellm.ai/docs/proxy/management_cli)**
   - Add `models import` command - [PR](https://github.com/BerriAI/litellm/pull/10581)
@@ -1608,7 +1608,7 @@ export LITELLM_RATE_LIMIT_ACCURACY=true
 - **Security**
   - Allow [blocking web crawlers](https://docs.litellm.ai/docs/proxy/enterprise#blocking-web-crawlers) \- [PR](https://github.com/BerriAI/litellm/pull/10420)
 - **Auth**
-  - Support [`x-litellm-api-key` header param by default](https://docs.litellm.ai/docs/pass_through/vertex_ai#use-with-virtual-keys), this fixes an issue from the prior release where `x-litellm-api-key` was not being used on vertex ai passthrough requests - [PR](https://github.com/BerriAI/litellm/pull/10392)
+  - Support [`x-remodl-api-key` header param by default](https://docs.litellm.ai/docs/pass_through/vertex_ai#use-with-virtual-keys), this fixes an issue from the prior release where `x-remodl-api-key` was not being used on vertex ai passthrough requests - [PR](https://github.com/BerriAI/litellm/pull/10392)
   - Allow key at max budget to call non-llm api endpoints - [PR](https://github.com/BerriAI/litellm/pull/10392)
 - 🆕 **[Python Client Library](https://docs.litellm.ai/docs/proxy/management_cli) for LiteLLM Proxy management endpoints**
   - Initial PR - [PR](https://github.com/BerriAI/litellm/pull/10445)
@@ -1861,7 +1861,7 @@ This release allows you to call Azure OpenAI, Anthropic, AWS Bedrock, and Google
 ## Spend Tracking Improvements [​](https://docs.litellm.ai/release_notes\#spend-tracking-improvements "Direct link to Spend Tracking Improvements")
 
 - **Cost Control** \- inject cache control points in prompt for cost reduction [Get Started](https://docs.litellm.ai/docs/tutorials/prompt_caching), [PR](https://github.com/BerriAI/litellm/pull/10000)
-- **Spend Tags** \- spend tags in headers - support x-litellm-tags even if tag based routing not enabled [Get Started](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers), [PR](https://github.com/BerriAI/litellm/pull/10000)
+- **Spend Tags** \- spend tags in headers - support x-remodl-tags even if tag based routing not enabled [Get Started](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers), [PR](https://github.com/BerriAI/litellm/pull/10000)
 - **Gemini-2.5-flash** \- support cost calculation for reasoning tokens [PR](https://github.com/BerriAI/litellm/pull/10141)
 
 ## Management Endpoints / UI [​](https://docs.litellm.ai/release_notes\#management-endpoints--ui "Direct link to Management Endpoints / UI")
@@ -2996,10 +2996,10 @@ Get a 7 day free trial for LiteLLM Enterprise [here](https://litellm.ai/#trial).
 06. Bedrock - pure async image transformation requests
 07. Cooldowns - single deployment model group if 100% calls fail in high traffic - prevents an o1 outage from impacting other calls
 08. Response Headers - return
-    1. `x-litellm-timeout`
-    2. `x-litellm-attempted-retries`
-    3. `x-litellm-overhead-duration-ms`
-    4. `x-litellm-response-duration-ms`
+    1. `x-remodl-timeout`
+    2. `x-remodl-attempted-retries`
+    3. `x-remodl-overhead-duration-ms`
+    4. `x-remodl-response-duration-ms`
 09. ensure duplicate callbacks are not added to proxy
 10. Requirements.txt - bump certifi version
 
@@ -3007,7 +3007,7 @@ Get a 7 day free trial for LiteLLM Enterprise [here](https://litellm.ai/#trial).
 
 1. JWT / OIDC Auth - new `enforce_rbac` param,allows proxy admin to prevent any unmapped yet authenticated jwt tokens from calling proxy. [Start Here](https://docs.litellm.ai/docs/proxy/token_auth#enforce-role-based-access-control-rbac)
 2. fix custom openapi schema generation for customized swagger’s
-3. Request Headers - support reading `x-litellm-timeout` param from request headers. Enables model timeout control when using Vercel’s AI SDK + LiteLLM Proxy. [Start Here](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers)
+3. Request Headers - support reading `x-remodl-timeout` param from request headers. Enables model timeout control when using Vercel’s AI SDK + LiteLLM Proxy. [Start Here](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers)
 4. JWT / OIDC Auth - new `role` based permissions for model authentication. [See Here](https://docs.litellm.ai/docs/proxy/jwt_auth_arch)
 
 ## Complete Git Diff [​](https://docs.litellm.ai/release_notes\#complete-git-diff "Direct link to Complete Git Diff")
@@ -3773,10 +3773,10 @@ Get a 7 day free trial for LiteLLM Enterprise [here](https://litellm.ai/#trial).
 06. Bedrock - pure async image transformation requests
 07. Cooldowns - single deployment model group if 100% calls fail in high traffic - prevents an o1 outage from impacting other calls
 08. Response Headers - return
-    1. `x-litellm-timeout`
-    2. `x-litellm-attempted-retries`
-    3. `x-litellm-overhead-duration-ms`
-    4. `x-litellm-response-duration-ms`
+    1. `x-remodl-timeout`
+    2. `x-remodl-attempted-retries`
+    3. `x-remodl-overhead-duration-ms`
+    4. `x-remodl-response-duration-ms`
 09. ensure duplicate callbacks are not added to proxy
 10. Requirements.txt - bump certifi version
 
@@ -3784,7 +3784,7 @@ Get a 7 day free trial for LiteLLM Enterprise [here](https://litellm.ai/#trial).
 
 1. JWT / OIDC Auth - new `enforce_rbac` param,allows proxy admin to prevent any unmapped yet authenticated jwt tokens from calling proxy. [Start Here](https://docs.litellm.ai/docs/proxy/token_auth#enforce-role-based-access-control-rbac)
 2. fix custom openapi schema generation for customized swagger’s
-3. Request Headers - support reading `x-litellm-timeout` param from request headers. Enables model timeout control when using Vercel’s AI SDK + LiteLLM Proxy. [Start Here](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers)
+3. Request Headers - support reading `x-remodl-timeout` param from request headers. Enables model timeout control when using Vercel’s AI SDK + LiteLLM Proxy. [Start Here](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers)
 4. JWT / OIDC Auth - new `role` based permissions for model authentication. [See Here](https://docs.litellm.ai/docs/proxy/jwt_auth_arch)
 
 ## Complete Git Diff [​](https://docs.litellm.ai/release_notes/tags/admin-ui\#complete-git-diff "Direct link to Complete Git Diff")
@@ -4472,7 +4472,7 @@ This release allows you to call Azure OpenAI, Anthropic, AWS Bedrock, and Google
 ## Spend Tracking Improvements [​](https://docs.litellm.ai/release_notes/tags/cost-tracking\#spend-tracking-improvements "Direct link to Spend Tracking Improvements")
 
 - **Cost Control** \- inject cache control points in prompt for cost reduction [Get Started](https://docs.litellm.ai/docs/tutorials/prompt_caching), [PR](https://github.com/BerriAI/litellm/pull/10000)
-- **Spend Tags** \- spend tags in headers - support x-litellm-tags even if tag based routing not enabled [Get Started](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers), [PR](https://github.com/BerriAI/litellm/pull/10000)
+- **Spend Tags** \- spend tags in headers - support x-remodl-tags even if tag based routing not enabled [Get Started](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers), [PR](https://github.com/BerriAI/litellm/pull/10000)
 - **Gemini-2.5-flash** \- support cost calculation for reasoning tokens [PR](https://github.com/BerriAI/litellm/pull/10141)
 
 ## Management Endpoints / UI [​](https://docs.litellm.ai/release_notes/tags/cost-tracking\#management-endpoints--ui "Direct link to Management Endpoints / UI")
@@ -5275,10 +5275,10 @@ Get a 7 day free trial for LiteLLM Enterprise [here](https://litellm.ai/#trial).
 06. Bedrock - pure async image transformation requests
 07. Cooldowns - single deployment model group if 100% calls fail in high traffic - prevents an o1 outage from impacting other calls
 08. Response Headers - return
-    1. `x-litellm-timeout`
-    2. `x-litellm-attempted-retries`
-    3. `x-litellm-overhead-duration-ms`
-    4. `x-litellm-response-duration-ms`
+    1. `x-remodl-timeout`
+    2. `x-remodl-attempted-retries`
+    3. `x-remodl-overhead-duration-ms`
+    4. `x-remodl-response-duration-ms`
 09. ensure duplicate callbacks are not added to proxy
 10. Requirements.txt - bump certifi version
 
@@ -5286,7 +5286,7 @@ Get a 7 day free trial for LiteLLM Enterprise [here](https://litellm.ai/#trial).
 
 1. JWT / OIDC Auth - new `enforce_rbac` param,allows proxy admin to prevent any unmapped yet authenticated jwt tokens from calling proxy. [Start Here](https://docs.litellm.ai/docs/proxy/token_auth#enforce-role-based-access-control-rbac)
 2. fix custom openapi schema generation for customized swagger’s
-3. Request Headers - support reading `x-litellm-timeout` param from request headers. Enables model timeout control when using Vercel’s AI SDK + LiteLLM Proxy. [Start Here](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers)
+3. Request Headers - support reading `x-remodl-timeout` param from request headers. Enables model timeout control when using Vercel’s AI SDK + LiteLLM Proxy. [Start Here](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers)
 4. JWT / OIDC Auth - new `role` based permissions for model authentication. [See Here](https://docs.litellm.ai/docs/proxy/jwt_auth_arch)
 
 ## Complete Git Diff [​](https://docs.litellm.ai/release_notes/tags/db-schema\#complete-git-diff "Direct link to Complete Git Diff")
@@ -6481,10 +6481,10 @@ Get a 7 day free trial for LiteLLM Enterprise [here](https://litellm.ai/#trial).
 06. Bedrock - pure async image transformation requests
 07. Cooldowns - single deployment model group if 100% calls fail in high traffic - prevents an o1 outage from impacting other calls
 08. Response Headers - return
-    1. `x-litellm-timeout`
-    2. `x-litellm-attempted-retries`
-    3. `x-litellm-overhead-duration-ms`
-    4. `x-litellm-response-duration-ms`
+    1. `x-remodl-timeout`
+    2. `x-remodl-attempted-retries`
+    3. `x-remodl-overhead-duration-ms`
+    4. `x-remodl-response-duration-ms`
 09. ensure duplicate callbacks are not added to proxy
 10. Requirements.txt - bump certifi version
 
@@ -6492,7 +6492,7 @@ Get a 7 day free trial for LiteLLM Enterprise [here](https://litellm.ai/#trial).
 
 1. JWT / OIDC Auth - new `enforce_rbac` param,allows proxy admin to prevent any unmapped yet authenticated jwt tokens from calling proxy. [Start Here](https://docs.litellm.ai/docs/proxy/token_auth#enforce-role-based-access-control-rbac)
 2. fix custom openapi schema generation for customized swagger’s
-3. Request Headers - support reading `x-litellm-timeout` param from request headers. Enables model timeout control when using Vercel’s AI SDK + LiteLLM Proxy. [Start Here](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers)
+3. Request Headers - support reading `x-remodl-timeout` param from request headers. Enables model timeout control when using Vercel’s AI SDK + LiteLLM Proxy. [Start Here](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers)
 4. JWT / OIDC Auth - new `role` based permissions for model authentication. [See Here](https://docs.litellm.ai/docs/proxy/jwt_auth_arch)
 
 ## Complete Git Diff [​](https://docs.litellm.ai/release_notes/tags/logging\#complete-git-diff "Direct link to Complete Git Diff")
@@ -8457,7 +8457,7 @@ This release allows you to call Azure OpenAI, Anthropic, AWS Bedrock, and Google
 ## Spend Tracking Improvements [​](https://docs.litellm.ai/release_notes/tags/security\#spend-tracking-improvements "Direct link to Spend Tracking Improvements")
 
 - **Cost Control** \- inject cache control points in prompt for cost reduction [Get Started](https://docs.litellm.ai/docs/tutorials/prompt_caching), [PR](https://github.com/BerriAI/litellm/pull/10000)
-- **Spend Tags** \- spend tags in headers - support x-litellm-tags even if tag based routing not enabled [Get Started](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers), [PR](https://github.com/BerriAI/litellm/pull/10000)
+- **Spend Tags** \- spend tags in headers - support x-remodl-tags even if tag based routing not enabled [Get Started](https://docs.litellm.ai/docs/proxy/request_headers#litellm-headers), [PR](https://github.com/BerriAI/litellm/pull/10000)
 - **Gemini-2.5-flash** \- support cost calculation for reasoning tokens [PR](https://github.com/BerriAI/litellm/pull/10141)
 
 ## Management Endpoints / UI [​](https://docs.litellm.ai/release_notes/tags/security\#management-endpoints--ui "Direct link to Management Endpoints / UI")

@@ -269,12 +269,12 @@ class LiteLLMProxyRequestSetup:
             apiKey: liteLLM.apiKey,
             compatibility: "compatible",
             headers: {
-                "x-litellm-timeout": "90"
+                "x-remodl-timeout": "90"
             },
         });
         ```
         """
-        timeout_header = headers.get("x-litellm-timeout", None)
+        timeout_header = headers.get("x-remodl-timeout", None)
         if timeout_header is not None:
             return float(timeout_header)
         return None
@@ -284,7 +284,7 @@ class LiteLLMProxyRequestSetup:
         """
         Get the `stream_timeout` from the request headers.
         """
-        stream_timeout_header = headers.get("x-litellm-stream-timeout", None)
+        stream_timeout_header = headers.get("x-remodl-stream-timeout", None)
         if stream_timeout_header is not None:
             return float(stream_timeout_header)
         return None
@@ -294,7 +294,7 @@ class LiteLLMProxyRequestSetup:
         """
         Workaround for client request from Vercel's AI SDK.
         """
-        num_retries_header = headers.get("x-litellm-num-retries", None)
+        num_retries_header = headers.get("x-remodl-num-retries", None)
         if num_retries_header is not None:
             return int(num_retries_header)
         return None
@@ -306,7 +306,7 @@ class LiteLLMProxyRequestSetup:
         """
         from litellm.litellm_core_utils.safe_json_loads import safe_json_loads
 
-        spend_logs_metadata_header = headers.get("x-litellm-spend-logs-metadata", None)
+        spend_logs_metadata_header = headers.get("x-remodl-spend-logs-metadata", None)
         if spend_logs_metadata_header is not None:
             return safe_json_loads(spend_logs_metadata_header)
         return None
@@ -433,7 +433,7 @@ class LiteLLMProxyRequestSetup:
             )
             for k, v in litellm_logging_metadata_headers.items():
                 if v is not None:
-                    returned_headers["x-litellm-{}".format(k)] = v
+                    returned_headers["x-remodl-{}".format(k)] = v
 
         return returned_headers
 
@@ -755,12 +755,12 @@ class LiteLLMProxyRequestSetup:
         tags = None
 
         # Check request headers for tags
-        if "x-litellm-tags" in headers:
-            if isinstance(headers["x-litellm-tags"], str):
-                _tags = headers["x-litellm-tags"].split(",")
+        if "x-remodl-tags" in headers:
+            if isinstance(headers["x-remodl-tags"], str):
+                _tags = headers["x-remodl-tags"].split(",")
                 tags = [tag.strip() for tag in _tags]
-            elif isinstance(headers["x-litellm-tags"], list):
-                tags = headers["x-litellm-tags"]
+            elif isinstance(headers["x-remodl-tags"], list):
+                tags = headers["x-remodl-tags"]
         # Check request body for tags
         if "tags" in data and isinstance(data["tags"], list):
             tags = data["tags"]

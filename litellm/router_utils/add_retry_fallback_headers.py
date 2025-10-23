@@ -39,10 +39,10 @@ def add_retry_headers_to_response(
     Add retry headers to the request
     """
     retry_headers = {
-        "x-litellm-attempted-retries": attempted_retries,
+        "x-remodl-attempted-retries": attempted_retries,
     }
     if max_retries is not None:
-        retry_headers["x-litellm-max-retries"] = max_retries
+        retry_headers["x-remodl-max-retries"] = max_retries
 
     return _add_headers_to_response(response, retry_headers)
 
@@ -65,6 +65,6 @@ def add_fallback_headers_to_response(
     Want to avoid bloat in the response headers for performance.
     """
     fallback_headers = {
-        "x-litellm-attempted-fallbacks": attempted_fallbacks,
+        "x-remodl-attempted-fallbacks": attempted_fallbacks,
     }
     return _add_headers_to_response(response, fallback_headers)

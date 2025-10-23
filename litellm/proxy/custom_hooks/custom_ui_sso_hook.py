@@ -21,8 +21,8 @@ class CustomSSOLoginHandler(CustomLogger):
         request_headers_dict = dict(request.headers)
         verbose_logger.debug("inside custom ui sso sign in hook...")
         return OpenID(
-            id=request_headers_dict.get("x-litellm-user-id") or "123",
-            email=request_headers_dict.get("x-litellm-user-email") or "test@test.com",
+            id=request_headers_dict.get("x-remodl-user-id") or "123",
+            email=request_headers_dict.get("x-remodl-user-email") or "test@test.com",
             first_name="Test",
             last_name="Test",
             display_name="Test",

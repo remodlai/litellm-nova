@@ -19,7 +19,7 @@ class EnterpriseCallbackControls:
             standard_callback_dynamic_params: StandardCallbackDynamicParams
         ) -> bool:
             """
-            Check if a callback is disabled via the x-litellm-disable-callbacks header or via `litellm_disabled_callbacks` in standard_callback_dynamic_params.
+            Check if a callback is disabled via the x-remodl-disable-callbacks header or via `litellm_disabled_callbacks` in standard_callback_dynamic_params.
             
             Args:
                 callback: The callback to check (can be string, CustomLogger instance, or callable)

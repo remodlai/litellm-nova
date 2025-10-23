@@ -115,7 +115,7 @@ def should_redact_message_logging(model_call_details: dict) -> bool:
 
     possible_request_headers = [
         "litellm-enable-message-redaction",  # old header. maintain backwards compatibility
-        "x-litellm-enable-message-redaction",  # new header
+        "x-remodl-enable-message-redaction",  # new header
     ]
 
     is_redaction_enabled_via_header = False

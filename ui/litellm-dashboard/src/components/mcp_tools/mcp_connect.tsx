@@ -38,7 +38,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
   const getHeadersConfig = () => {
     const headers: Record<string, any> = {
-      "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+      "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
     };
     if (useServerHeader && serverName) {
       const formattedServerName = serverName.replace(/\s+/g, "_");
@@ -137,7 +137,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
 
   const getHeadersConfig = (type: string) => {
     const headers: Record<string, any> = {
-      "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+      "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
     };
 
     if (serverHeaders[type]?.length > 0) {
@@ -259,7 +259,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
             "server_url": "${proxyBaseUrl}/mcp",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-servers": ["Zapier_MCP,dev"]
             }
         }
@@ -342,7 +342,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
             "server_url": "${proxyBaseUrl}/mcp",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-servers": ["Zapier_MCP,dev"]
             }
         }
@@ -408,7 +408,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
     "Zapier_MCP": {
       "server_url": "${proxyBaseUrl}/mcp",
       "headers": {
-        "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+        "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
         "x-mcp-servers": ["Zapier_MCP,dev"]
       }
     }
@@ -455,7 +455,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
             title="Headers Configuration"
             code={JSON.stringify(
               {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
               },
               null,
               2,

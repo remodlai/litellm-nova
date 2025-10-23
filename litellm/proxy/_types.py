@@ -3038,7 +3038,7 @@ class SpecialHeaders(enum.Enum):
     anthropic_authorization = "x-api-key"
     google_ai_studio_authorization = "x-goog-api-key"
     azure_apim_authorization = "Ocp-Apim-Subscription-Key"
-    custom_litellm_api_key = "x-litellm-api-key"
+    custom_litellm_api_key = "x-remodl-api-key"
     mcp_auth = "x-mcp-auth"
     mcp_servers = "x-mcp-servers"
     mcp_access_groups = "x-mcp-access-groups"

@@ -7251,7 +7251,7 @@ async def model_info_v1(  # noqa: PLR0915
     Provides more info about each model in /models, including config.yaml descriptions (except api key and api base)
 
     Parameters:
-        litellm_model_id: Optional[str] = None (this is the value of `x-litellm-model-id` returned in response headers)
+        litellm_model_id: Optional[str] = None (this is the value of `x-remodl-model-id` returned in response headers)
 
         - When litellm_model_id is passed, it will return the info for that specific model
         - When litellm_model_id is not passed, it will return the info for all models
@@ -7839,7 +7839,7 @@ async def async_queue_request(
                 media_type="text/event-stream",
             )
 
-        fastapi_response.headers.update({"x-litellm-priority": str(data["priority"])})
+        fastapi_response.headers.update({"x-remodl-priority": str(data["priority"])})
         return response
     except Exception as e:
         await proxy_logging_obj.post_call_failure_hook(

@@ -1072,12 +1072,12 @@ def get_response_cost_from_hidden_params(
     additional_headers = _hidden_params_dict.get("additional_headers", {})
     if (
         additional_headers
-        and "llm_provider-x-litellm-response-cost" in additional_headers
+        and "llm_provider-x-remodl-response-cost" in additional_headers
     ):
-        response_cost = additional_headers["llm_provider-x-litellm-response-cost"]
+        response_cost = additional_headers["llm_provider-x-remodl-response-cost"]
         if response_cost is None:
             return None
-        return float(additional_headers["llm_provider-x-litellm-response-cost"])
+        return float(additional_headers["llm_provider-x-remodl-response-cost"])
     return None
 
 

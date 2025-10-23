@@ -19,8 +19,8 @@ class CustomSSOLoginHandler(CustomLogger):
     ) -> OpenID:
         request_headers_dict = dict(request.headers)
         return OpenID(
-            id=request_headers_dict.get("x-litellm-user-id"),
-            email=request_headers_dict.get("x-litellm-user-email"),
+            id=request_headers_dict.get("x-remodl-user-id"),
+            email=request_headers_dict.get("x-remodl-user-email"),
             first_name="Test",
             last_name="Test",
             display_name="Test",

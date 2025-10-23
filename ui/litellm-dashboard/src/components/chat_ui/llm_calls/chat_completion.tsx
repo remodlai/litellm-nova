@@ -31,7 +31,7 @@ export async function makeOpenAIChatCompletionRequest(
   // Prepare headers with tags and trace ID
   const headers: Record<string, string> = {};
   if (tags && tags.length > 0) {
-    headers["x-litellm-tags"] = tags.join(",");
+    headers["x-remodl-tags"] = tags.join(",");
   }
 
   const client = new openai.OpenAI({
@@ -61,7 +61,7 @@ export async function makeOpenAIChatCompletionRequest(
               require_approval: "never",
               allowed_tools: selectedMCPTools,
               headers: {
-                "x-litellm-api-key": `Bearer ${accessToken}`,
+                "x-remodl-api-key": `Bearer ${accessToken}`,
               },
             },
           ]

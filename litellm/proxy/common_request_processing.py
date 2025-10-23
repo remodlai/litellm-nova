@@ -230,33 +230,33 @@ class ProxyBaseLLMRequestProcessing:
         )
         
         headers = {
-            "x-litellm-call-id": call_id,
-            "x-litellm-model-id": model_id,
-            "x-litellm-cache-key": cache_key,
-            "x-litellm-model-api-base": (
+            "x-remodl-call-id": call_id,
+            "x-remodl-model-id": model_id,
+            "x-remodl-cache-key": cache_key,
+            "x-remodl-model-api-base": (
                 api_base.split("?")[0] if api_base else None
             ),  # don't include query params, risk of leaking sensitive info
-            "x-litellm-version": version,
-            "x-litellm-model-region": model_region,
-            "x-litellm-response-cost": str(response_cost),
-            "x-litellm-response-cost-original": str(original_cost) if original_cost is not None else None,
-            "x-litellm-response-cost-discount-amount": str(discount_amount) if discount_amount is not None else None,
-            "x-litellm-key-tpm-limit": str(user_api_key_dict.tpm_limit),
-            "x-litellm-key-rpm-limit": str(user_api_key_dict.rpm_limit),
-            "x-litellm-key-max-budget": str(user_api_key_dict.max_budget),
-            "x-litellm-key-spend": str(user_api_key_dict.spend),
-            "x-litellm-response-duration-ms": str(
+            "x-remodl-version": version,
+            "x-remodl-model-region": model_region,
+            "x-remodl-response-cost": str(response_cost),
+            "x-remodl-response-cost-original": str(original_cost) if original_cost is not None else None,
+            "x-remodl-response-cost-discount-amount": str(discount_amount) if discount_amount is not None else None,
+            "x-remodl-key-tpm-limit": str(user_api_key_dict.tpm_limit),
+            "x-remodl-key-rpm-limit": str(user_api_key_dict.rpm_limit),
+            "x-remodl-key-max-budget": str(user_api_key_dict.max_budget),
+            "x-remodl-key-spend": str(user_api_key_dict.spend),
+            "x-remodl-response-duration-ms": str(
                 hidden_params.get("_response_ms", None)
             ),
-            "x-litellm-overhead-duration-ms": str(
+            "x-remodl-overhead-duration-ms": str(
                 hidden_params.get("litellm_overhead_time_ms", None)
             ),
-            "x-litellm-fastest_response_batch_completion": (
+            "x-remodl-fastest_response_batch_completion": (
                 str(fastest_response_batch_completion)
                 if fastest_response_batch_completion is not None
                 else None
             ),
-            "x-litellm-timeout": str(timeout) if timeout is not None else None,
+            "x-remodl-timeout": str(timeout) if timeout is not None else None,
             **{k: str(v) for k, v in kwargs.items()},
         }
         if request_data:
@@ -357,7 +357,7 @@ class ProxyBaseLLMRequestProcessing:
             self.data["model"] = litellm.model_alias_map[self.data["model"]]
 
         self.data["litellm_call_id"] = request.headers.get(
-            "x-litellm-call-id", str(uuid.uuid4())
+            "x-remodl-call-id", str(uuid.uuid4())
         )
         ### CALL HOOKS ### - modify/reject incoming data before calling the model
 
