@@ -14,6 +14,11 @@ interface ModelGroupInfo {
   supports_parallel_function_calling: boolean;
   supports_vision: boolean;
   supports_function_calling: boolean;
+  supports_embedding_multivector?: boolean;
+  supports_embedding_image_input?: boolean;
+  supports_embedding_text_input?: boolean;
+  supports_embedding_audio_input?: boolean;
+  supports_instructions?: boolean;
   supported_openai_params?: string[];
   is_public_model_group: boolean;
   [key: string]: any;

@@ -1,7 +1,7 @@
 import React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { Text } from "@tremor/react";
-import { EyeIcon, CogIcon } from "@heroicons/react/outline";
+import { EyeIcon, CogIcon, ClipboardListIcon } from "@heroicons/react/outline";
 import { Tag } from "antd";
 
 interface ModelGroupInfo {
@@ -159,6 +159,15 @@ export const publicModelHubColumns = (): ColumnDef<ModelGroupInfo>[] => [
       const model = row.original;
       const features = [];
 
+
+      if(model.supports_embedding_multivector) {
+        features.push(
+          <div key="multivector" className="flex items-center space-x-1" title="Multivector">
+            <ClipboardListIcon className="w-4 h-4 text-blue-600" />
+          </div>,
+        );
+      }
+      
       if (model.supports_vision) {
         features.push(
           <div key="vision" className="flex items-center space-x-1" title="Vision">
