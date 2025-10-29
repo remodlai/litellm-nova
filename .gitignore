@@ -8,6 +8,7 @@ litellm_uuid.txt
 __pycache__/
 *.pyc
 bun.lockb
+mlruns/*
 **/.DS_Store
 .aider*
 litellm_results.jsonl
