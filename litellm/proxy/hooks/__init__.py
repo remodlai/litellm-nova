@@ -7,6 +7,7 @@ from .max_budget_limiter import _PROXY_MaxBudgetLimiter
 from .parallel_request_limiter import _PROXY_MaxParallelRequestsHandler
 from .parallel_request_limiter_v3 import _PROXY_MaxParallelRequestsHandler_v3
 from .nova_task_routing import NovaTaskRoutingHook, nova_task_router
+from .responses_id_security import ResponsesIDSecurity
 
 ### CHECK IF ENTERPRISE HOOKS ARE AVAILABLE ###
 
@@ -21,6 +22,7 @@ PROXY_HOOKS = {
     "parallel_request_limiter": _PROXY_MaxParallelRequestsHandler_v3,
     "cache_control_check": _PROXY_CacheControlCheck,
     "nova_task_router": NovaTaskRoutingHook,  # ← Added Nova task routing
+    "responses_id_security": ResponsesIDSecurity,
 }
 
 ## FEATURE FLAG HOOKS ##
@@ -43,7 +45,7 @@ def get_proxy_hook(
             "nova_task_router",  # ← Added
         ],
         str,
-    ]
+    ],
 ):
     """
     Factory method to get a proxy hook instance by name
