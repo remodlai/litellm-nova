@@ -68,7 +68,7 @@ curl -L -X POST 'http://localhost:4000/chat/completions' \
 Expected Response Header:
 
 ```
-x-litellm-key-max-budget: 100.0000001
+x-remodl-key-max-budget: 100.0000001
 ```
 
 

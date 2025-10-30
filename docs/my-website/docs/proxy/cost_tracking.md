@@ -122,7 +122,7 @@ That's IT. Now Verify your spend was tracked
 <Tabs>
 <TabItem value="curl" label="Response Headers">
 
-Expect to see `x-litellm-response-cost` in the response headers with calculated cost
+Expect to see `x-remodl-response-cost` in the response headers with calculated cost
 
 <Image img={require('../../img/response_cost_img.png')} />
 
@@ -963,7 +963,7 @@ response = client.chat.completions.create(
         }
     ],
     extra_headers={
-        "x-litellm-spend-logs-metadata": '{"user_id": "12345", "project_id": "proj_abc", "request_type": "chat_completion"}'
+        "x-remodl-spend-logs-metadata": '{"user_id": "12345", "project_id": "proj_abc", "request_type": "chat_completion"}'
     }
 )
 
@@ -1032,7 +1032,7 @@ async function runOpenAI() {
       ]
     }, {
       headers: {
-        'x-litellm-spend-logs-metadata': '{"user_id": "12345", "project_id": "proj_abc", "request_type": "chat_completion"}'
+        'x-remodl-spend-logs-metadata': '{"user_id": "12345", "project_id": "proj_abc", "request_type": "chat_completion"}'
       }
     });
     console.log(response);
@@ -1075,13 +1075,13 @@ curl --location 'http://0.0.0.0:4000/chat/completions' \
 
 <TabItem value="headers" label="Using Headers">
 
-Pass `x-litellm-spend-logs-metadata` as a request header with JSON string
+Pass `x-remodl-spend-logs-metadata` as a request header with JSON string
 
 ```shell
 curl --location 'http://0.0.0.0:4000/chat/completions' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer sk-1234' \
-    --header 'x-litellm-spend-logs-metadata: {"user_id": "12345", "project_id": "proj_abc", "request_type": "chat_completion"}' \
+    --header 'x-remodl-spend-logs-metadata: {"user_id": "12345", "project_id": "proj_abc", "request_type": "chat_completion"}' \
     --data '{
     "model": "gpt-3.5-turbo",
     "messages": [

@@ -98,7 +98,7 @@ This release allows you to call Azure OpenAI, Anthropic, AWS Bedrock, and Google
 ## Spend Tracking Improvements
 
 - **Cost Control** - inject cache control points in prompt for cost reduction [Get Started](../../docs/tutorials/prompt_caching), [PR](https://github.com/BerriAI/litellm/pull/10000)
-- **Spend Tags** - spend tags in headers - support x-litellm-tags even if tag based routing not enabled [Get Started](../../docs/proxy/request_headers#litellm-headers), [PR](https://github.com/BerriAI/litellm/pull/10000)
+- **Spend Tags** - spend tags in headers - support x-remodl-tags even if tag based routing not enabled [Get Started](../../docs/proxy/request_headers#litellm-headers), [PR](https://github.com/BerriAI/litellm/pull/10000)
 - **Gemini-2.5-flash** - support cost calculation for reasoning tokens [PR](https://github.com/BerriAI/litellm/pull/10141)
 
 ## Management Endpoints / UI

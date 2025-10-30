@@ -67,7 +67,7 @@ describe('Vertex AI Tests', () => {
         });
 
         const customHeaders = new Headers({
-            "x-litellm-api-key": "sk-1234"
+            "x-remodl-api-key": "sk-1234"
         });
 
         const requestOptions = {
@@ -101,7 +101,7 @@ describe('Vertex AI Tests', () => {
 
     test('should successfully generate non-streaming content from Vertex AI', async () => {
         const vertexAI = new VertexAI({project: 'pathrise-convert-1606954137718', location: 'us-central1', apiEndpoint: "localhost:4000/vertex-ai"});
-        const customHeaders = new Headers({"x-litellm-api-key": "sk-1234"});
+        const customHeaders = new Headers({"x-remodl-api-key": "sk-1234"});
         const requestOptions = {customHeaders: customHeaders};
         const generativeModel = vertexAI.getGenerativeModel({model: 'gemini-2.5-flash-lite'}, requestOptions);
         const request = {contents: [{role: 'user', parts: [{text: 'What is 2+2?'}]}]};

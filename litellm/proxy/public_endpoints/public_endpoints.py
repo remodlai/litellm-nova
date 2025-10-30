@@ -7,7 +7,7 @@ from litellm.proxy.auth.user_api_key_auth import user_api_key_auth
 from litellm.types.proxy.management_endpoints.model_management_endpoints import (
     ModelGroupInfoProxy,
 )
-from litellm.types.proxy.public_endpoints.public_endpoints import PublicModelHubInfo
+from litellm.types.proxy.public_endpoints.public_endpoints import PublicModelHubInfo, PublicDatetime
 
 router = APIRouter()
 
@@ -59,4 +59,26 @@ async def public_model_hub_info():
         custom_docs_description=custom_docs_description,
         litellm_version=version,
         useful_links=litellm.public_model_groups_links,
+    )
+
+@router.get(
+    "/public/datetime",
+    tags=["public", "model management"],
+    response_model=PublicDatetime,
+)
+async def public_datetime():
+    
+    from datetime import datetime, timezone
+   
+
+    try:
+       datetime_str = datetime.now(timezone.utc).isoformat()
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=str(e)
+        )
+    
+    return PublicDatetime(
+        datetime=datetime_str,
     )

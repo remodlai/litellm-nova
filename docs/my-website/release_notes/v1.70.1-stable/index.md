@@ -205,7 +205,7 @@ This release brings improvements to our Presidio PII Integration. As a Proxy Adm
 
 ## General Proxy Improvements
 - **Authentication**
-    - Handle Bearer $LITELLM_API_KEY in x-litellm-api-key custom header [PR](https://github.com/BerriAI/litellm/pull/10776)
+    - Handle Bearer $LITELLM_API_KEY in x-remodl-api-key custom header [PR](https://github.com/BerriAI/litellm/pull/10776)
 - **New Enterprise pip package** - `litellm-enterprise` - fixes issue where `enterprise` folder was not found when using pip package  
 - **[Proxy CLI](../../docs/proxy/management_cli)**
     - Add `models import` command - [PR](https://github.com/BerriAI/litellm/pull/10581)

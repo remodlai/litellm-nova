@@ -414,7 +414,7 @@ print(formatted_string)
 </TabItem>
 <TabItem value="proxy" label="PROXY">
 
-LiteLLM returns the calculated cost in the response headers - `x-litellm-response-cost` 
+LiteLLM returns the calculated cost in the response headers - `x-remodl-response-cost` 
 
 ```python
 from openai import OpenAI
@@ -430,7 +430,7 @@ response = client.chat.completions.with_raw_response.create(
     }],
     model="gpt-3.5-turbo",
 )
-print(response.headers.get('x-litellm-response-cost'))
+print(response.headers.get('x-remodl-response-cost'))
 
 completion = response.parse()  # get the object that `chat.completions.create()` would have returned
 print(completion)

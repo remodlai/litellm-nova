@@ -93,10 +93,10 @@ async def test_llm_guard_triggered_safe_request():
 
         print("response=", response, "response headers", headers)
 
-        assert "x-litellm-applied-guardrails" in headers
+        assert "x-remodl-applied-guardrails" in headers
 
         assert (
-            headers["x-litellm-applied-guardrails"]
+            headers["x-remodl-applied-guardrails"]
             == "aporia-pre-guard,aporia-post-guard"
         )
 
@@ -146,7 +146,7 @@ async def test_no_llm_guard_triggered():
 
         print("response=", response, "response headers", headers)
 
-        assert "x-litellm-applied-guardrails" not in headers
+        assert "x-remodl-applied-guardrails" not in headers
 
 
 @pytest.mark.asyncio
@@ -182,7 +182,7 @@ async def test_guardrails_with_api_key_controls():
         await asyncio.sleep(3)
 
         print("response=", response, "response headers", headers)
-        assert "x-litellm-applied-guardrails" not in headers
+        assert "x-remodl-applied-guardrails" not in headers
 
         # test guardrails triggered for key with guardrails
         response, headers = await chat_completion(
@@ -192,8 +192,8 @@ async def test_guardrails_with_api_key_controls():
             messages=[{"role": "user", "content": f"Hello my name is ishaan@berri.ai"}],
         )
 
-        assert "x-litellm-applied-guardrails" in headers
-        assert headers["x-litellm-applied-guardrails"] == "bedrock-pre-guard"
+        assert "x-remodl-applied-guardrails" in headers
+        assert headers["x-remodl-applied-guardrails"] == "bedrock-pre-guard"
 
 
 @pytest.mark.asyncio
@@ -302,7 +302,7 @@ async def test_guardrails_with_team_controls():
         await asyncio.sleep(3)
 
         print("response=", response, "response headers", headers)
-        assert "x-litellm-applied-guardrails" not in headers
+        assert "x-remodl-applied-guardrails" not in headers
 
         response, headers = await chat_completion(
             session,
@@ -313,5 +313,5 @@ async def test_guardrails_with_team_controls():
 
         print("response headers=", json.dumps(headers, indent=4))
 
-        assert "x-litellm-applied-guardrails" in headers
-        assert headers["x-litellm-applied-guardrails"] == "bedrock-pre-guard"
+        assert "x-remodl-applied-guardrails" in headers
+        assert headers["x-remodl-applied-guardrails"] == "bedrock-pre-guard"

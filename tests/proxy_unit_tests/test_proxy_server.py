@@ -197,7 +197,7 @@ def test_get_settings_request_timeout(client_no_auth):
 
 @pytest.mark.parametrize(
     "litellm_key_header_name",
-    ["x-litellm-key", None],
+    ["x-remodl-key", None],
 )
 def test_add_headers_to_request(litellm_key_header_name):
     from fastapi import Request
@@ -229,7 +229,7 @@ def test_add_headers_to_request(litellm_key_header_name):
 
 @pytest.mark.parametrize(
     "litellm_key_header_name",
-    ["x-litellm-key", None],
+    ["x-remodl-key", None],
 )
 @pytest.mark.parametrize(
     "forward_headers",
@@ -2289,13 +2289,13 @@ def test_get_timeout_from_request():
     from litellm.proxy.litellm_pre_call_utils import LiteLLMProxyRequestSetup
 
     headers = {
-        "x-litellm-timeout": "90",
+        "x-remodl-timeout": "90",
     }
     timeout = LiteLLMProxyRequestSetup._get_timeout_from_request(headers)
     assert timeout == 90
 
     headers = {
-        "x-litellm-timeout": "90.5",
+        "x-remodl-timeout": "90.5",
     }
     timeout = LiteLLMProxyRequestSetup._get_timeout_from_request(headers)
     assert timeout == 90.5

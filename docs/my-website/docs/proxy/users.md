@@ -645,7 +645,7 @@ curl --location 'http://0.0.0.0:4000/key/generate' \
 
 **Verify Model Rate Limits set correctly for this key**
 
-**Make /chat/completions request check if `x-litellm-key-remaining-requests-gpt-4` returned**
+**Make /chat/completions request check if `x-remodl-key-remaining-requests-gpt-4` returned**
 
 ```shell
 curl -i http://localhost:4000/v1/chat/completions \
@@ -663,8 +663,8 @@ curl -i http://localhost:4000/v1/chat/completions \
 **Expected headers**
 
 ```shell
-x-litellm-key-remaining-requests-gpt-4: 1
-x-litellm-key-remaining-tokens-gpt-4: 179
+x-remodl-key-remaining-requests-gpt-4: 1
+x-remodl-key-remaining-tokens-gpt-4: 179
 ```
 
 These headers indicate:

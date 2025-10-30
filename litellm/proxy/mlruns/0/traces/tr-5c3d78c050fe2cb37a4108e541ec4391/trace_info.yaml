@@ -1,0 +1,20 @@
+execution_duration_ms: 1157
+request_preview: default-message-value
+request_time: '2025-10-29T14:43:53.166Z'
+response_preview: '[{"type": "text", "text": "{\n  \"web\": [\n    {\n      \"url\":
+  \"https://www.accuweather.com/en/us/maine/04736/weather-forecast/2199368\",\n      \"title\":
+  \"Maine, ME Weather Forecast | AccuWeather\",\n      \"description\": \"Hourly Weather
+  · 1 PM 52°. rain drop 0% · 2 PM 53°. rain drop 0% · 3 PM 54°. rain drop 0% · 4 PM
+  52°. rain drop 0% · 5 PM 49°. rain drop 0% · 6 PM 48°.\",\n      \"position\": 1\n    },\n    {\n      \"url\":
+  \"https://www.newscentermaine.com/weather\",\n      \"title\": \"Maine Weather |
+  Portland | Bangor | newscentermaine.com\",\n      \"description\": \"Hourly Temperatures
+  · 1 PM. Partly Cloudy. 51°. 1% · 2 PM. Partly Cloudy. 52°. 0% · 3 PM. Mostly Cloudy.
+  52°. 1% · 4 PM. Mostly Cloudy. 52°. 1% · 5 PM. Partly Cloudy.\",\n      \"position\":
+  2\n    },\n    {\n      \"url\": \"https://weather.com/weather/tenday/l/8cb3b82b35e2a678ba8115a44ba31646cfad909b79fb2c9af4512c3449c39883\",\n      \"title\":
+  \"10-Day Weather Forecast for Maine, ME\",\n      \"descr...'
+state: OK
+trace_id: tr-5c3d78c050fe2cb37a4108e541ec4391
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

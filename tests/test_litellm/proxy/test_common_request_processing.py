@@ -78,12 +78,12 @@ class TestProxyBaseLLMRequestProcessing:
     @pytest.mark.asyncio
     async def test_stream_timeout_header_processing(self):
         """
-        Test that x-litellm-stream-timeout header gets processed and added to request data as stream_timeout.
+        Test that x-remodl-stream-timeout header gets processed and added to request data as stream_timeout.
         """
         from litellm.proxy.litellm_pre_call_utils import LiteLLMProxyRequestSetup
 
         # Test with stream timeout header
-        headers_with_timeout = {"x-litellm-stream-timeout": "30.5"}
+        headers_with_timeout = {"x-remodl-stream-timeout": "30.5"}
         result = LiteLLMProxyRequestSetup._get_stream_timeout_from_request(headers_with_timeout)
         assert result == 30.5
         
@@ -93,14 +93,14 @@ class TestProxyBaseLLMRequestProcessing:
         assert result is None
         
         # Test with invalid header value (should raise ValueError when converting to float)
-        headers_with_invalid = {"x-litellm-stream-timeout": "invalid"}
+        headers_with_invalid = {"x-remodl-stream-timeout": "invalid"}
         with pytest.raises(ValueError):
             LiteLLMProxyRequestSetup._get_stream_timeout_from_request(headers_with_invalid)
 
     @pytest.mark.asyncio
     async def test_add_litellm_data_to_request_with_stream_timeout_header(self):
         """
-        Test that x-litellm-stream-timeout header gets processed and added to request data 
+        Test that x-remodl-stream-timeout header gets processed and added to request data 
         when calling add_litellm_data_to_request.
         """
         from litellm.integrations.opentelemetry import UserAPIKeyAuth
@@ -114,7 +114,7 @@ class TestProxyBaseLLMRequestProcessing:
         
         # Mock request with stream timeout header
         mock_request = MagicMock(spec=Request)
-        mock_request.headers = {"x-litellm-stream-timeout": "45.0"}
+        mock_request.headers = {"x-remodl-stream-timeout": "45.0"}
         mock_request.url.path = "/v1/chat/completions"
         mock_request.method = "POST"
         mock_request.query_params = {}
@@ -212,14 +212,14 @@ class TestProxyBaseLLMRequestProcessing:
         )
         
         # Verify discount headers are present
-        assert "x-litellm-response-cost" in headers
-        assert float(headers["x-litellm-response-cost"]) == 0.000095
+        assert "x-remodl-response-cost" in headers
+        assert float(headers["x-remodl-response-cost"]) == 0.000095
         
-        assert "x-litellm-response-cost-original" in headers
-        assert float(headers["x-litellm-response-cost-original"]) == 0.0001
+        assert "x-remodl-response-cost-original" in headers
+        assert float(headers["x-remodl-response-cost-original"]) == 0.0001
         
-        assert "x-litellm-response-cost-discount-amount" in headers
-        assert float(headers["x-litellm-response-cost-discount-amount"]) == 0.000005
+        assert "x-remodl-response-cost-discount-amount" in headers
+        assert float(headers["x-remodl-response-cost-discount-amount"]) == 0.000005
 
     def test_get_custom_headers_without_discount_info(self):
         """
@@ -264,12 +264,12 @@ class TestProxyBaseLLMRequestProcessing:
         )
         
         # Verify discount headers are NOT present
-        assert "x-litellm-response-cost" in headers
-        assert float(headers["x-litellm-response-cost"]) == 0.0001
+        assert "x-remodl-response-cost" in headers
+        assert float(headers["x-remodl-response-cost"]) == 0.0001
         
         # Discount headers should not be in the final dict
-        assert "x-litellm-response-cost-original" not in headers
-        assert "x-litellm-response-cost-discount-amount" not in headers
+        assert "x-remodl-response-cost-original" not in headers
+        assert "x-remodl-response-cost-discount-amount" not in headers
 
     def test_get_cost_breakdown_from_logging_obj_helper(self):
         """

@@ -1,0 +1,21 @@
+execution_duration_ms: 1273
+request_preview: default-message-value
+request_time: '2025-10-29T14:43:54.369Z'
+response_preview: '[{"type": "text", "text": "{\n  \"web\": [\n    {\n      \"url\":
+  \"https://www.wmtw.com/weather\",\n      \"title\": \"Portland Weather News – Maine
+  Weather Updates – WMTW News 8\",\n      \"description\": \"Considerable clouds early.
+  Some decrease in clouds later in the day. High 53F. Winds W at 15 to 25 mph. Higher
+  wind gusts possible. Saturday Night.\",\n      \"position\": 1\n    },\n    {\n      \"url\":
+  \"https://www.newscentermaine.com/weather\",\n      \"title\": \"Maine Weather |
+  Portland | Bangor | newscentermaine.com\",\n      \"description\": \"Hourly Temperatures
+  · 1 PM. Partly Cloudy. 51°. 1% · 2 PM. Partly Cloudy. 52°. 0% · 3 PM. Mostly Cloudy.
+  52°. 1% · 4 PM. Mostly Cloudy. 52°. 1% · 5 PM. Partly Cloudy.\",\n      \"position\":
+  2\n    },\n    {\n      \"url\": \"https://weather.com/weather/tenday/l/8cb3b82b35e2a678ba8115a44ba31646cfad909b79fb2c9af4512c3449c39883\",\n      \"title\":
+  \"10-Day Weather Forecast for Maine, ME\",\n      \"description\": \"Cloudy this
+  mor...'
+state: OK
+trace_id: tr-fcf3b23f16c06772bffefadd26fad514
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

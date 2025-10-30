@@ -73,9 +73,9 @@ When enabled for a model group, LiteLLM forwards the following types of headers:
 
 ### User Information Headers (Optional)
 When `add_user_information_to_llm_headers` is enabled, LiteLLM adds:
-- `x-litellm-user-id`
-- `x-litellm-org-id`
-- Other user metadata as `x-litellm-*` headers
+- `x-remodl-user-id`
+- `x-remodl-org-id`
+- Other user metadata as `x-remodl-*` headers
 
 ## Security Considerations
 

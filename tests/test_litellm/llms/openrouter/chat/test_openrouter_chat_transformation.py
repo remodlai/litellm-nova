@@ -425,8 +425,8 @@ def test_openrouter_cost_tracking_non_streaming():
         )
 
     assert hasattr(result, "_hidden_params")
-    assert "llm_provider-x-litellm-response-cost" in result._hidden_params["additional_headers"]
-    assert result._hidden_params["additional_headers"]["llm_provider-x-litellm-response-cost"] == 0.00015
+    assert "llm_provider-x-remodl-response-cost" in result._hidden_params["additional_headers"]
+    assert result._hidden_params["additional_headers"]["llm_provider-x-remodl-response-cost"] == 0.00015
 
 
 def test_openrouter_cost_tracking_streaming():

@@ -640,10 +640,10 @@ curl -X POST 'http://0.0.0.0:4000/chat/completions' \
 }'
 ```
 
-Validate it works, by checking the response header `x-litellm-model-id`
+Validate it works, by checking the response header `x-remodl-model-id`
 
 ```bash
-x-litellm-model-id: my-specific-model-id
+x-remodl-model-id: my-specific-model-id
 ```
 
 ### Test Fallbacks! 
@@ -954,7 +954,7 @@ response = client.chat.completions.with_raw_response.create(
 
 print(response)
 
-print(f"response.headers.get('x-litellm-model-api-base')")
+print(f"response.headers.get('x-remodl-model-api-base')")
 ```
 
 ### Setting Fallbacks for Wildcard Models

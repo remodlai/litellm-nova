@@ -67,7 +67,7 @@ Each machine deploying LiteLLM had the following specs:
 
 ## How to measure LiteLLM Overhead
 
-All responses from litellm will include the `x-litellm-overhead-duration-ms` header, this is the latency overhead in milliseconds added by LiteLLM Proxy.
+All responses from litellm will include the `x-remodl-overhead-duration-ms` header, this is the latency overhead in milliseconds added by LiteLLM Proxy.
 
 
 If you want to measure this on locust you can use the following code:
@@ -83,7 +83,7 @@ overhead_durations = []
 @events.request.add_listener
 def on_request(request_type, name, response_time, response_length, response, context, exception, start_time, url, **kwargs):
     if response and hasattr(response, 'headers'):
-        overhead_duration = response.headers.get('x-litellm-overhead-duration-ms')
+        overhead_duration = response.headers.get('x-remodl-overhead-duration-ms')
         if overhead_duration:
             try:
                 duration_ms = float(overhead_duration)

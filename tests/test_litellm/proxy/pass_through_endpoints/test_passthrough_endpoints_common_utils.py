@@ -26,9 +26,9 @@ async def test_get_litellm_virtual_key():
     """
     Test that the get_litellm_virtual_key function correctly handles the API key authentication
     """
-    # Test with x-litellm-api-key
+    # Test with x-remodl-api-key
     mock_request = Mock()
-    mock_request.headers = {"x-litellm-api-key": "test-key-123"}
+    mock_request.headers = {"x-remodl-api-key": "test-key-123"}
     result = get_litellm_virtual_key(mock_request)
     assert result == "Bearer test-key-123"
 
@@ -37,9 +37,9 @@ async def test_get_litellm_virtual_key():
     result = get_litellm_virtual_key(mock_request)
     assert result == "Bearer auth-key-456"
 
-    # Test with both headers (x-litellm-api-key should take precedence)
+    # Test with both headers (x-remodl-api-key should take precedence)
     mock_request.headers = {
-        "x-litellm-api-key": "test-key-123",
+        "x-remodl-api-key": "test-key-123",
         "Authorization": "Bearer auth-key-456",
     }
     result = get_litellm_virtual_key(mock_request)

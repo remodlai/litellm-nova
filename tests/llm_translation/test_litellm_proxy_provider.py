@@ -508,7 +508,7 @@ def test_litellm_gateway_from_sdk_with_response_cost_in_additional_headers():
 
     # Create mock response object
     mock_response = MagicMock()
-    mock_response.headers = {"x-litellm-response-cost": "120"}
+    mock_response.headers = {"x-remodl-response-cost": "120"}
     mock_response.parse.return_value = litellm.ModelResponse(
         **{
             "id": "chatcmpl-BEkxQvRGp9VAushfAsOZCbhMFLsoy",
@@ -565,7 +565,7 @@ def test_litellm_gateway_from_sdk_with_response_cost_in_additional_headers():
         print(f"additional_headers: {response._hidden_params['additional_headers']}")
         assert (
             response._hidden_params["additional_headers"][
-                "llm_provider-x-litellm-response-cost"
+                "llm_provider-x-remodl-response-cost"
             ]
             == "120"
         )

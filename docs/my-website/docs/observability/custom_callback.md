@@ -75,7 +75,7 @@ You can use `async_post_call_success_hook` to add custom headers or metadata to 
 async def async_post_call_success_hook(data, user_api_key_dict, response):
     # Add a custom header to the response
     additional_headers = getattr(response, "_hidden_params", {}).get("additional_headers", {}) or {}
-    additional_headers["x-litellm-custom-header"] = "my-value"
+    additional_headers["x-remodl-custom-header"] = "my-value"
     if not hasattr(response, "_hidden_params"):
         response._hidden_params = {}
     response._hidden_params["additional_headers"] = additional_headers

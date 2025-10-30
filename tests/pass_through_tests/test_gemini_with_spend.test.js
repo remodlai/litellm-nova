@@ -12,7 +12,7 @@ global.fetch = async function patchedFetch(url, options) {
     const response = await originalFetch(url, options);
     
     // Store the call ID if it exists
-    lastCallId = response.headers.get('x-litellm-call-id');
+    lastCallId = response.headers.get('x-remodl-call-id');
         
     return response;
 };

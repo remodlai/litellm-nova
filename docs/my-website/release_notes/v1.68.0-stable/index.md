@@ -173,7 +173,7 @@ export LITELLM_RATE_LIMIT_ACCURACY=true
 - **Security**
     - Allow [blocking web crawlers](../../docs/proxy/enterprise#blocking-web-crawlers) - [PR](https://github.com/BerriAI/litellm/pull/10420)
 - **Auth**
-    - Support [`x-litellm-api-key` header param by default](../../docs/pass_through/vertex_ai#use-with-virtual-keys), this fixes an issue from the prior release where `x-litellm-api-key` was not being used on vertex ai passthrough requests - [PR](https://github.com/BerriAI/litellm/pull/10392)
+    - Support [`x-remodl-api-key` header param by default](../../docs/pass_through/vertex_ai#use-with-virtual-keys), this fixes an issue from the prior release where `x-remodl-api-key` was not being used on vertex ai passthrough requests - [PR](https://github.com/BerriAI/litellm/pull/10392)
     - Allow key at max budget to call non-llm api endpoints - [PR](https://github.com/BerriAI/litellm/pull/10392)
 - 🆕 **[Python Client Library](../../docs/proxy/management_cli) for LiteLLM Proxy management endpoints**
     - Initial PR - [PR](https://github.com/BerriAI/litellm/pull/10445)

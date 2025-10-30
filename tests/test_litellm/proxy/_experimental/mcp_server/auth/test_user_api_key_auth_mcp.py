@@ -203,9 +203,9 @@ class TestMCPRequestHandler:
     @pytest.mark.parametrize(
         "headers,expected_api_key,expected_mcp_auth_header,expected_server_auth_headers",
         [
-            # Test case 1: x-litellm-api-key header present
+            # Test case 1: x-remodl-api-key header present
             (
-                [(b"x-litellm-api-key", b"test-api-key-123")],
+                [(b"x-remodl-api-key", b"test-api-key-123")],
                 "test-api-key-123",
                 None,
                 {},
@@ -220,7 +220,7 @@ class TestMCPRequestHandler:
             # Test case 3: Both headers present (primary should win)
             (
                 [
-                    (b"x-litellm-api-key", b"primary-key"),
+                    (b"x-remodl-api-key", b"primary-key"),
                     (b"authorization", b"Bearer fallback-token"),
                 ],
                 "primary-key",
@@ -246,7 +246,7 @@ class TestMCPRequestHandler:
             # Test case 7: Legacy MCP auth header present
             (
                 [
-                    (b"x-litellm-api-key", b"test-api-key-123"),
+                    (b"x-remodl-api-key", b"test-api-key-123"),
                     (b"x-mcp-auth", b"mcp-auth-token"),
                 ],
                 "test-api-key-123",
@@ -263,7 +263,7 @@ class TestMCPRequestHandler:
             # Test case 9: Server-specific auth headers present
             (
                 [
-                    (b"x-litellm-api-key", b"test-api-key-123"),
+                    (b"x-remodl-api-key", b"test-api-key-123"),
                     (b"x-mcp-github-authorization", b"Bearer github-token"),
                     (b"x-mcp-zapier_x_api-key", b"zapier-api-key"),
                 ],
@@ -277,7 +277,7 @@ class TestMCPRequestHandler:
             # Test case 10: Both legacy and server-specific auth headers
             (
                 [
-                    (b"x-litellm-api-key", b"test-api-key-123"),
+                    (b"x-remodl-api-key", b"test-api-key-123"),
                     (b"x-mcp-auth", b"legacy-token"),
                     (b"x-mcp-github-authorization", b"Bearer github-token"),
                 ],
@@ -288,7 +288,7 @@ class TestMCPRequestHandler:
             # Test case 11: Server-specific auth headers with different header types
             (
                 [
-                    (b"x-litellm-api-key", b"test-api-key-123"),
+                    (b"x-remodl-api-key", b"test-api-key-123"),
                     (b"x-mcp-deepwiki-authorization", b"Basic base64-encoded"),
                     (b"x-mcp-custom_x_custom-header", b"custom-value"),
                 ],
@@ -302,7 +302,7 @@ class TestMCPRequestHandler:
             # Test case 12: Case insensitive server-specific headers
             (
                 [
-                    (b"x-litellm-api-key", b"test-api-key-123"),
+                    (b"x-remodl-api-key", b"test-api-key-123"),
                     (b"X-MCP-GITHUB-AUTHORIZATION", b"Bearer github-token"),
                 ],
                 "test-api-key-123",
@@ -372,7 +372,7 @@ class TestMCPRequestHandler:
             # Test case 1: All headers present
             (
                 [
-                    (b"x-litellm-api-key", b"test-api-key"),
+                    (b"x-remodl-api-key", b"test-api-key"),
                     (b"x-mcp-auth", b"test-mcp-auth"),
                     (b"x-mcp-servers", b"server1,server2"),
                 ],
@@ -384,7 +384,7 @@ class TestMCPRequestHandler:
             ),
             # Test case 2: Only API key present
             (
-                [(b"x-litellm-api-key", b"test-api-key")],
+                [(b"x-remodl-api-key", b"test-api-key")],
                 {
                     "api_key": "test-api-key",
                     "mcp_auth": None,
@@ -394,7 +394,7 @@ class TestMCPRequestHandler:
             # Test case 3: Invalid format in mcp_servers
             (
                 [
-                    (b"x-litellm-api-key", b"test-api-key"),
+                    (b"x-remodl-api-key", b"test-api-key"),
                     (b"x-mcp-servers", b"[invalid,format]"),
                 ],
                 {
@@ -406,7 +406,7 @@ class TestMCPRequestHandler:
             # Test case 4: Single server
             (
                 [
-                    (b"x-litellm-api-key", b"test-api-key"),
+                    (b"x-remodl-api-key", b"test-api-key"),
                     (b"x-mcp-servers", b"server1"),
                 ],
                 {
@@ -418,7 +418,7 @@ class TestMCPRequestHandler:
             # Test case 5: Empty server string
             (
                 [
-                    (b"x-litellm-api-key", b"test-api-key"),
+                    (b"x-remodl-api-key", b"test-api-key"),
                     (b"x-mcp-servers", b""),
                 ],
                 {
@@ -427,7 +427,7 @@ class TestMCPRequestHandler:
                     "mcp_servers": [],
                 },
             ),
-            # Test case 6: Using Authorization header instead of x-litellm-api-key
+            # Test case 6: Using Authorization header instead of x-remodl-api-key
             (
                 [
                     (b"authorization", b"Bearer test-api-key"),
@@ -455,7 +455,7 @@ class TestMCPRequestHandler:
             # Test case 8: Multiple servers with spaces
             (
                 [
-                    (b"x-litellm-api-key", b"test-api-key"),
+                    (b"x-remodl-api-key", b"test-api-key"),
                     (b"x-mcp-servers", b"server1, server2,  server3"),
                 ],
                 {
@@ -683,7 +683,7 @@ class TestMCPCustomHeaderName:
                 "method": "POST",
                 "path": "/test",
                 "headers": [
-                    (b"x-litellm-api-key", b"test-api-key"),
+                    (b"x-remodl-api-key", b"test-api-key"),
                     (b"custom-auth-header", b"custom-auth-token"),
                 ],
             }
@@ -730,7 +730,7 @@ class TestMCPCustomHeaderName:
 
         # Test case 1: No server-specific headers
         headers = Headers(
-            {"x-litellm-api-key": "test-key", "content-type": "application/json"}
+            {"x-remodl-api-key": "test-key", "content-type": "application/json"}
         )
         result = MCPRequestHandler._get_mcp_server_auth_headers_from_headers(headers)
         assert result == {}
@@ -738,7 +738,7 @@ class TestMCPCustomHeaderName:
         # Test case 2: Single server-specific header
         headers = Headers(
             {
-                "x-litellm-api-key": "test-key",
+                "x-remodl-api-key": "test-key",
                 "x-mcp-github-authorization": "Bearer github-token",
             }
         )
@@ -748,7 +748,7 @@ class TestMCPCustomHeaderName:
         # Test case 3: Multiple server-specific headers
         headers = Headers(
             {
-                "x-litellm-api-key": "test-key",
+                "x-remodl-api-key": "test-key",
                 "x-mcp-github-authorization": "Bearer github-token",
                 "x-mcp-zapier_x_api-key": "zapier-api-key",
                 "x-mcp-deepwiki-authorization": "Basic base64-encoded",
@@ -765,7 +765,7 @@ class TestMCPCustomHeaderName:
         # Test case 4: Case insensitive headers
         headers = Headers(
             {
-                "x-litellm-api-key": "test-key",
+                "x-remodl-api-key": "test-key",
                 "X-MCP-GITHUB-AUTHORIZATION": "Bearer github-token",
                 "x-mcp-ZAPIER-x-api-key": "zapier-api-key",
             }
@@ -780,7 +780,7 @@ class TestMCPCustomHeaderName:
         # Test case 5: Invalid format headers (should be ignored)
         headers = Headers(
             {
-                "x-litellm-api-key": "test-key",
+                "x-remodl-api-key": "test-key",
                 "x-mcp-invalid": "should-be-ignored",
                 "x-mcp-github": "should-be-ignored",
                 "x-mcp-github-authorization": "Bearer github-token",
@@ -792,7 +792,7 @@ class TestMCPCustomHeaderName:
         # Test case 6: Edge case - header with multiple hyphens in server alias
         headers = Headers(
             {
-                "x-litellm-api-key": "test-key",
+                "x-remodl-api-key": "test-key",
                 "x-mcp-github_mcp-authorization": "Bearer github-mcp-token",
                 "x-mcp-gh_mcp2-authorization": "Bearer gh-mcp2-token",
             }
@@ -807,7 +807,7 @@ class TestMCPCustomHeaderName:
         # Test case 7: Edge case - header with underscore in server alias
         headers = Headers(
             {
-                "x-litellm-api-key": "test-key",
+                "x-remodl-api-key": "test-key",
                 "x-mcp-github_mcp-authorization": "Bearer github-mcp-token",
             }
         )
@@ -816,7 +816,7 @@ class TestMCPCustomHeaderName:
 
         # Test case 8: Edge case - empty header value
         headers = Headers(
-            {"x-litellm-api-key": "test-key", "x-mcp-github-authorization": ""}
+            {"x-remodl-api-key": "test-key", "x-mcp-github-authorization": ""}
         )
         result = MCPRequestHandler._get_mcp_server_auth_headers_from_headers(headers)
         assert result == {"github": {"Authorization": ""}}
@@ -824,7 +824,7 @@ class TestMCPCustomHeaderName:
         # Test case 9: Edge case - very long header value
         long_token = "Bearer " + "x" * 1000
         headers = Headers(
-            {"x-litellm-api-key": "test-key", "x-mcp-github-authorization": long_token}
+            {"x-remodl-api-key": "test-key", "x-mcp-github-authorization": long_token}
         )
         result = MCPRequestHandler._get_mcp_server_auth_headers_from_headers(headers)
         assert result == {"github": {"Authorization": long_token}}
@@ -832,7 +832,7 @@ class TestMCPCustomHeaderName:
         # Test case 10: Edge case - special characters in server alias
         headers = Headers(
             {
-                "x-litellm-api-key": "test-key",
+                "x-remodl-api-key": "test-key",
                 "x-mcp-github-123-authorization": "Bearer github-123-token",
                 "x-mcp-github_test-authorization": "Bearer github-test-token",
             }
@@ -858,7 +858,7 @@ class TestMCPAccessGroupsE2E:
             "method": "POST",
             "path": "/test",
             "headers": [
-                (b"x-litellm-api-key", b"test-api-key"),
+                (b"x-remodl-api-key", b"test-api-key"),
                 (b"x-mcp-access-groups", b"dev_group,prod_group"),
             ],
         }
@@ -909,7 +909,7 @@ class TestMCPAccessGroupsE2E:
             "method": "POST",
             "path": "/test",
             "headers": [
-                (b"x-litellm-api-key", b"test-api-key"),
+                (b"x-remodl-api-key", b"test-api-key"),
                 (b"x-mcp-servers", b"server1,dev_group,server2"),
             ],
         }
@@ -1005,7 +1005,7 @@ def test_mcp_path_based_server_segregation(monkeypatch):
     # Use TestClient to make a request to /mcp/zapier,group1/tools
     client = TestClient(app)
     response = client.get(
-        "/mcp/zapier,group1/tools", headers={"x-litellm-api-key": "test"}
+        "/mcp/zapier,group1/tools", headers={"x-remodl-api-key": "test"}
     )
     assert response.status_code == 200
     assert response.json() == {"status": "ok"}
@@ -1020,7 +1020,7 @@ def test_mcp_path_based_server_segregation(monkeypatch):
         (
             Headers(
                 {
-                    "x-litellm-api-key": "test-key",
+                    "x-remodl-api-key": "test-key",
                     "x-mcp-github-authorization": "Bearer github-token",
                 }
             ),
@@ -1029,7 +1029,7 @@ def test_mcp_path_based_server_segregation(monkeypatch):
         (
             Headers(
                 {
-                    "x-litellm-api-key": "test-key",
+                    "x-remodl-api-key": "test-key",
                     "x-mcp-github-x-api-key": "Basic base64-encoded-creds",
                 }
             ),

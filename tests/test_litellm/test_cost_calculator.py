@@ -24,7 +24,7 @@ from litellm.types.utils import ModelResponse, PromptTokensDetailsWrapper, Usage
 def test_cost_calculator_with_response_cost_in_additional_headers():
     class MockResponse(BaseModel):
         _hidden_params = {
-            "additional_headers": {"llm_provider-x-litellm-response-cost": 1000}
+            "additional_headers": {"llm_provider-x-remodl-response-cost": 1000}
         }
 
     result = response_cost_calculator(

@@ -230,7 +230,7 @@ View the complete load testing script: [gist.github.com/AlexsanderHamir/no_cach
 #### Bugs
 
 - **General**
-    - Fix x-litellm-cache-key header not being returned on cache hit - [PR #15348](https://github.com/BerriAI/litellm/pull/15348)
+    - Fix x-remodl-cache-key header not being returned on cache hit - [PR #15348](https://github.com/BerriAI/litellm/pull/15348)
 
 ---
 

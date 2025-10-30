@@ -65,7 +65,7 @@ curl -i http://localhost:4000/v1/chat/completions \
 
 Expect to see the following response header when this works
 ```shell
-x-litellm-model-api-base: https://exampleopenaiendpoint-production.up.railway.app/
+x-remodl-model-api-base: https://exampleopenaiendpoint-production.up.railway.app/
 ```
 
 Response
@@ -118,7 +118,7 @@ curl -i http://localhost:4000/v1/chat/completions \
 
 Expect to see the following response header when this works
 ```shell
-x-litellm-model-api-base: https://api.openai.com
+x-remodl-model-api-base: https://api.openai.com
 ```
 
 Response
@@ -151,13 +151,13 @@ Response
 
 ## Calling via Request Header
 
-You can also call via request header `x-litellm-tags`
+You can also call via request header `x-remodl-tags`
 
 ```shell
 curl -L -X POST 'http://0.0.0.0:4000/v1/chat/completions' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer sk-1234' \
--H 'x-litellm-tags: free,my-custom-tag' \
+-H 'x-remodl-tags: free,my-custom-tag' \
 -d '{
   "model": "gpt-4",
   "messages": [
@@ -206,7 +206,7 @@ curl -i http://localhost:4000/v1/chat/completions \
 
 Expect to see the following response header when this works
 ```shell
-x-litellm-model-id: default-model
+x-remodl-model-id: default-model
 ```
 
 ## ✨ Team based tag routing (Enterprise)
@@ -303,7 +303,7 @@ Here's how to set up and use team-based tag routing using curl commands:
 
 4. **Verify routing:**
 
-   Check the `x-litellm-model-id` header in the response to confirm that the request was routed to the correct model based on the team's tags. You can use the `-i` flag with curl to include the response headers:
+   Check the `x-remodl-model-id` header in the response to confirm that the request was routed to the correct model based on the team's tags. You can use the `-i` flag with curl to include the response headers:
   
    Request with Team A's key (including headers)
    ```shell
@@ -320,12 +320,12 @@ Here's how to set up and use team-based tag routing using curl commands:
 
    In the response headers, you should see:
    ```
-   x-litellm-model-id: team-a-model
+   x-remodl-model-id: team-a-model
    ```
 
    Similarly, when using Team B's key, you should see:
    ```
-   x-litellm-model-id: team-b-model
+   x-remodl-model-id: team-b-model
    ```
 
 By following these steps and using these curl commands, you can implement and test team-based tag routing in your LiteLLM Proxy setup, ensuring that different teams are routed to the appropriate models or deployments based on their assigned tags.

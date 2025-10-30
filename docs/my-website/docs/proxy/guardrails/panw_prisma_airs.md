@@ -168,7 +168,7 @@ Expected successful response:
     "prompt_tokens": 12,
     "total_tokens": 37
   },
-  "x-litellm-panw-scan": {
+  "x-remodl-panw-scan": {
     "action": "allow",
     "category": "benign",
     "profile_id": "03b32734-d06d-4bb7-a8df-ac5147630ce8",

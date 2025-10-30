@@ -1606,9 +1606,9 @@ async def test_router_attempted_fallbacks_in_response(expected_attempted_fallbac
     """
     Test that the router returns the correct number of attempted fallbacks in the response
 
-    - Test cases: works on first try, `x-litellm-attempted-fallbacks` is 0
-    - Works on 1st fallback, `x-litellm-attempted-fallbacks` is 1
-    - Works on 3rd fallback, `x-litellm-attempted-fallbacks` is 3
+    - Test cases: works on first try, `x-remodl-attempted-fallbacks` is 0
+    - Works on 1st fallback, `x-remodl-attempted-fallbacks` is 1
+    - Works on 3rd fallback, `x-remodl-attempted-fallbacks` is 3
     """
     router = Router(
         model_list=[
@@ -1637,7 +1637,7 @@ async def test_router_attempted_fallbacks_in_response(expected_attempted_fallbac
             messages=[{"role": "user", "content": "Hey, how's it going?"}],
         )
         assert (
-            resp._hidden_params["additional_headers"]["x-litellm-attempted-fallbacks"]
+            resp._hidden_params["additional_headers"]["x-remodl-attempted-fallbacks"]
             == expected_attempted_fallbacks
         )
     elif expected_attempted_fallbacks == 1:
@@ -1646,6 +1646,6 @@ async def test_router_attempted_fallbacks_in_response(expected_attempted_fallbac
             messages=[{"role": "user", "content": "Hey, how's it going?"}],
         )
         assert (
-            resp._hidden_params["additional_headers"]["x-litellm-attempted-fallbacks"]
+            resp._hidden_params["additional_headers"]["x-remodl-attempted-fallbacks"]
             == expected_attempted_fallbacks
         )

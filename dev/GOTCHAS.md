@@ -104,7 +104,7 @@ callbacks: litellm.proxy.hooks.nova_task_routing.nova_task_router  # ✅
 
 ## 6. Task Parameter Must Be in Request Body
 
-**What:** Unlike `metadata.tags` which can be in body OR header (`x-litellm-tags`), the `task` parameter for Nova must be in the request body.
+**What:** Unlike `metadata.tags` which can be in body OR header (`x-remodl-tags`), the `task` parameter for Nova must be in the request body.
 
 **Why:** The hook extracts from `data` dict, which is the parsed request body.
 

@@ -1012,7 +1012,7 @@ async def test_jwt_non_admin_team_route_access(monkeypatch):
 @pytest.mark.asyncio
 async def test_x_litellm_api_key():
     """
-    Check if auth can pick up x-litellm-api-key header, even if Bearer token is provided
+    Check if auth can pick up x-remodl-api-key header, even if Bearer token is provided
     """
     from fastapi import Request
     from starlette.datastructures import URL

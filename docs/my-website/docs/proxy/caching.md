@@ -351,7 +351,7 @@ curl -i http://localhost:4000/v1/chat/completions \
   }'
 ```
 
-**Expect to see `x-litellm-semantic-similarity` in the response headers when semantic caching is one**
+**Expect to see `x-remodl-semantic-similarity` in the response headers when semantic caching is one**
 
 </TabItem>
 
@@ -854,7 +854,7 @@ curl -X POST "http://0.0.0.0:4000/cache/delete" \
 ```
 
 #### Viewing Cache Keys from responses
-You can view the cache_key in the response headers, on cache hits the cache key is sent as the `x-litellm-cache-key` response headers
+You can view the cache_key in the response headers, on cache hits the cache key is sent as the `x-remodl-cache-key` response headers
 ```shell
 curl -i --location 'http://0.0.0.0:4000/chat/completions' \
     --header 'Authorization: Bearer sk-1234' \
@@ -875,7 +875,7 @@ Response from litellm proxy
 ```json
 date: Thu, 04 Apr 2024 17:37:21 GMT
 content-type: application/json
-x-litellm-cache-key: 586bf3f3c1bf5aecb55bd9996494d3bbc69eb58397163add6d49537762a7548d
+x-remodl-cache-key: 586bf3f3c1bf5aecb55bd9996494d3bbc69eb58397163add6d49537762a7548d
 
 {
     "id": "chatcmpl-9ALJTzsBlXR9zTxPvzfFFtFbFtG6T",

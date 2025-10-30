@@ -243,7 +243,7 @@ Test video generation request
 ```bash
 curl --location 'http://localhost:4000/v1/videos' \
 --header 'Content-Type: application/json' \
---header 'x-litellm-api-key: sk-1234' \
+--header 'x-remodl-api-key: sk-1234' \
 --data '{
     "model": "sora-2",
     "prompt": "A beautiful sunset over the ocean"
@@ -255,7 +255,7 @@ Test video status request
 ```bash
 curl --location 'http://localhost:4000/v1/videos/video_id' \
 --header 'Accept: application/json' \
---header 'x-litellm-api-key: sk-1234'
+--header 'x-remodl-api-key: sk-1234'
 
 ```
 
@@ -264,7 +264,7 @@ Test video retrieval request
 ```bash
 curl --location 'http://localhost:4000/v1/videos/video_id/content' \
 --header 'Accept: application/json' \
---header 'x-litellm-api-key: sk-1234'
+--header 'x-remodl-api-key: sk-1234'
 
 ```
 
@@ -273,7 +273,7 @@ Test video remix request
 ```bash
 curl --location --request POST 'http://localhost:4000/v1/videos/string/remix' \
 --header 'Accept: application/json' \
---header 'x-litellm-api-key: sk-1234'
+--header 'x-remodl-api-key: sk-1234'
 ```
 
 Test Azure video generation request

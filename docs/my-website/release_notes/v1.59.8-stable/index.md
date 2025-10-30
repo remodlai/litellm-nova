@@ -138,10 +138,10 @@ Get a 7 day free trial for LiteLLM Enterprise [here](https://litellm.ai/#trial).
 6. Bedrock - pure async image transformation requests 
 7. Cooldowns - single deployment model group if 100% calls fail in high traffic - prevents an o1 outage from impacting other calls 
 8. Response Headers - return 
-    1. `x-litellm-timeout` 
-    2. `x-litellm-attempted-retries`
-    3. `x-litellm-overhead-duration-ms` 
-    4. `x-litellm-response-duration-ms` 
+    1. `x-remodl-timeout` 
+    2. `x-remodl-attempted-retries`
+    3. `x-remodl-overhead-duration-ms` 
+    4. `x-remodl-response-duration-ms` 
 9. ensure duplicate callbacks are not added to proxy
 10. Requirements.txt - bump certifi version
 
@@ -149,7 +149,7 @@ Get a 7 day free trial for LiteLLM Enterprise [here](https://litellm.ai/#trial).
 
 1. JWT / OIDC Auth - new `enforce_rbac` param,allows proxy admin to prevent any unmapped yet authenticated jwt tokens from calling proxy. [Start Here](../../docs/proxy/token_auth#enforce-role-based-access-control-rbac)
 2. fix custom openapi schema generation for customized swagger’s 
-3. Request Headers - support reading `x-litellm-timeout` param from request headers. Enables model timeout control when using Vercel’s AI SDK + LiteLLM Proxy. [Start Here](../../docs/proxy/request_headers#litellm-headers)
+3. Request Headers - support reading `x-remodl-timeout` param from request headers. Enables model timeout control when using Vercel’s AI SDK + LiteLLM Proxy. [Start Here](../../docs/proxy/request_headers#litellm-headers)
 4. JWT / OIDC Auth - new `role` based permissions for model authentication. [See Here](https://docs.litellm.ai/docs/proxy/jwt_auth_arch)
 
 ## Complete Git Diff

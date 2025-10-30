@@ -33,7 +33,7 @@ litellm
 curl -X POST \
   "http://localhost:4000/vertex_ai/discovery/v1/projects/my-project/locations/global/collections/default_collection/dataStores/my-datastore/servingConfigs/default_config:search" \
   -H "Content-Type: application/json" \
-  -H "x-litellm-api-key: Bearer sk-1234" \
+  -H "x-remodl-api-key: Bearer sk-1234" \
   -d '{
     "query": "How do I authenticate?",
     "pageSize": 10
@@ -78,7 +78,7 @@ Routes to `https://discoveryengine.googleapis.com`
 curl -X POST \
   "http://localhost:4000/vertex_ai/discovery/v1/projects/my-project/locations/global/collections/default_collection/dataStores/my-datastore/servingConfigs/default_config:search" \
   -H "Content-Type: application/json" \
-  -H "x-litellm-api-key: Bearer sk-1234" \
+  -H "x-remodl-api-key: Bearer sk-1234" \
   -d '{
     "query": "pricing",
     "pageSize": 10
@@ -91,7 +91,7 @@ curl -X POST \
 curl -X POST \
   "http://localhost:4000/vertex_ai/discovery/v1/projects/my-project/locations/global/collections/default_collection/dataStores/my-datastore/servingConfigs/default_config:search" \
   -H "Content-Type: application/json" \
-  -H "x-litellm-api-key: Bearer sk-1234" \
+  -H "x-remodl-api-key: Bearer sk-1234" \
   -d '{
     "query": "tutorials",
     "pageSize": 20,
@@ -110,7 +110,7 @@ url = "http://localhost:4000/vertex_ai/discovery/v1/projects/my-project/location
 response = requests.post(url, 
     headers={
         "Content-Type": "application/json",
-        "x-litellm-api-key": "Bearer sk-1234"
+        "x-remodl-api-key": "Bearer sk-1234"
     },
     json={"query": "pricing", "pageSize": 10}
 )

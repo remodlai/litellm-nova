@@ -2772,7 +2772,7 @@ async def test_cache_key_in_hidden_params_acompletion():
     """
     Test that cache_key is present in _hidden_params on cache hits for acompletion.
     
-    Validates fix for missing x-litellm-cache-key header on proxy cache hits.
+    Validates fix for missing x-remodl-cache-key header on proxy cache hits.
     """
     litellm.cache = Cache(
         type="redis",

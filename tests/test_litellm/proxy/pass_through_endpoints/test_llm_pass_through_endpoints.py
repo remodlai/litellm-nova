@@ -570,7 +570,7 @@ class TestVertexAIPassThroughHandler:
         """
         # Mock dependencies
         mock_request = Mock()
-        mock_request.headers = {"x-litellm-api-key": "test-key-123"}
+        mock_request.headers = {"x-remodl-api-key": "test-key-123"}
         mock_request.method = "POST"
         mock_response = Mock()
 
@@ -970,7 +970,7 @@ class TestVertexAIDiscoveryPassThroughHandler:
         """
         # Mock dependencies
         mock_request = Mock()
-        mock_request.headers = {"x-litellm-api-key": "test-key-123"}
+        mock_request.headers = {"x-remodl-api-key": "test-key-123"}
         mock_request.method = "POST"
         mock_response = Mock()
 

@@ -1,0 +1,11 @@
+execution_duration_ms: 60425
+request_preview: default-message-value
+request_time: '2025-10-29T14:48:38.023Z'
+response_preview: '[{"type": "text", "text": "Tool ''firecrawl_search'' execution
+  failed: timeout of 60000ms exceeded", "annotations": null, "meta": null}]'
+state: OK
+trace_id: tr-960db544e292106ba58b2d1c4175a6d3
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

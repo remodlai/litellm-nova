@@ -232,7 +232,7 @@ def test_filter_headers_for_aws_signature():
         "x-amz-date": "20240101T120000Z",
         "x-amz-security-token": "test-token",
         "x-custom-header": "custom-value",
-        "x-litellm-user-id": "user123",
+        "x-remodl-user-id": "user123",
         "x-forwarded-for": "192.168.1.1",
         "authorization": "Bearer test-token",
         "user-agent": "test-agent",
@@ -254,7 +254,7 @@ def test_filter_headers_for_aws_signature():
     assert filtered_headers == expected_aws_headers, f"Expected {expected_aws_headers}, got {filtered_headers}"
     
     # Verify that non-AWS headers are excluded
-    excluded_headers = ["x-custom-header", "x-litellm-user-id", "x-forwarded-for", "user-agent", 
+    excluded_headers = ["x-custom-header", "x-remodl-user-id", "x-forwarded-for", "user-agent", 
                        "x-envoy-expected-rq-timeout-ms", "x-envoy-external-address"]
     for header in excluded_headers:
         assert header not in filtered_headers, f"Header {header} should not be in filtered headers"

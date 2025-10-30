@@ -1192,8 +1192,8 @@ class TestCustomUISSO:
         # Mock request with custom headers
         mock_request = MagicMock(spec=Request)
         mock_request.headers = {
-            "x-litellm-user-id": "test_user_123",
-            "x-litellm-user-email": "test@example.com",
+            "x-remodl-user-id": "test_user_123",
+            "x-remodl-user-email": "test@example.com",
             "x-forwarded-for": "192.168.1.1",
         }
         mock_request.base_url = "https://test.litellm.ai/"
@@ -1280,9 +1280,9 @@ class TestCustomUISSO:
                 # Parse headers like the actual implementation would
                 request_headers_dict = dict(request.headers)
                 return OpenID(
-                    id=request_headers_dict.get("x-litellm-user-id", "default_user"),
+                    id=request_headers_dict.get("x-remodl-user-id", "default_user"),
                     email=request_headers_dict.get(
-                        "x-litellm-user-email", "default@test.com"
+                        "x-remodl-user-email", "default@test.com"
                     ),
                     first_name="Custom",
                     last_name="Handler",
@@ -1297,8 +1297,8 @@ class TestCustomUISSO:
         # Mock request with custom headers
         mock_request = MagicMock(spec=Request)
         mock_request.headers = {
-            "x-litellm-user-id": "custom_test_user_456",
-            "x-litellm-user-email": "custom@example.com",
+            "x-remodl-user-id": "custom_test_user_456",
+            "x-remodl-user-email": "custom@example.com",
             "x-forwarded-for": "10.0.0.1",
         }
         mock_request.base_url = "https://custom.litellm.ai/"

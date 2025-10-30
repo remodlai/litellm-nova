@@ -261,7 +261,7 @@ v1.74.9-stable allows you to propagate MCP server specific authentication header
 - **Benchmarks**
     - Updated litellm proxy benchmarks (p50, p90, p99 overhead) - [PR #12842](https://github.com/BerriAI/litellm/pull/12842)
 - **Request Headers**
-    - Added new `x-litellm-num-retries` request header 
+    - Added new `x-remodl-num-retries` request header 
 - **Swagger**
     - Support local swagger on custom root paths - [PR #12911](https://github.com/BerriAI/litellm/pull/12911)
 - **Health**

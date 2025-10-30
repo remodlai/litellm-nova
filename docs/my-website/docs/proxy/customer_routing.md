@@ -84,8 +84,8 @@ curl -X POST --location 'http://localhost:4000/chat/completions' \
 Expected API Base in response headers 
 
 ```
-x-litellm-api-base: "https://my-endpoint-europe-berri-992.openai.azure.com/"
-x-litellm-model-region: "eu" # 👈 CONFIRMS REGION-BASED ROUTING WORKED
+x-remodl-api-base: "https://my-endpoint-europe-berri-992.openai.azure.com/"
+x-remodl-model-region: "eu" # 👈 CONFIRMS REGION-BASED ROUTING WORKED
 ```
 
 ### FAQ 

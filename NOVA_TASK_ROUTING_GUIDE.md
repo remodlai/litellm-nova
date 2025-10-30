@@ -223,7 +223,7 @@ curl -X POST http://localhost:4000/v1/embeddings \
 
 ### Check Routing is Working
 
-Look for the `x-litellm-model-id` header in responses:
+Look for the `x-remodl-model-id` header in responses:
 
 ```bash
 curl -i http://localhost:4000/v1/embeddings \
@@ -238,7 +238,7 @@ curl -i http://localhost:4000/v1/embeddings \
 
 **Expected header:**
 ```
-x-litellm-model-id: nova-embeddings-retrieval
+x-remodl-model-id: nova-embeddings-retrieval
 ```
 
 ### Enable Debug Logging

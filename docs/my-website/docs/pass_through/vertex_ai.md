@@ -119,7 +119,7 @@ curl \
 ```bash
 curl http://localhost:4000/vertex_ai/v1/projects/${PROJECT_ID}/locations/us-central1/publishers/google/models/${MODEL_ID}:generateContent \
   -H "Content-Type: application/json" \
-  -H "x-litellm-api-key: Bearer sk-1234" \
+  -H "x-remodl-api-key: Bearer sk-1234" \
   -d '{
     "contents":[{
       "role": "user", 
@@ -144,7 +144,7 @@ const model = vertexAI.getGenerativeModel({
     model: 'gemini-1.0-pro'
 }, {
     customHeaders: {
-        "x-litellm-api-key": "sk-1234" // Your litellm Virtual Key
+        "x-remodl-api-key": "sk-1234" // Your litellm Virtual Key
     }
 });
 
@@ -188,7 +188,7 @@ from websockets.asyncio.client import connect
 
 async def main() -> None:
     headers = {
-        "x-litellm-api-key": "Bearer sk-your-litellm-key",
+        "x-remodl-api-key": "Bearer sk-your-litellm-key",
         "Content-Type": "application/json",
     }
     async with connect(
@@ -281,7 +281,7 @@ LiteLLM Proxy Server supports two methods of authentication to Vertex AI:
 ```shell
 curl http://localhost:4000/vertex_ai/v1/projects/${PROJECT_ID}/locations/us-central1/publishers/google/models/gemini-1.5-flash-001:generateContent \
   -H "Content-Type: application/json" \
-  -H "x-litellm-api-key: Bearer sk-1234" \
+  -H "x-remodl-api-key: Bearer sk-1234" \
   -d '{"contents":[{"role": "user", "parts":[{"text": "hi"}]}]}'
 ```
 
@@ -293,7 +293,7 @@ curl http://localhost:4000/vertex_ai/v1/projects/${PROJECT_ID}/locations/us-cent
 ```shell
 curl http://localhost:4000/vertex_ai/v1/projects/${PROJECT_ID}/locations/us-central1/publishers/google/models/textembedding-gecko@001:predict \
   -H "Content-Type: application/json" \
-  -H "x-litellm-api-key: Bearer sk-1234" \
+  -H "x-remodl-api-key: Bearer sk-1234" \
   -d '{"instances":[{"content": "gm"}]}'
 ```
 
@@ -303,7 +303,7 @@ curl http://localhost:4000/vertex_ai/v1/projects/${PROJECT_ID}/locations/us-cent
 ```shell
 curl http://localhost:4000/vertex_ai/v1/projects/${PROJECT_ID}/locations/us-central1/publishers/google/models/imagen-3.0-generate-001:predict \
   -H "Content-Type: application/json" \
-  -H "x-litellm-api-key: Bearer sk-1234" \
+  -H "x-remodl-api-key: Bearer sk-1234" \
   -d '{"instances":[{"prompt": "make an otter"}], "parameters": {"sampleCount": 1}}'
 ```
 
@@ -313,7 +313,7 @@ curl http://localhost:4000/vertex_ai/v1/projects/${PROJECT_ID}/locations/us-cent
 ```shell
 curl http://localhost:4000/vertex_ai/v1/projects/${PROJECT_ID}/locations/us-central1/publishers/google/models/gemini-1.5-flash-001:countTokens \
   -H "Content-Type: application/json" \
-  -H "x-litellm-api-key: Bearer sk-1234" \
+  -H "x-remodl-api-key: Bearer sk-1234" \
   -d '{"contents":[{"role": "user", "parts":[{"text": "hi"}]}]}'
 ```
 ### Tuning API 
@@ -324,7 +324,7 @@ Create Fine Tuning Job
 ```shell
 curl http://localhost:4000/vertex_ai/v1/projects/${PROJECT_ID}/locations/us-central1/publishers/google/models/gemini-1.5-flash-001:tuningJobs \
       -H "Content-Type: application/json" \
-      -H "x-litellm-api-key: Bearer sk-1234" \
+      -H "x-remodl-api-key: Bearer sk-1234" \
       -d '{
   "baseModel": "gemini-1.0-pro-002",
   "supervisedTuningSpec" : {
@@ -364,7 +364,7 @@ litellm
 
 ```bash
 curl -X POST 'http://0.0.0.0:4000/key/generate' \
--H 'x-litellm-api-key: Bearer sk-1234' \
+-H 'x-remodl-api-key: Bearer sk-1234' \
 -H 'Content-Type: application/json' \
 -d '{}'
 ```
@@ -384,7 +384,7 @@ Expected Response
 ```bash
 curl http://localhost:4000/vertex_ai/v1/projects/${PROJECT_ID}/locations/us-central1/publishers/google/models/gemini-1.0-pro:generateContent \
   -H "Content-Type: application/json" \
-  -H "x-litellm-api-key: Bearer sk-1234" \
+  -H "x-remodl-api-key: Bearer sk-1234" \
   -d '{
     "contents":[{
       "role": "user", 
@@ -409,7 +409,7 @@ tags: ["vertex-js-sdk", "pass-through-endpoint"]
 ```bash
 curl http://localhost:4000/vertex_ai/v1/projects/${PROJECT_ID}/locations/us-central1/publishers/google/models/gemini-1.0-pro:generateContent \
   -H "Content-Type: application/json" \
-  -H "x-litellm-api-key: Bearer sk-1234" \
+  -H "x-remodl-api-key: Bearer sk-1234" \
   -H "tags: vertex-js-sdk,pass-through-endpoint" \
   -d '{
     "contents":[{
@@ -435,7 +435,7 @@ const model = vertexAI.getGenerativeModel({
     model: 'gemini-1.0-pro'
 }, {
     customHeaders: {
-        "x-litellm-api-key": "sk-1234", // Your litellm Virtual Key
+        "x-remodl-api-key": "sk-1234", // Your litellm Virtual Key
         "tags": "vertex-js-sdk,pass-through-endpoint"
     }
 });

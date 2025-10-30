@@ -324,7 +324,7 @@ async def test_router_model_group_headers():
         await asyncio.sleep(1)
 
     assert (
-        resp._hidden_params["additional_headers"]["x-litellm-model-group"]
+        resp._hidden_params["additional_headers"]["x-remodl-model-group"]
         == "gemini/gemini-1.5-flash"
     )
 

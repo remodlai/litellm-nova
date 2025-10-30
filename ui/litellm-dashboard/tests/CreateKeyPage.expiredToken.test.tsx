@@ -217,7 +217,7 @@ describe("CreateKeyPage auth behavior", () => {
         user_email: "user@example.com",
         login_method: "username_password",
         premium_user: false,
-        auth_header_name: "x-litellm-auth",
+        auth_header_name: "x-remodl-auth",
         user_id: "u_123",
       };
     });

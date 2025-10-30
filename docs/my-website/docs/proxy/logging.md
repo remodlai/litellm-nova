@@ -35,23 +35,23 @@ curl -i -sSL --location 'http://0.0.0.0:4000/chat/completions' \
     --data '{
       "model": "gpt-3.5-turbo",
       "messages": [{"role": "user", "content": "what llm are you"}]
-    }' | grep 'x-litellm'
+    }' | grep 'x-remodl'
 ```
 
 The output of this is:
 
 ```output
-x-litellm-call-id: b980db26-9512-45cc-b1da-c511a363b83f
-x-litellm-model-id: cb41bc03f4c33d310019bae8c5afdb1af0a8f97b36a234405a9807614988457c
-x-litellm-model-api-base: https://x-example-1234.openai.azure.com
-x-litellm-version: 1.40.21
-x-litellm-response-cost: 2.85e-05
-x-litellm-key-tpm-limit: None
-x-litellm-key-rpm-limit: None
+x-remodl-call-id: b980db26-9512-45cc-b1da-c511a363b83f
+x-remodl-model-id: cb41bc03f4c33d310019bae8c5afdb1af0a8f97b36a234405a9807614988457c
+x-remodl-model-api-base: https://x-example-1234.openai.azure.com
+x-remodl-version: 1.40.21
+x-remodl-response-cost: 2.85e-05
+x-remodl-key-tpm-limit: None
+x-remodl-key-rpm-limit: None
 ```
 
 A number of these headers could be useful for troubleshooting, but the
-`x-litellm-call-id` is the one that is most useful for tracking a request across
+`x-remodl-call-id` is the one that is most useful for tracking a request across
 components in your system, including in logging tools.
 
 
@@ -106,7 +106,7 @@ Dynamic request message redaction is in BETA.
 Pass in a request header to enable message redaction for a request.
 
 ```
-x-litellm-enable-message-redaction: true
+x-remodl-enable-message-redaction: true
 ```
 
 Example config.yaml
@@ -126,7 +126,7 @@ model_list:
 curl -L -X POST 'http://0.0.0.0:4000/v1/chat/completions' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer sk-zV5HlSIm8ihj1F9C_ZbB1g' \
--H 'x-litellm-enable-message-redaction: true' \
+-H 'x-remodl-enable-message-redaction: true' \
 -d '{
   "model": "gpt-3.5-turbo-testing",
   "messages": [
@@ -271,9 +271,9 @@ This is an enterprise feature.
 
 :::
 
-For some use cases, you may want to disable specific callbacks for a request. You can do this by passing `x-litellm-disable-callbacks: <callback_name>` in the request headers.
+For some use cases, you may want to disable specific callbacks for a request. You can do this by passing `x-remodl-disable-callbacks: <callback_name>` in the request headers.
 
-Send the list of callbacks to disable in the request header `x-litellm-disable-callbacks`.
+Send the list of callbacks to disable in the request header `x-remodl-disable-callbacks`.
 
 <Tabs>
 <TabItem value="Curl" label="Curl Request">
@@ -282,7 +282,7 @@ Send the list of callbacks to disable in the request header `x-litellm-disable-c
 curl --location 'http://0.0.0.0:4000/chat/completions' \
     --header 'Content-Type: application/json' \
     --header 'Authorization: Bearer sk-1234' \
-    --header 'x-litellm-disable-callbacks: langfuse' \
+    --header 'x-remodl-disable-callbacks: langfuse' \
     --data '{
     "model": "claude-sonnet-4-20250514",
     "messages": [
@@ -314,7 +314,7 @@ response = client.chat.completions.create(
         }
     ],
     extra_headers={
-        "x-litellm-disable-callbacks": "langfuse"
+        "x-remodl-disable-callbacks": "langfuse"
     }
 )
 

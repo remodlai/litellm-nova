@@ -338,7 +338,7 @@ config = {
         "petstore": {
             "url": "http://localhost:4000/petstore_mcp/mcp",
             "headers": {
-                "x-litellm-api-key": "Bearer sk-1234"
+                "x-remodl-api-key": "Bearer sk-1234"
             }
         }
     }
@@ -381,7 +381,7 @@ if __name__ == "__main__":
     "Petstore": {
       "url": "http://localhost:4000/petstore_mcp/mcp",
       "headers": {
-        "x-litellm-api-key": "Bearer $LITELLM_API_KEY"
+        "x-remodl-api-key": "Bearer $LITELLM_API_KEY"
       }
     }
   }
@@ -405,7 +405,7 @@ curl --location 'https://api.openai.com/v1/responses' \
             "server_url": "http://localhost:4000/petstore_mcp/mcp",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY"
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY"
             }
         }
     ],
@@ -680,7 +680,7 @@ curl --location 'https://api.openai.com/v1/responses' \
             "server_url": "<your-litellm-proxy-base-url>/mcp/github",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY"
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY"
             }
         }
     ],
@@ -708,7 +708,7 @@ curl --location '<your-litellm-proxy-base-url>/v1/responses' \
             "server_url": "<your-litellm-proxy-base-url>/mcp/dev_group",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY"
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY"
             }
         }
     ],
@@ -729,7 +729,7 @@ This example uses URL namespacing to access all servers in the "dev_group" acces
     "LiteLLM": {
       "url": "<your-litellm-proxy-base-url>/mcp/github,zapier",
       "headers": {
-        "x-litellm-api-key": "Bearer $LITELLM_API_KEY"
+        "x-remodl-api-key": "Bearer $LITELLM_API_KEY"
       }
     }
   }
@@ -779,7 +779,7 @@ curl --location 'https://api.openai.com/v1/responses' \
             "server_url": "<your-litellm-proxy-base-url>/mcp/",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-servers": "alias_1"
             }
         }
@@ -808,7 +808,7 @@ curl --location '<your-litellm-proxy-base-url>/v1/responses' \
             "server_url": "<your-litellm-proxy-base-url>/mcp/",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-servers": "alias_1,Server2"
             }
         }
@@ -830,7 +830,7 @@ This configuration restricts the request to only use tools from the specified MC
     "LiteLLM": {
       "url": "<your-litellm-proxy-base-url>/mcp/",
       "headers": {
-        "x-litellm-api-key": "Bearer $LITELLM_API_KEY",
+        "x-remodl-api-key": "Bearer $LITELLM_API_KEY",
         "x-mcp-servers": "alias_1,Server2"
       }
     }
@@ -873,7 +873,7 @@ curl --location 'https://api.openai.com/v1/responses' \
             "server_url": "<your-litellm-proxy-base-url>/mcp/",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-servers": "alias_1"
             }
         }
@@ -902,7 +902,7 @@ curl --location '<your-litellm-proxy-base-url>/v1/responses' \
             "server_url": "litellm_proxy",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-servers": "alias_1,Server2"
             }
         }
@@ -924,7 +924,7 @@ This configuration restricts the request to only use tools from the specified MC
     "LiteLLM": {
       "url": "litellm_proxy",
       "headers": {
-        "x-litellm-api-key": "Bearer $LITELLM_API_KEY",
+        "x-remodl-api-key": "Bearer $LITELLM_API_KEY",
         "x-mcp-servers": "alias_1,Server2"
       }
     }
@@ -981,7 +981,7 @@ Include the access group name in the `x-mcp-servers` header:
     "LiteLLM": {
       "url": "litellm_proxy",
       "headers": {
-        "x-litellm-api-key": "Bearer $LITELLM_API_KEY",
+        "x-remodl-api-key": "Bearer $LITELLM_API_KEY",
         "x-mcp-servers": "dev_group"
       }
     }
@@ -1053,7 +1053,7 @@ config = {
             "url": "http://localhost:4000/mcp",
             "headers": {
                 "x-mcp-servers": "dev_group", # assume this gives access to github, zapier and deepwiki
-                "x-litellm-api-key": "Bearer sk-1234",
+                "x-remodl-api-key": "Bearer sk-1234",
                 "x-mcp-github-authorization": "Bearer gho_token", 
                 "x-mcp-zapier-x-api-key": "sk-xxxxxxxxx",
                 "x-mcp-deepwiki-authorization": "Basic base64_encoded_creds",
@@ -1114,7 +1114,7 @@ config = {
         "github": {
             "url": "http://localhost:4000/github_mcp/mcp",
             "headers": {
-                "x-litellm-api-key": "Bearer sk-1234",
+                "x-remodl-api-key": "Bearer sk-1234",
                 "Authorization": "Bearer gho_token", 
                 "custom_key": "custom_value",
                 "x-custom-header": "additional_data"
@@ -1151,7 +1151,7 @@ asyncio.run(main())
     "GitHub": {
       "url": "http://localhost:4000/github_mcp/mcp",
       "headers": {
-        "x-litellm-api-key": "Bearer $LITELLM_API_KEY",
+        "x-remodl-api-key": "Bearer $LITELLM_API_KEY",
         "Authorization": "Bearer $GITHUB_TOKEN",
         "custom_key": "custom_value",
         "x-custom-header": "additional_data"
@@ -1168,7 +1168,7 @@ asyncio.run(main())
 ```bash title="cURL with Custom Headers" showLineNumbers
 curl --location 'http://localhost:4000/github_mcp/mcp' \
 --header 'Content-Type: application/json' \
---header 'x-litellm-api-key: Bearer sk-1234' \
+--header 'x-remodl-api-key: Bearer sk-1234' \
 --header 'Authorization: Bearer gho_token' \
 --header 'custom_key: custom_value' \
 --header 'x-custom-header: additional_data' \
@@ -1268,7 +1268,7 @@ curl --location 'https://api.openai.com/v1/responses' \
             "server_url": "litellm_proxy",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-github-authorization": "Bearer YOUR_GITHUB_TOKEN",
                 "x-mcp-zapier-x-api-key": "YOUR_ZAPIER_API_KEY"
             }
@@ -1296,7 +1296,7 @@ curl --location 'https://api.openai.com/v1/responses' \
             "server_url": "litellm_proxy",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-auth": YOUR_MCP_AUTH_TOKEN
             }
         }
@@ -1327,7 +1327,7 @@ curl --location '<your-litellm-proxy-base-url>/v1/responses' \
             "server_url": "litellm_proxy",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-github-authorization": "Bearer YOUR_GITHUB_TOKEN",
                 "x-mcp-zapier-x-api-key": "YOUR_ZAPIER_API_KEY"
             }
@@ -1355,7 +1355,7 @@ curl --location '<your-litellm-proxy-base-url>/v1/responses' \
             "server_url": "litellm_proxy",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-auth": "YOUR_MCP_AUTH_TOKEN"
             }
         }
@@ -1385,7 +1385,7 @@ Use tools directly from Cursor IDE with LiteLLM MCP and include server-specific 
     "LiteLLM": {
       "url": "litellm_proxy",
       "headers": {
-        "x-litellm-api-key": "Bearer $LITELLM_API_KEY",
+        "x-remodl-api-key": "Bearer $LITELLM_API_KEY",
         "x-mcp-github-authorization": "Bearer $GITHUB_TOKEN",
         "x-mcp-zapier-x-api-key": "$ZAPIER_API_KEY"
       }
@@ -1410,7 +1410,7 @@ Use tools directly from Cursor IDE with LiteLLM MCP and include your MCP authent
     "LiteLLM": {
       "url": "litellm_proxy",
       "headers": {
-        "x-litellm-api-key": "Bearer $LITELLM_API_KEY",
+        "x-remodl-api-key": "Bearer $LITELLM_API_KEY",
         "x-mcp-auth": "$MCP_AUTH_TOKEN"
       }
     }
@@ -1433,7 +1433,7 @@ litellm_proxy
 
 **Headers:**
 ```text showLineNumbers
-x-litellm-api-key: Bearer YOUR_LITELLM_API_KEY
+x-remodl-api-key: Bearer YOUR_LITELLM_API_KEY
 x-mcp-github-authorization: Bearer YOUR_GITHUB_TOKEN
 x-mcp-zapier-x-api-key: YOUR_ZAPIER_API_KEY
 ```
@@ -1449,7 +1449,7 @@ litellm_proxy
 
 **Headers:**
 ```text showLineNumbers
-x-litellm-api-key: Bearer YOUR_LITELLM_API_KEY
+x-remodl-api-key: Bearer YOUR_LITELLM_API_KEY
 x-mcp-auth: Bearer YOUR_MCP_AUTH_TOKEN
 ```
 
@@ -1475,7 +1475,7 @@ server_url = "litellm_proxy"
 transport = StreamableHttpTransport(
     server_url,
     headers={
-        "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+        "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
         "x-mcp-github-authorization": "Bearer YOUR_GITHUB_TOKEN",
         "x-mcp-zapier-x-api-key": "YOUR_ZAPIER_API_KEY"
     }
@@ -1528,7 +1528,7 @@ server_url = "litellm_proxy"
 transport = StreamableHttpTransport(
     server_url,
     headers={
-        "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+        "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
         "x-mcp-auth": "Bearer YOUR_MCP_AUTH_TOKEN"
     }
 )
@@ -1607,7 +1607,7 @@ curl --location '<your-litellm-proxy-base-url>/v1/responses' \
             "server_url": "litellm_proxy",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "authorization": "Bearer sk-zapier-token-123"
             }
         }

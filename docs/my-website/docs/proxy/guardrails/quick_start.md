@@ -164,10 +164,10 @@ curl -i http://localhost:4000/v1/chat/completions \
 
 **Expected response**
 
-Your response headers will include `x-litellm-applied-guardrails` with the guardrail applied 
+Your response headers will include `x-remodl-applied-guardrails` with the guardrail applied 
 
 ```
-x-litellm-applied-guardrails: aporia-pre-guard
+x-remodl-applied-guardrails: aporia-pre-guard
 ```
 
 

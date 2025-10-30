@@ -72,7 +72,7 @@ def main():
         input_data=["test query", "test document"],
     )
     print(f"Status: {result['status_code']}")
-    print(f"Routed to: {result['headers'].get('x-litellm-model-id')}")
+    print(f"Routed to: {result['headers'].get('x-remodl-model-id')}")
     if result['status_code'] == 200:
         print(f"Embeddings: {len(result['body']['data'])} vectors")
         print(f"Dimensions: {len(result['body']['data'][0]['embedding'])}")
@@ -89,7 +89,7 @@ def main():
         instructions="Focus on legal precedents and case citations",
     )
     print(f"Status: {result['status_code']}")
-    print(f"Routed to: {result['headers'].get('x-litellm-model-id')}")
+    print(f"Routed to: {result['headers'].get('x-remodl-model-id')}")
     if result['status_code'] == 200:
         print("✅ PASS - Routed to retrieval adapter")
     else:
@@ -112,7 +112,7 @@ def main():
         return_multivector=True,
     )
     print(f"Status: {result['status_code']}")
-    print(f"Routed to: {result['headers'].get('x-litellm-model-id')}")
+    print(f"Routed to: {result['headers'].get('x-remodl-model-id')}")
     if result['status_code'] == 200:
         embeddings = result['body']['data']
         print(f"Image embedding shape: {type(embeddings[0]['embedding'])}")
@@ -129,10 +129,10 @@ def main():
         input_data=["Text A for comparison", "Text B for comparison"],
     )
     print(f"Status: {result['status_code']}")
-    print(f"Routed to: {result['headers'].get('x-litellm-model-id')}")
+    print(f"Routed to: {result['headers'].get('x-remodl-model-id')}")
     expected_model = "nova-embeddings-text-matching"
     if result['status_code'] == 200:
-        actual_model = result['headers'].get('x-litellm-model-id')
+        actual_model = result['headers'].get('x-remodl-model-id')
         if actual_model == expected_model:
             print(f"✅ PASS - Correctly routed to {expected_model}")
         else:
@@ -149,10 +149,10 @@ def main():
         instructions="Focus on function purpose, ignore variable names",
     )
     print(f"Status: {result['status_code']}")
-    print(f"Routed to: {result['headers'].get('x-litellm-model-id')}")
+    print(f"Routed to: {result['headers'].get('x-remodl-model-id')}")
     expected_model = "nova-embeddings-code"
     if result['status_code'] == 200:
-        actual_model = result['headers'].get('x-litellm-model-id')
+        actual_model = result['headers'].get('x-remodl-model-id')
         if actual_model == expected_model:
             print(f"✅ PASS - Correctly routed to {expected_model}")
         else:

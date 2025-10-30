@@ -24,6 +24,6 @@ def test_get_remaining_tokens_and_requests_from_request_data():
 
     expected_name = "openrouter-google-gemini-2.0-flash-001"
     assert headers == {
-        f"x-litellm-key-remaining-requests-{expected_name}": 100,
-        f"x-litellm-key-remaining-tokens-{expected_name}": 200,
+        f"x-remodl-key-remaining-requests-{expected_name}": 100,
+        f"x-remodl-key-remaining-tokens-{expected_name}": 200,
     }

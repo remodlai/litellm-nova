@@ -2930,7 +2930,7 @@ async def test_custom_api_key_header_name(prisma_client):
     setattr(
         litellm.proxy.proxy_server,
         "general_settings",
-        {"litellm_key_header_name": "x-litellm-key"},
+        {"litellm_key_header_name": "x-remodl-key"},
     )
     await litellm.proxy.proxy_server.prisma_client.connect()
 
@@ -2941,7 +2941,7 @@ async def test_custom_api_key_header_name(prisma_client):
             "route": api_route,
             "path": api_route.path,
             "headers": [
-                (b"x-litellm-key", b"Bearer sk-1234"),
+                (b"x-remodl-key", b"Bearer sk-1234"),
             ],
         }
     )

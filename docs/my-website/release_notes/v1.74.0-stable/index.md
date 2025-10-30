@@ -77,7 +77,7 @@ curl --location 'https://api.openai.com/v1/responses' \
             "server_url": "<your-litellm-proxy-base-url>/mcp",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-servers": "Zapier_Gmail"
             }
         }
@@ -106,7 +106,7 @@ curl --location '<your-litellm-proxy-base-url>/v1/responses' \
             "server_url": "<your-litellm-proxy-base-url>/mcp",
             "require_approval": "never",
             "headers": {
-                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-servers": "Zapier_Gmail,Server2"
             }
         }
@@ -128,7 +128,7 @@ This configuration restricts the request to only use tools from the specified MC
     "LiteLLM": {
       "url": "<your-litellm-proxy-base-url>/mcp",
       "headers": {
-        "x-litellm-api-key": "Bearer $LITELLM_API_KEY",
+        "x-remodl-api-key": "Bearer $LITELLM_API_KEY",
         "x-mcp-servers": "Zapier_Gmail,Server2"
       }
     }

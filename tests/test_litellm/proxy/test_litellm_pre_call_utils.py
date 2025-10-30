@@ -612,7 +612,7 @@ def test_get_num_retries_from_request():
     Test LiteLLMProxyRequestSetup._get_num_retries_from_request method
     """
     # Test case 1: Header is present with valid integer string
-    headers_with_retries = {"x-litellm-num-retries": "3"}
+    headers_with_retries = {"x-remodl-num-retries": "3"}
     result = LiteLLMProxyRequestSetup._get_num_retries_from_request(
         headers_with_retries
     )
@@ -631,12 +631,12 @@ def test_get_num_retries_from_request():
     assert result is None
 
     # Test case 4: Header present with zero value
-    headers_with_zero = {"x-litellm-num-retries": "0"}
+    headers_with_zero = {"x-remodl-num-retries": "0"}
     result = LiteLLMProxyRequestSetup._get_num_retries_from_request(headers_with_zero)
     assert result == 0
 
     # Test case 5: Header present with large number
-    headers_with_large_number = {"x-litellm-num-retries": "100"}
+    headers_with_large_number = {"x-remodl-num-retries": "100"}
     result = LiteLLMProxyRequestSetup._get_num_retries_from_request(
         headers_with_large_number
     )
@@ -645,24 +645,24 @@ def test_get_num_retries_from_request():
     # Test case 6: Multiple headers with num retries header
     headers_multiple = {
         "Content-Type": "application/json",
-        "x-litellm-num-retries": "5",
+        "x-remodl-num-retries": "5",
         "Authorization": "Bearer token",
     }
     result = LiteLLMProxyRequestSetup._get_num_retries_from_request(headers_multiple)
     assert result == 5
 
     # Test case 7: Header present with invalid value (should raise ValueError when int() is called)
-    headers_with_invalid = {"x-litellm-num-retries": "invalid"}
+    headers_with_invalid = {"x-remodl-num-retries": "invalid"}
     with pytest.raises(ValueError):
         LiteLLMProxyRequestSetup._get_num_retries_from_request(headers_with_invalid)
 
     # Test case 8: Header present with float string (should raise ValueError when int() is called)
-    headers_with_float = {"x-litellm-num-retries": "3.5"}
+    headers_with_float = {"x-remodl-num-retries": "3.5"}
     with pytest.raises(ValueError):
         LiteLLMProxyRequestSetup._get_num_retries_from_request(headers_with_float)
 
     # Test case 9: Header present with negative number
-    headers_with_negative = {"x-litellm-num-retries": "-1"}
+    headers_with_negative = {"x-remodl-num-retries": "-1"}
     result = LiteLLMProxyRequestSetup._get_num_retries_from_request(
         headers_with_negative
     )
@@ -977,7 +977,7 @@ async def test_add_litellm_metadata_from_request_headers():
     litellm.callbacks = [test_logger]
 
     # Prepare test data (ensure no streaming, add mock_response and api_key to route to litellm.acompletion)
-    headers = {"x-litellm-spend-logs-metadata": '{"user_id": "12345", "project_id": "proj_abc", "request_type": "chat_completion", "timestamp": "2025-09-02T10:30:00Z"}'}
+    headers = {"x-remodl-spend-logs-metadata": '{"user_id": "12345", "project_id": "proj_abc", "request_type": "chat_completion", "timestamp": "2025-09-02T10:30:00Z"}'}
     data = {"model": "gpt-4", "messages": [{"role": "user", "content": "Hello"}], "stream": False, "mock_response": "Hi", "api_key": "fake-key"}
     
     # Create mock request with headers
@@ -1056,7 +1056,7 @@ async def test_add_litellm_metadata_from_request_headers():
     print(f"Standard logging object captured: {json.dumps(standard_logging_obj, indent=4, default=str)}")
 
     SPEND_LOGS_METADATA = standard_logging_obj["metadata"]["spend_logs_metadata"]
-    assert SPEND_LOGS_METADATA == dict(json.loads(headers["x-litellm-spend-logs-metadata"])), "spend_logs_metadata should be the same as the headers"
+    assert SPEND_LOGS_METADATA == dict(json.loads(headers["x-remodl-spend-logs-metadata"])), "spend_logs_metadata should be the same as the headers"
 
         
 
