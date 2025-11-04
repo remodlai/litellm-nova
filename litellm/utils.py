@@ -9,9 +9,9 @@
 
 import ast
 import asyncio
-import contextvars
 import base64
 import binascii
+import contextvars
 import copy
 import datetime
 import hashlib
@@ -36,7 +36,6 @@ import traceback
 from dataclasses import dataclass, field
 from functools import lru_cache, wraps
 from importlib import resources
-from importlib.metadata import entry_points
 from inspect import iscoroutine
 from io import StringIO
 from os.path import abspath, dirname, join
@@ -259,6 +258,7 @@ from litellm.llms.base_llm.base_utils import (
 from litellm.llms.base_llm.batches.transformation import BaseBatchesConfig
 from litellm.llms.base_llm.chat.transformation import BaseConfig
 from litellm.llms.base_llm.completion.transformation import BaseTextCompletionConfig
+from litellm.llms.base_llm.containers.transformation import BaseContainerConfig
 from litellm.llms.base_llm.embedding.transformation import BaseEmbeddingConfig
 from litellm.llms.base_llm.files.transformation import BaseFilesConfig
 from litellm.llms.base_llm.image_edit.transformation import BaseImageEditConfig
@@ -386,22 +386,10 @@ def print_verbose(
 
 ####### CLIENT ###################
 # make it easy to log if completion/embedding runs succeeded or failed + see what happened | Non-Blocking
-def load_custom_provider_entrypoints():
-    found_entry_points = tuple(entry_points().select(group="litellm"))  # type: ignore
-    for entry_point in found_entry_points:
-        # types are ignored because of circular dependency issues importing CustomLLM and CustomLLMItem
-        HandlerClass = entry_point.load()
-        handler = HandlerClass()
-        provider = {"provider": entry_point.name, "custom_handler": handler}
-        litellm.custom_provider_map.append(provider)  # type: ignore
-
-
 def custom_llm_setup():
     """
     Add custom_llm provider to provider list
     """
-    load_custom_provider_entrypoints()
-
     for custom_llm in litellm.custom_provider_map:
         if custom_llm["provider"] not in litellm.provider_list:
             litellm.provider_list.append(custom_llm["provider"])
@@ -5022,7 +5010,9 @@ def _get_model_info_helper(  # noqa: PLR0915
                     "output_cost_per_token_above_200k_tokens", None
                 ),
                 output_cost_per_second=_model_info.get("output_cost_per_second", None),
-                output_cost_per_video_per_second=_model_info.get("output_cost_per_video_per_second", None),
+                output_cost_per_video_per_second=_model_info.get(
+                    "output_cost_per_video_per_second", None
+                ),
                 output_cost_per_image=_model_info.get("output_cost_per_image", None),
                 output_vector_size=_model_info.get("output_vector_size", None),
                 citation_cost_per_token=_model_info.get(
@@ -7597,6 +7587,12 @@ class ProviderConfigManager:
             )
 
             return AzureAIVectorStoreConfig()
+        elif litellm.LlmProviders.MILVUS == provider:
+            from litellm.llms.milvus.vector_stores.transformation import (
+                MilvusVectorStoreConfig,
+            )
+
+            return MilvusVectorStoreConfig()
         return None
 
     @staticmethod
@@ -7658,11 +7654,17 @@ class ProviderConfigManager:
             )
 
             return LiteLLMProxyImageGenerationConfig()
+        elif LlmProviders.FAL_AI == provider:
+            from litellm.llms.fal_ai.image_generation import (
+                get_fal_ai_image_generation_config,
+            )
+
+            return get_fal_ai_image_generation_config(model)
         return None
 
     @staticmethod
     def get_provider_video_config(
-        model: str,
+        model: Optional[str],
         provider: LlmProviders,
     ) -> Optional[BaseVideoConfig]:
         if LlmProviders.OPENAI == provider:
@@ -7675,6 +7677,17 @@ class ProviderConfigManager:
             return AzureVideoConfig()
         return None
 
+    @staticmethod
+    def get_provider_container_config(
+        provider: LlmProviders,
+    ) -> Optional[BaseContainerConfig]:
+        if LlmProviders.OPENAI == provider:
+            from litellm.llms.openai.containers.transformation import (
+                OpenAIContainerConfig,
+            )
+
+            return OpenAIContainerConfig()
+        return None
 
     @staticmethod
     def get_provider_realtime_config(
@@ -7728,11 +7741,17 @@ class ProviderConfigManager:
         """
         Get OCR configuration for a given provider.
         """
-        from litellm.llms.azure_ai.ocr.transformation import AzureAIOCRConfig
+        from litellm.llms.vertex_ai.ocr.transformation import VertexAIOCRConfig
+
+        # Special handling for Azure AI - distinguish between Mistral OCR and Document Intelligence
+        if provider == litellm.LlmProviders.AZURE_AI:
+            from litellm.llms.azure_ai.ocr.common_utils import get_azure_ai_ocr_config
+
+            return get_azure_ai_ocr_config(model=model)
 
         PROVIDER_TO_CONFIG_MAP = {
             litellm.LlmProviders.MISTRAL: MistralOCRConfig,
-            litellm.LlmProviders.AZURE_AI: AzureAIOCRConfig,
+            litellm.LlmProviders.VERTEX_AI: VertexAIOCRConfig,
         }
         config_class = PROVIDER_TO_CONFIG_MAP.get(provider, None)
         if config_class is None:

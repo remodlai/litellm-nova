@@ -14,6 +14,7 @@ export enum Providers {
   Deepgram = "Deepgram",
   Deepseek = "Deepseek",
   ElevenLabs = "ElevenLabs",
+  FalAI = "Fal AI",
   FireworksAI = "Fireworks AI",
   Google_AI_Studio = "Google AI Studio",
   GradientAI = "GradientAI",
@@ -74,6 +75,7 @@ export const provider_map: Record<string, string> = {
   Triton: "triton",
   Deepgram: "deepgram",
   ElevenLabs: "elevenlabs",
+  FalAI: "fal_ai",
   SageMaker: "sagemaker_chat",
   Voyage: "voyage",
   JinaAI: "jina_ai",
@@ -123,6 +125,7 @@ export const providerLogoMap: Record<string, string> = {
   [Providers.Triton]: `${asset_logos_folder}nvidia_triton.png`,
   [Providers.Deepgram]: `${asset_logos_folder}deepgram.png`,
   [Providers.ElevenLabs]: `${asset_logos_folder}elevenlabs.png`,
+  [Providers.FalAI]: `${asset_logos_folder}fal_ai.jpg`,
   [Providers.Voyage]: `${asset_logos_folder}voyage.webp`,
   [Providers.JinaAI]: `${asset_logos_folder}jina.png`,
   [Providers.VolcEngine]: `${asset_logos_folder}volcengine.png`,
@@ -188,8 +191,10 @@ export const getPlaceholder = (selectedProvider: string): string => {
     return "volcengine/<any-model-on-volcengine>";
   } else if (selectedProvider == Providers.DeepInfra) {
     return "deepinfra/<any-model-on-deepinfra>";
-  }  else if (selectedProvider == Providers.Hosted_Vllm) {
+  } else if (selectedProvider == Providers.Hosted_Vllm) {
     return "llama-3.1-70b-instruct";
+  } else if (selectedProvider == Providers.FalAI) {
+    return "fal_ai/fal-ai/flux-pro/v1.1-ultra";
   } else {
     return "gpt-3.5-turbo";
   }
