@@ -2162,6 +2162,11 @@ class Logging(LiteLLMLoggingBaseClass):
                     )
                     if capture_exception:  # log this error to sentry for debugging
                         capture_exception(e)
+                    # Track callback logging failures in Prometheus
+                    try:
+                        self._handle_callback_failure(callback=callback)
+                    except Exception:
+                        pass
         except Exception as e:
             verbose_logger.exception(
                 "LiteLLM.LoggingError: [Non-Blocking] Exception occurred while success logging {}".format(
@@ -2467,7 +2472,32 @@ class Logging(LiteLLMLoggingBaseClass):
                 verbose_logger.error(
                     f"LiteLLM.LoggingError: [Non-Blocking] Exception occurred while success logging {traceback.format_exc()}"
                 )
+                self._handle_callback_failure(callback=callback)
                 pass
+
+    def _handle_callback_failure(self, callback: Any):
+        """
+        Handle callback logging failures by incrementing Prometheus metrics.
+        
+        Works for both sync and async contexts since Prometheus counter increment is synchronous.
+        
+        Args:
+            callback: The callback that failed
+        """
+        try:
+            callback_name = self._get_callback_name(callback)
+            
+            all_callbacks = litellm.logging_callback_manager._get_all_callbacks()
+                        
+            for callback_obj in all_callbacks:
+                if hasattr(callback_obj, 'increment_callback_logging_failure'):
+                    callback_obj.increment_callback_logging_failure(callback_name=callback_name)  # type: ignore
+                    break  # Only increment once
+                    
+        except Exception as e:
+            verbose_logger.debug(
+                f"Error in _handle_callback_failure: {str(e)}"
+            )
 
     def _failure_handler_helper_fn(
         self, exception, traceback_exception, start_time=None, end_time=None
@@ -2804,6 +2834,8 @@ class Logging(LiteLLMLoggingBaseClass):
                         str(e), callback
                     )
                 )
+                # Track callback logging failures in Prometheus
+                self._handle_callback_failure(callback=callback)
 
     def _get_trace_id(self, service_name: Literal["langfuse"]) -> Optional[str]:
         """
@@ -2936,15 +2968,19 @@ class Logging(LiteLLMLoggingBaseClass):
         Helper to get the name of a callback function
 
         Args:
-            cb: The callback function/string to get the name of
+            cb: The callback object/function/string to get the name of
 
         Returns:
             The name of the callback
         """
+        if isinstance(cb, str):
+            return cb
         if hasattr(cb, "__name__"):
             return cb.__name__
         if hasattr(cb, "__func__"):
             return cb.__func__.__name__
+        if hasattr(cb, "__class__"):
+            return cb.__class__.__name__
         return str(cb)
 
     def _is_internal_litellm_proxy_callback(self, cb) -> bool:
@@ -4333,7 +4369,7 @@ class StandardLoggingPayloadSetup:
 
             s3_object_key = get_s3_object_key(
                 s3_path=s3_path,  # Use actual s3_path from logger configuration
-                team_alias_prefix="",  # Don't split by team alias for cold storage
+                prefix="",  # Don't split by team alias for cold storage
                 start_time=start_time,
                 s3_file_name=s3_file_name,
             )
@@ -4496,7 +4532,7 @@ class StandardLoggingPayloadSetup:
 
 def _get_status_fields(
     status: StandardLoggingPayloadStatus,
-    guardrail_information: Optional[list[dict]],
+    guardrail_information: Optional[List[dict]],
     error_str: Optional[str],
 ) -> "StandardLoggingPayloadStatusFields":
     """
