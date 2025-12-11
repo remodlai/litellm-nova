@@ -9,7 +9,7 @@ from .parallel_request_limiter_v3 import _PROXY_MaxParallelRequestsHandler_v3
 from .nova_task_routing import NovaTaskRoutingHook, nova_task_router
 from .responses_id_security import ResponsesIDSecurity
 
-### CHECK IF ENTERPRISE HOOKS ARE AVAILABLE ###
+### CHECK IF ENTERPRISE HOOKS ARE AVAILABLE ####
 
 try:
     from enterprise.enterprise_hooks import ENTERPRISE_PROXY_HOOKS

@@ -38,7 +38,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
   const getHeadersConfig = () => {
     const headers: Record<string, any> = {
-      "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
+      "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
     };
     if (useServerHeader && serverName) {
       const formattedServerName = serverName.replace(/\s+/g, "_");
@@ -137,7 +137,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
 
   const getHeadersConfig = (type: string) => {
     const headers: Record<string, any> = {
-      "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
+      "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
     };
 
     if (serverHeaders[type]?.length > 0) {
@@ -203,29 +203,29 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
     </div>
   );
 
-  const RemodlAIProxyTab = () => (
+  const LiteLLMProxyTab = () => (
     <Space direction="vertical" size="large" className="w-full">
       <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-6 rounded-lg border border-emerald-100">
         <div className="flex items-center gap-3 mb-3">
           <Zap className="text-emerald-600" size={24} />
           <Title level={4} className="mb-0 text-emerald-900">
-            RemodlAI Proxy API Integration
+            LiteLLM Proxy API Integration
           </Title>
         </div>
         <Text className="text-emerald-700">
-          Connect to RemodlAI Proxy Responses API for seamless tool integration with multiple model providers
+          Connect to LiteLLM Proxy Responses API for seamless tool integration with multiple model providers
         </Text>
       </div>
 
       <Space direction="vertical" size="large" className="w-full">
         <FeatureCard
           icon={<KeyIcon className="text-emerald-600" size={16} />}
-          title="API Key Setup"
-          description="Configure your RemodlAI Proxy API key for authentication"
+          title="Virtual Key Setup"
+          description="Configure your LiteLLM Proxy Virtual Key for authentication"
         >
           <Space direction="vertical" size="middle" className="w-full">
             <div>
-              <Text>Get your API key from your RemodlAI Proxy dashboard or contact your administrator</Text>
+              <Text>Get your Virtual Key from your LiteLLM Proxy dashboard or contact your administrator</Text>
             </div>
             <CodeBlock title="Environment Variable" code='export LITELLM_API_KEY="sk-..."' copyKey="litellm-env" />
           </Space>
@@ -234,7 +234,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
         <FeatureCard
           icon={<ServerIcon className="text-emerald-600" size={16} />}
           title="MCP Server Information"
-          description="Connection details for your RemodlAI MCP server"
+          description="Connection details for your LiteLLM MCP server"
         >
           <CodeBlock title="Server URL" code={`${proxyBaseUrl}/mcp`} copyKey="litellm-server-url" />
         </FeatureCard>
@@ -242,14 +242,14 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
         <FeatureCard
           icon={<Code className="text-emerald-600" size={16} />}
           title="Implementation Example"
-          description="Complete cURL example for using the RemodlAI Proxy Responses API"
+          description="Complete cURL example for using the LiteLLM Proxy Responses API"
           serverName={currentServer}
           accessGroups={["dev"]}
         >
           <CodeBlock
             code={`curl --location '${proxyBaseUrl}/v1/responses' \\
 --header 'Content-Type: application/json' \\
---header "Authorization: Bearer $LITELLM_API_KEY" \\
+--header "Authorization: Bearer $LITELLM_VIRTUAL_KEY" \\
 --data '{
     "model": "gpt-4",
     "tools": [
@@ -259,7 +259,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
             "server_url": "${proxyBaseUrl}/mcp",
             "require_approval": "never",
             "headers": {
-                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-litellm-api-key": "Bearer YOUR_LITELLM_VIRTUAL_KEY",
                 "x-mcp-servers": ["Zapier_MCP,dev"]
             }
         }
@@ -285,7 +285,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
           </Title>
         </div>
         <Text className="text-blue-700">
-          Connect OpenAI Responses API to your RemodlAI MCP server for seamless tool integration
+          Connect OpenAI Responses API to your LiteLLM MCP server for seamless tool integration
         </Text>
       </div>
 
@@ -317,7 +317,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
         <FeatureCard
           icon={<ServerIcon className="text-blue-600" size={16} />}
           title="MCP Server Information"
-          description="Connection details for your RemodlAI MCP server"
+          description="Connection details for your LiteLLM MCP server"
         >
           <CodeBlock title="Server URL" code={`${proxyBaseUrl}/mcp`} copyKey="openai-server-url" />
         </FeatureCard>
@@ -342,7 +342,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
             "server_url": "${proxyBaseUrl}/mcp",
             "require_approval": "never",
             "headers": {
-                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
                 "x-mcp-servers": ["Zapier_MCP,dev"]
             }
         }
@@ -368,7 +368,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
           </Title>
         </div>
         <Text className="text-purple-700">
-          Use tools directly from Cursor IDE with RemodlAI MCP. Enable your AI assistant to perform real-world tasks
+          Use tools directly from Cursor IDE with LiteLLM MCP. Enable your AI assistant to perform real-world tasks
           without leaving your coding environment.
         </Text>
       </div>
@@ -406,9 +406,9 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
                 code={`{
   "mcpServers": {
     "Zapier_MCP": {
-      "server_url": "${proxyBaseUrl}/mcp",
+      "url": "${proxyBaseUrl}/mcp",
       "headers": {
-        "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
+        "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
         "x-mcp-servers": ["Zapier_MCP,dev"]
       }
     }
@@ -434,7 +434,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
           </Title>
         </div>
         <Text className="text-green-700">
-          Connect to RemodlAI MCP using HTTP transport. Compatible with any MCP client that supports HTTP streaming.
+          Connect to LiteLLM MCP using HTTP transport. Compatible with any MCP client that supports HTTP streaming.
         </Text>
       </div>
 
@@ -455,7 +455,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
             title="Headers Configuration"
             code={JSON.stringify(
               {
-                "x-remodl-api-key": "Bearer YOUR_LITELLM_API_KEY",
+                "x-litellm-api-key": "Bearer YOUR_LITELLM_API_KEY",
               },
               null,
               2,
@@ -483,7 +483,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
         <div>
           <TremorTitle className="text-3xl font-bold text-gray-900 mb-3">Connect to your MCP client</TremorTitle>
           <TremorText className="text-lg text-gray-600">
-            Use tools directly from any MCP client with RemodlAI MCP. Enable your AI assistant to perform real-world
+            Use tools directly from any MCP client with LiteLLM MCP. Enable your AI assistant to perform real-world
             tasks through a simple, secure connection.
           </TremorText>
         </div>
@@ -500,7 +500,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
               <Tab className="px-6 py-3 rounded-md transition-all duration-200">
                 <span className="flex items-center gap-2 font-medium">
                   <Zap size={18} />
-                  RemodlAI Proxy
+                  LiteLLM Proxy
                 </span>
               </Tab>
               <Tab className="px-6 py-3 rounded-md transition-all duration-200">
@@ -522,7 +522,7 @@ const MCPConnect: React.FC<MCPConnectProps> = ({ currentServerAccessGroups = [] 
               <OpenAITab />
             </TabPanel>
             <TabPanel className="mt-6">
-              <RemodlAIProxyTab />
+              <LiteLLMProxyTab />
             </TabPanel>
             <TabPanel className="mt-6">
               <CursorTab />

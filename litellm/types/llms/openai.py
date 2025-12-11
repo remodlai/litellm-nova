@@ -1,6 +1,17 @@
 from enum import Enum
 from os import PathLike
-from typing import IO, Any, Iterable, List, Literal, Mapping, Optional, Tuple, Union
+from typing import (
+    IO,
+    Any,
+    Dict,
+    Iterable,
+    List,
+    Literal,
+    Mapping,
+    Optional,
+    Tuple,
+    Union,
+)
 
 import httpx
 from openai._legacy_response import (
@@ -65,6 +76,7 @@ from litellm.types.llms.base import BaseLiteLLMOpenAIResponseObject
 from litellm.types.responses.main import (
     GenericResponseOutputItem,
     OutputFunctionToolCall,
+    OutputImageGenerationCall,
 )
 
 FileContent = Union[IO[bytes], bytes, PathLike]
@@ -292,7 +304,7 @@ class OpenAIFileObject(BaseModel):
     `fine-tune`, `fine-tune-results`, `vision`, and `user_data`.
     """
 
-    status: Literal["uploaded", "processed", "error"]
+    status: Optional[Literal["uploaded", "processed", "error"]] = None
     """Deprecated.
 
     The current status of the file, which can be either `uploaded`, `processed`, or
@@ -425,10 +437,12 @@ class ListBatchRequest(TypedDict, total=False):
     """
 
     after: Union[str, NotGiven]
-    limit: Union[int, NotGiven]
-    extra_headers: Optional[Dict[str, str]]
-    extra_body: Optional[Dict[str, str]]
-    timeout: Optional[float]
+
+
+# OpenAI Batch Result Types
+class OpenAIErrorBody(TypedDict, total=False):
+    """Error body in OpenAI batch response format."""
+    error: Dict[str, str]
 
 
 BatchJobStatus = Literal[
@@ -453,6 +467,7 @@ class ChatCompletionAudioDelta(TypedDict, total=False):
 class ChatCompletionToolCallFunctionChunk(TypedDict, total=False):
     name: Optional[str]
     arguments: str
+    provider_specific_fields: Optional[Dict[str, Any]]
 
 
 class ChatCompletionAssistantToolCall(TypedDict):
@@ -1059,7 +1074,7 @@ class ResponsesAPIResponse(BaseLiteLLMOpenAIResponseObject):
     object: Optional[str] = None
     output: Union[
         List[Union[ResponseOutputItem, Dict]],
-        List[Union[GenericResponseOutputItem, OutputFunctionToolCall]],
+        List[Union[GenericResponseOutputItem, OutputFunctionToolCall, OutputImageGenerationCall]],
     ]
     parallel_tool_calls: Optional[bool] = None
     temperature: Optional[float] = None
@@ -1475,7 +1490,7 @@ ResponsesAPIStreamingResponse = Annotated[
 ]
 
 
-REASONING_EFFORT = Literal["minimal", "low", "medium", "high"]
+REASONING_EFFORT = Literal["none", "minimal", "low", "medium", "high", "xhigh"]
 
 
 class OpenAIRealtimeStreamSession(TypedDict, total=False):
@@ -1809,6 +1824,20 @@ class OpenAIChatCompletionResponse(TypedDict, total=False):
     usage: Required[ChatCompletionUsageBlock]
     system_fingerprint: str
     service_tier: str
+
+
+# OpenAI Batch Result Types (defined after OpenAIChatCompletionResponse for forward reference)
+class OpenAIBatchResponse(TypedDict, total=False):
+    """Response wrapper in OpenAI batch result format."""
+    status_code: int
+    request_id: str
+    body: Union[OpenAIChatCompletionResponse, OpenAIErrorBody]
+
+
+class OpenAIBatchResult(TypedDict, total=False):
+    """OpenAI batch result format."""
+    custom_id: str
+    response: OpenAIBatchResponse
 
 
 OpenAIChatCompletionFinishReason = Literal[
