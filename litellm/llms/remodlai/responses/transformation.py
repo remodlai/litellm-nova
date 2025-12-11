@@ -69,7 +69,7 @@ class RemodlAIResponsesAPIError(BaseLLMException):
 class RemodlAIResponsesAPIConfig(BaseResponsesAPIConfig):
     @property
     def custom_llm_provider(self) -> LlmProviders:
-        return LlmProviders.REMODL_AI
+        return LlmProviders.LITELLM_AI
 
     def get_supported_openai_params(self, model: str) -> list:
         """
@@ -210,7 +210,7 @@ class RemodlAIResponsesAPIConfig(BaseResponsesAPIConfig):
         litellm_params = litellm_params or GenericLiteLLMParams()
         api_key = (
             getattr(litellm_params, "api_key", None)
-            or get_secret_str("REMODL_AI_API_KEY")
+            or get_secret_str("LITELLM_AI_API_KEY")
             or "fake-api-key"
         )
         headers.update(
@@ -232,12 +232,12 @@ class RemodlAIResponsesAPIConfig(BaseResponsesAPIConfig):
         api_base = (
             api_base
             or litellm.api_base
-            or get_secret_str("REMODL_AI_API_BASE")
+            or get_secret_str("LITELLM_AI_API_BASE")
         )
 
         if api_base is None:
             raise ValueError(
-                "REMODL_AI_API_BASE is not set. Please configure the API base."
+                "LITELLM_AI_API_BASE is not set. Please configure the API base."
             )
 
         api_base = api_base.rstrip("/")

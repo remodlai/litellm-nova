@@ -3,8 +3,8 @@ model_list:
   # - model_name: nova-embeddings-v1
   #   litellm_params:
   #     model: remodlai/nova-embeddings-v1
-  #     api_base: os.environ/REMODL_AI_API_BASE  # e.g., https://api.lexiq-nova.com
-  #     api_key: os.environ/REMODL_AI_API_KEY
+  #     api_base: os.environ/LITELLM_AI_API_BASE  # e.g., https://api.lexiq-nova.com
+  #     api_key: os.environ/LITELLM_AI_API_KEY
   #   model_info:
   #     mode: embedding
   #     id: nova-embeddings-v1
@@ -148,8 +148,8 @@ model_list:
   # - model_name: lexiq-chat
   #   litellm_params:
   #     model: remodlai/your-chat-model
-  #     api_base: os.environ/REMODL_AI_API_BASE
-  #     api_key: os.environ/REMODL_AI_API_KEY
+  #     api_base: os.environ/LITELLM_AI_API_BASE
+  #     api_key: os.environ/LITELLM_AI_API_KEY
   #   model_info:
   #     mode: chat
 

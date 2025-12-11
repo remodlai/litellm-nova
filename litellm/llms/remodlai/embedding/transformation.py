@@ -89,7 +89,7 @@ class RemodlAIEmbeddingConfig(BaseEmbeddingConfig):
         """
         api_base = api_base or get_secret_str("REMODLAI_API_BASE")
         dynamic_api_key = api_key or get_secret_str("REMODLAI_API_KEY") or "fake-api-key"
-        return LlmProviders.REMODL_AI.value, api_base, dynamic_api_key
+        return LlmProviders.LITELLM_AI.value, api_base, dynamic_api_key
 
     def get_complete_url(
         self,
