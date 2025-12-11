@@ -1,11 +1,29 @@
 import os
 
+from litellm.proxy.utils import get_custom_url
+
 url_to_redirect_to = os.getenv("PROXY_BASE_URL", "")
 server_root_path = os.getenv("SERVER_ROOT_PATH", "")
 if server_root_path != "":
     url_to_redirect_to += server_root_path
 url_to_redirect_to += "/login"
-html_form = f"""
+new_ui_login_url = get_custom_url("", "ui/login")
+
+
+def build_ui_login_form(show_deprecation_banner: bool = False) -> str:
+    banner_html = (
+        f"""
+        <div class="deprecation-banner">
+            <strong>Deprecated:</strong> Logging in with username and password on this page is deprecated.
+            Please use the <a href="{new_ui_login_url}">new login page</a> instead.
+            This page will be dedicated to signing in via SSO in the future.
+        </div>
+        """
+        if show_deprecation_banner
+        else ""
+    )
+
+    return f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -314,9 +332,25 @@ html_form = f"""
             margin-top: -12px;
             margin-bottom: 20px;
         }}
+
+        .deprecation-banner {{
+            background-color: #fef3cd;
+            border: 1px solid #ffc107;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            color: #856404;
+            font-size: 14px;
+        }}
+
+        .deprecation-banner a {{
+            color: #533f03;
+            text-decoration: underline;
+        }}
     </style>
 </head>
 <body>
+    {banner_html}
     <!-- Animated background -->
     <div class="bg-animation">
         <div class="radial-gradient"></div>
@@ -458,3 +492,6 @@ html_form = f"""
 </body>
 </html>
 """
+
+
+html_form = build_ui_login_form(show_deprecation_banner=True)
