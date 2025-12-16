@@ -101,7 +101,7 @@ litellm_settings:
   store_audit_logs: true
   request_timeout: 600
   telemetry: False
-  callbacks: ["nova_task_router", "resend_email", "s3_v2"]  # Enable Nova task routing + upstream callbacks
+  callbacks: ["resend_email", "s3_v2"]  # Enable Nova task routing + upstream callbacks
   context_window_fallbacks: [{"gpt-3.5-turbo": ["gpt-3.5-turbo-large"]}]
   default_team_settings: 
     - team_id: team-1
