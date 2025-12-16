@@ -69,6 +69,7 @@ from litellm.constants import (
 )
 from litellm.exceptions import LiteLLMUnknownProvider
 from litellm.integrations.custom_logger import CustomLogger
+from litellm.litellm_core_utils.asyncify import run_async_function
 from litellm.litellm_core_utils.audio_utils.utils import (
     calculate_request_duration,
     get_audio_file_for_health_check,
@@ -299,7 +300,6 @@ MOCK_RESPONSE_TYPE = Union[str, Exception, dict, ModelResponse, ModelResponseStr
 
 
 class LiteLLM:
-
     def __init__(
         self,
         *,
@@ -1091,6 +1091,22 @@ def completion(  # type: ignore # noqa: PLR0915
     tools = validate_and_fix_openai_tools(tools=tools)
     # validate tool_choice
     tool_choice = validate_chat_completion_tool_choice(tool_choice=tool_choice)
+
+    skip_mcp_handler = kwargs.pop("_skip_mcp_handler", False)
+    if not skip_mcp_handler and tools:
+        from litellm.responses.mcp.chat_completions_handler import (
+            handle_chat_completion_with_mcp,
+        )
+
+        mcp_handler_context = locals().copy()
+        completion_callable = globals().get("acompletion")
+        mcp_result = run_async_function(
+            handle_chat_completion_with_mcp,
+            mcp_handler_context,
+            completion_callable,
+        )
+        if mcp_result is not None:
+            return mcp_result
     ######### unpacking kwargs #####################
     args = locals()
     api_base = kwargs.get("api_base", None)
@@ -1181,7 +1197,6 @@ def completion(  # type: ignore # noqa: PLR0915
             prompt_id=prompt_id, non_default_params=non_default_params
         )
     ):
-
         (
             model,
             messages,
@@ -1736,9 +1751,37 @@ def completion(  # type: ignore # noqa: PLR0915
         elif custom_llm_provider == "azure_ai":
             from litellm.llms.azure_ai.common_utils import AzureFoundryModelInfo
 
+            azure_ai_route = AzureFoundryModelInfo.get_azure_ai_route(model)
+
+            # Check if this is an agents route - model format: azure_ai/agents/<agent_id>
+            if azure_ai_route == "agents":
+                from litellm.llms.azure_ai.agents import AzureAIAgentsConfig
+
+                api_base = AzureFoundryModelInfo.get_api_base(api_base)
+                if api_base is None:
+                    raise ValueError(
+                        "Azure AI Agents requests require an api_base. "
+                        "Set `api_base` or the AZURE_AI_API_BASE env var."
+                    )
+                api_key = AzureFoundryModelInfo.get_api_key(api_key)
+
+                response = AzureAIAgentsConfig.completion(
+                    model=model,
+                    messages=messages,
+                    api_base=api_base,
+                    api_key=api_key,
+                    model_response=model_response,
+                    logging_obj=logging,
+                    optional_params=optional_params,
+                    litellm_params=litellm_params,
+                    timeout=timeout,
+                    acompletion=acompletion,
+                    stream=stream,
+                    headers=headers or litellm.headers,
+                )
+
             # Check if this is a Claude model - route to Azure Anthropic handler
-            model_lower = model.lower()
-            if "claude" in model_lower:
+            elif "claude" in model.lower():
                 # Use Azure Anthropic handler for Claude models
                 api_base = AzureFoundryModelInfo.get_api_base(api_base)
                 if api_base is None:
@@ -2102,7 +2145,7 @@ def completion(  # type: ignore # noqa: PLR0915
             config = litellm.GenAIHubOrchestrationConfig.get_config()
             for k, v in config.items():
                 if (
-                        k not in optional_params
+                    k not in optional_params
                 ):  # completion(top_k=3) > openai_config(top_k=3) <- allows for dynamic variables to be passed in
                     optional_params[k] = v
 
@@ -2273,7 +2316,6 @@ def completion(  # type: ignore # noqa: PLR0915
 
             try:
                 if use_base_llm_http_handler:
-
                     response = base_llm_http_handler.completion(
                         model=model,
                         messages=messages,
@@ -3201,6 +3243,37 @@ def completion(  # type: ignore # noqa: PLR0915
                     timeout=timeout,
                     client=client,
                 )
+            elif model_route == VertexAIModelRoute.AGENT_ENGINE:
+                # Vertex AI Agent Engine (Reasoning Engines)
+                from litellm.llms.vertex_ai.agent_engine.transformation import (
+                    VertexAgentEngineConfig,
+                )
+
+                vertex_agent_engine_config = VertexAgentEngineConfig()
+
+                # Update litellm_params with vertex credentials
+                litellm_params["vertex_project"] = vertex_ai_project
+                litellm_params["vertex_location"] = vertex_ai_location
+                litellm_params["vertex_credentials"] = vertex_credentials
+
+                model_response = base_llm_http_handler.completion(
+                    model=model,
+                    stream=stream,
+                    messages=messages,
+                    model_response=model_response,
+                    optional_params=new_params,
+                    litellm_params=litellm_params,  # type: ignore
+                    encoding=encoding,
+                    api_key=None,
+                    api_base=api_base,
+                    logging_obj=logging,
+                    acompletion=acompletion,
+                    timeout=timeout,
+                    client=client,
+                    custom_llm_provider="vertex_ai",
+                    provider_config=vertex_agent_engine_config,
+                    headers=headers or {},
+                )
             else:  # VertexAIModelRoute.NON_GEMINI
                 model_response = vertex_ai_non_gemini.completion(
                     model=model,
@@ -3386,9 +3459,9 @@ def completion(  # type: ignore # noqa: PLR0915
                     "aws_region_name" not in optional_params
                     or optional_params["aws_region_name"] is None
                 ):
-                    optional_params["aws_region_name"] = (
-                        aws_bedrock_client.meta.region_name
-                    )
+                    optional_params[
+                        "aws_region_name"
+                    ] = aws_bedrock_client.meta.region_name
 
             bedrock_route = BedrockModelInfo.get_bedrock_route(model)
             if bedrock_route == "converse":
@@ -3606,7 +3679,6 @@ def completion(  # type: ignore # noqa: PLR0915
             if api_key is not None and "Authorization" not in headers:
                 headers["Authorization"] = f"Bearer {api_key}"
 
-
             response = base_llm_http_handler.completion(
                 model=model,
                 stream=stream,
@@ -3742,7 +3814,6 @@ def completion(  # type: ignore # noqa: PLR0915
                 )
                 raise e
         elif custom_llm_provider == "gradient_ai":
-
             api_base = litellm.api_base or api_base
             response = base_llm_http_handler.completion(
                 model=model,
@@ -4393,7 +4464,7 @@ def embedding(  # noqa: PLR0915
                 litellm_params=litellm_params_dict,
             )
         elif custom_llm_provider == "github_copilot":
-            api_key = (api_key or litellm.api_key)
+            api_key = api_key or litellm.api_key
             response = base_llm_http_handler.embedding(
                 model=model,
                 input=input,
@@ -4437,6 +4508,12 @@ def embedding(  # noqa: PLR0915
 
             if extra_headers is not None:
                 optional_params["extra_headers"] = extra_headers
+            
+            if encoding_format is not None:
+                optional_params["encoding_format"] = encoding_format
+            else:
+                # Omiting causes openai sdk to add default value of "float"
+                optional_params["encoding_format"] = None
 
             api_version = None
 
@@ -4625,6 +4702,7 @@ def embedding(  # noqa: PLR0915
                 api_key=gemini_api_key,
                 api_base=api_base,
                 client=client,
+                extra_headers=headers,
             )
 
         elif custom_llm_provider == "vertex_ai":
@@ -5578,9 +5656,9 @@ def adapter_completion(
     new_kwargs = translation_obj.translate_completion_input_params(kwargs=kwargs)
 
     response: Union[ModelResponse, CustomStreamWrapper] = completion(**new_kwargs)  # type: ignore
-    translated_response: Optional[Union[BaseModel, AdapterCompletionStreamWrapper]] = (
-        None
-    )
+    translated_response: Optional[
+        Union[BaseModel, AdapterCompletionStreamWrapper]
+    ] = None
     if isinstance(response, ModelResponse):
         translated_response = translation_obj.translate_completion_output_params(
             response=response
@@ -6285,9 +6363,9 @@ def speech(  # noqa: PLR0915
                 ElevenLabsTextToSpeechConfig.ELEVENLABS_QUERY_PARAMS_KEY
             ] = query_params
 
-        litellm_params_dict[ElevenLabsTextToSpeechConfig.ELEVENLABS_VOICE_ID_KEY] = (
-            voice_id
-        )
+        litellm_params_dict[
+            ElevenLabsTextToSpeechConfig.ELEVENLABS_VOICE_ID_KEY
+        ] = voice_id
 
         if api_base is not None:
             litellm_params_dict["api_base"] = api_base
@@ -6337,16 +6415,16 @@ def speech(  # noqa: PLR0915
             text_to_speech_provider_config = VertexAITextToSpeechConfig()
 
         # Cast to specific Vertex AI config type to access dispatch method
-        vertex_config = cast(
-            VertexAITextToSpeechConfig, text_to_speech_provider_config
-        )
+        vertex_config = cast(VertexAITextToSpeechConfig, text_to_speech_provider_config)
 
         # Store Vertex AI specific params in litellm_params_dict
-        litellm_params_dict.update({
-            "vertex_project": generic_optional_params.vertex_project,
-            "vertex_location": generic_optional_params.vertex_location,
-            "vertex_credentials": generic_optional_params.vertex_credentials,
-        })
+        litellm_params_dict.update(
+            {
+                "vertex_project": generic_optional_params.vertex_project,
+                "vertex_location": generic_optional_params.vertex_location,
+                "vertex_credentials": generic_optional_params.vertex_credentials,
+            }
+        )
 
         response = vertex_config.dispatch_text_to_speech(
             model=model,
@@ -6717,9 +6795,9 @@ def stream_chunk_builder(  # noqa: PLR0915
         ]
 
         if len(content_chunks) > 0:
-            response["choices"][0]["message"]["content"] = (
-                processor.get_combined_content(content_chunks)
-            )
+            response["choices"][0]["message"][
+                "content"
+            ] = processor.get_combined_content(content_chunks)
 
         thinking_blocks = [
             chunk
@@ -6730,9 +6808,9 @@ def stream_chunk_builder(  # noqa: PLR0915
         ]
 
         if len(thinking_blocks) > 0:
-            response["choices"][0]["message"]["thinking_blocks"] = (
-                processor.get_combined_thinking_content(thinking_blocks)
-            )
+            response["choices"][0]["message"][
+                "thinking_blocks"
+            ] = processor.get_combined_thinking_content(thinking_blocks)
 
         reasoning_chunks = [
             chunk
@@ -6743,9 +6821,9 @@ def stream_chunk_builder(  # noqa: PLR0915
         ]
 
         if len(reasoning_chunks) > 0:
-            response["choices"][0]["message"]["reasoning_content"] = (
-                processor.get_combined_reasoning_content(reasoning_chunks)
-            )
+            response["choices"][0]["message"][
+                "reasoning_content"
+            ] = processor.get_combined_reasoning_content(reasoning_chunks)
 
         annotation_chunks = [
             chunk
@@ -6770,6 +6848,36 @@ def stream_chunk_builder(  # noqa: PLR0915
         if len(audio_chunks) > 0:
             _choice = cast(Choices, response.choices[0])
             _choice.message.audio = processor.get_combined_audio_content(audio_chunks)
+
+        # Combine provider_specific_fields from streaming chunks (e.g., web_search_results, citations)
+        # See: https://github.com/BerriAI/litellm/issues/17737
+        provider_specific_chunks = [
+            chunk
+            for chunk in chunks
+            if len(chunk["choices"]) > 0
+            and "provider_specific_fields" in chunk["choices"][0]["delta"]
+            and chunk["choices"][0]["delta"]["provider_specific_fields"] is not None
+        ]
+
+        if len(provider_specific_chunks) > 0:
+            combined_provider_fields: Dict[str, Any] = {}
+            for chunk in provider_specific_chunks:
+                fields = chunk["choices"][0]["delta"]["provider_specific_fields"]
+                if isinstance(fields, dict):
+                    for key, value in fields.items():
+                        if key not in combined_provider_fields:
+                            combined_provider_fields[key] = value
+                        elif isinstance(value, list) and isinstance(
+                            combined_provider_fields[key], list
+                        ):
+                            # For lists like web_search_results, take the last (most complete) one
+                            combined_provider_fields[key] = value
+                        else:
+                            combined_provider_fields[key] = value
+
+            if combined_provider_fields:
+                _choice = cast(Choices, response.choices[0])
+                _choice.message.provider_specific_fields = combined_provider_fields
 
         completion_output = get_content_from_model_response(response)
 

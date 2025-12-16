@@ -229,6 +229,19 @@ class ProxyBaseLLMRequestProcessing:
             litellm_logging_obj=litellm_logging_obj
         )
 
+        # Calculate updated spend for header (include current response_cost)
+        current_spend = user_api_key_dict.spend or 0.0
+        updated_spend = current_spend
+        if response_cost is not None:
+            try:
+                # Convert response_cost to float if it's a string
+                cost_value = float(response_cost) if isinstance(response_cost, str) else response_cost
+                if cost_value > 0:
+                    updated_spend = current_spend + cost_value
+            except (ValueError, TypeError):
+                # If conversion fails, use original spend
+                pass
+
         headers = {
             "x-remodl-call-id": call_id,
             "x-remodl-model-id": model_id,
@@ -248,7 +261,7 @@ class ProxyBaseLLMRequestProcessing:
             "x-remodl-key-tpm-limit": str(user_api_key_dict.tpm_limit),
             "x-remodl-key-rpm-limit": str(user_api_key_dict.rpm_limit),
             "x-remodl-key-max-budget": str(user_api_key_dict.max_budget),
-            "x-remodl-key-spend": str(user_api_key_dict.spend),
+            "x-remodl-key-spend": str(updated_spend),
             "x-remodl-response-duration-ms": str(
                 hidden_params.get("_response_ms", None)
             ),
