@@ -42,6 +42,7 @@ const sidebars = {
       label: "Guardrails",
       items: [
         "proxy/guardrails/quick_start",
+        "proxy/guardrails/guardrail_load_balancing",
         {
           type: "category",
           "label": "Contributing to Guardrails",
@@ -52,7 +53,9 @@ const sidebars = {
           ]
         },
         "proxy/guardrails/test_playground",
+        "proxy/guardrails/litellm_content_filter",
         ...[
+          "proxy/guardrails/qualifire",
           "proxy/guardrails/aim_security",
           "proxy/guardrails/onyx_security",
           "proxy/guardrails/aporia_api",
@@ -63,7 +66,6 @@ const sidebars = {
           "proxy/guardrails/grayswan",
           "proxy/guardrails/hiddenlayer",
           "proxy/guardrails/lasso_security",
-          "proxy/guardrails/litellm_content_filter",
           "proxy/guardrails/guardrails_ai",
           "proxy/guardrails/lakera_ai",
           "proxy/guardrails/model_armor",
@@ -106,15 +108,33 @@ const sidebars = {
     {
       type: "category",
       label: "AI Tools (OpenWebUI, Claude Code, etc.)",
+      link: {
+        type: "generated-index",
+        title: "AI Tools",
+        description: "Integrate LiteLLM with AI tools like OpenWebUI, Claude Code, and more",
+        slug: "/ai_tools"
+      },
       items: [
-        "tutorials/claude_responses_api",
+        "tutorials/openweb_ui",
+        {
+          type: "category",
+          label: "Claude Code",
+          items: [
+            "tutorials/claude_responses_api",
+            "tutorials/claude_code_max_subscription",
+            "tutorials/claude_code_customer_tracking",
+            "tutorials/claude_code_websearch",
+            "tutorials/claude_mcp",
+            "tutorials/claude_non_anthropic_models",
+            "tutorials/claude_code_plugin_marketplace",
+          ]
+        },
         "tutorials/cost_tracking_coding",
         "tutorials/cursor_integration",
         "tutorials/github_copilot_integration",
         "tutorials/litellm_gemini_cli",
         "tutorials/litellm_qwen_code_cli",
-        "tutorials/openai_codex",
-        "tutorials/openweb_ui"
+        "tutorials/openai_codex"
       ]
     },
 
@@ -259,10 +279,19 @@ const sidebars = {
             "tutorials/scim_litellm",
             {
               type: "category",
+              label: "UI Usage Tracking",
+              items: [
+                "proxy/customer_usage",
+                "proxy/endpoint_activity"
+              ]
+            },
+            {
+              type: "category",
               label: "UI Logs",
               items: [
                 "proxy/ui_logs",
-                "proxy/ui_logs_sessions"
+                "proxy/ui_logs_sessions",
+                "proxy/deleted_keys_teams"
               ]
             }
           ],
@@ -288,7 +317,7 @@ const sidebars = {
           label: "All Endpoints (Swagger)",
           href: "https://litellm-api.up.railway.app/",
         },
-  "proxy/enterprise",
+        "proxy/enterprise",
         {
           type: "category",
           label: "Authentication",
@@ -312,7 +341,6 @@ const sidebars = {
             "proxy/team_budgets",
             "proxy/tag_budgets",
             "proxy/customers",
-            "proxy/customer_usage",
             "proxy/dynamic_rate_limit",
             "proxy/rate_limit_tiers",
             "proxy/temporary_budget_increase",
@@ -389,6 +417,9 @@ const sidebars = {
           items: [
             "proxy/cost_tracking",
             "proxy/custom_pricing",
+            "proxy/pricing_calculator",
+            "proxy/provider_margins",
+            "proxy/provider_discounts",
             "proxy/sync_models_github",
             "proxy/billing",
           ],
@@ -416,14 +447,8 @@ const sidebars = {
           ],
         },
         "assistants",
-        {
-          type: "category",
-          label: "/audio",
-          items: [
-            "audio_transcription",
-            "text_to_speech",
-          ]
-        },
+        "audio_transcription",
+        "text_to_speech",
         {
           type: "category",
           label: "/batches",
@@ -469,20 +494,17 @@ const sidebars = {
             "proxy/managed_finetuning",
           ]
         },
-          "generateContent",
-          "apply_guardrail",
-          "bedrock_invoke",
-        {
-          type: "category",
-          label: "/images",
-          items: [
-            "image_edits",
-            "image_generation",
-            "image_variations",
-          ]
-        },
+        "generateContent",
+        "apply_guardrail",
+        "bedrock_invoke",
+        "interactions",
+        "image_edits",
+        "image_generation",
+        "image_variations",
         "videos",
         "vector_store_files",
+        "vector_stores/create",
+        "vector_stores/search",
         {
           type: "category",
           label: "/mcp - Model Context Protocol",
@@ -492,6 +514,7 @@ const sidebars = {
             "mcp_control",
             "mcp_cost",
             "mcp_guardrail",
+            "mcp_troubleshoot",
           ]
         },
         "anthropic_unified",
@@ -527,9 +550,11 @@ const sidebars = {
           ]
         },
         "rag_ingest",
+        "rag_query",
         "realtime",
         "rerank",
         "response_api",
+        "response_api_compact",
         {
           type: "category",
           label: "/search",
@@ -543,17 +568,11 @@ const sidebars = {
             "search/dataforseo",
             "search/firecrawl",
             "search/searxng",
+            "search/linkup",
           ]
         },
         "skills",
-        {
-          type: "category",
-          label: "/vector_stores",
-          items: [
-            "vector_stores/create",
-            "vector_stores/search",
-          ]
-        },
+
       ],
     },
     {
@@ -610,6 +629,7 @@ const sidebars = {
           label: "Azure AI",
           items: [
             "providers/azure_ai",
+            "providers/azure_ai/azure_model_router",
             "providers/azure_ai_agents",
             "providers/azure_ocr",
             "providers/azure_document_intelligence",
@@ -661,17 +681,22 @@ const sidebars = {
             "providers/bedrock_agents",
             "providers/bedrock_writer",
             "providers/bedrock_batches",
-            "providers/bedrock_vector_store",
-          ]
-        },
-        "providers/litellm_proxy",
-        "providers/ai21",
-        "providers/aiml",
+            "providers/aws_polly",
+        "providers/bedrock_vector_store",
+      ]
+    },
+    "providers/litellm_proxy",
+    "providers/abliteration",
+    "providers/ai21",
+    "providers/aiml",
         "providers/aleph_alpha",
+        "providers/amazon_nova",
         "providers/anyscale",
+        "providers/apertis",
         "providers/baseten",
         "providers/bytez",
         "providers/cerebras",
+        "providers/chutes",
         "providers/clarifai",
         "providers/cloudflare_workers",
         "providers/codestral",
@@ -694,6 +719,7 @@ const sidebars = {
         "providers/galadriel",
         "providers/github",
         "providers/github_copilot",
+        "providers/chatgpt",
         "providers/gradient_ai",
         "providers/groq",
         "providers/helicone",
@@ -713,14 +739,18 @@ const sidebars = {
         "providers/langgraph",
         "providers/lemonade",
         "providers/llamafile",
+        "providers/llamagate",
         "providers/lm_studio",
+        "providers/manus",
         "providers/meta_llama",
         "providers/milvus_vector_stores",
         "providers/mistral",
+        "providers/minimax",
         "providers/moonshot",
         "providers/morph",
         "providers/nebius",
         "providers/nlp_cloud",
+        "providers/nano-gpt",
         "providers/novita",
         { type: "doc", id: "providers/nscale", label: "Nscale (EU Sovereign)" },
         {
@@ -737,6 +767,7 @@ const sidebars = {
         "providers/ovhcloud",
         "providers/perplexity",
         "providers/petals",
+        "providers/poe",
         "providers/publicai",
         "providers/predibase",
         "providers/pydantic_ai_agent",
@@ -753,6 +784,8 @@ const sidebars = {
         },
         "providers/sambanova",
         "providers/sap",
+        "providers/stability",
+        "providers/synthetic",
         "providers/snowflake",
         "providers/togetherai",
         "providers/topaz",
@@ -779,6 +812,7 @@ const sidebars = {
           ]
         },
         "providers/xai",
+        "providers/xiaomi_mimo",
         "providers/xinference",
         "providers/zai",
       ],
@@ -836,6 +870,7 @@ const sidebars = {
         "proxy/load_balancing",
         "proxy/provider_budget_routing",
         "proxy/reliability",
+        "proxy/fallback_management",
         "proxy/tag_routing",
         "proxy/timeout",
         "wildcard_routing"
@@ -855,10 +890,11 @@ const sidebars = {
       type: "category",
       label: "Tutorials",
       items: [
-        "tutorials/openweb_ui",
-        "tutorials/openai_codex",
-        "tutorials/litellm_gemini_cli",
-        "tutorials/litellm_qwen_code_cli",
+        {
+          type: "link",
+          label: "AI Coding Tools (OpenWebUI, Claude Code, Gemini CLI, OpenAI Codex, etc.)",
+          href: "/docs/ai_tools",
+        },
         "tutorials/anthropic_file_usage",
         "tutorials/default_team_self_serve",
         "tutorials/msft_sso",
@@ -868,7 +904,6 @@ const sidebars = {
         "tutorials/presidio_pii_masking",
         "tutorials/elasticsearch_logging",
         "tutorials/gemini_realtime_with_audio",
-        "tutorials/claude_responses_api",
         {
           type: "category",
           label: "LiteLLM Python SDK Tutorials",
@@ -965,6 +1000,14 @@ const sidebars = {
       ],
     },
     "troubleshoot",
+    {
+      type: "category",
+      label: "Issue Reporting",
+      items: [
+        "troubleshoot/cpu_issues",
+        "troubleshoot/memory_issues",
+      ],
+    },
   ],
 };
 
