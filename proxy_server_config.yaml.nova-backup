@@ -1,0 +1,163 @@
+model_list:
+  # Nova Embeddings V1 - Multimodal, multivector embeddings with runtime instructions
+  # - model_name: nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1
+  #     api_base: os.environ/LITELLM_AI_API_BASE  # e.g., https://api.lexiq-nova.com
+  #     api_key: os.environ/LITELLM_AI_API_KEY
+  #   model_info:
+  #     mode: embedding
+  #     id: nova-embeddings-v1
+  #     description: "Industry-first multimodal multi-vector embeddings with runtime instruction tuning. Supports text, images, code with task adapters (retrieval, text-matching, code). Dense or multivector output."
+
+  # Upstream test models for CI/CD
+  
+  
+  # # Alternative: Full model path - Retrieval
+  # - model_name: remodlai/nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1-retrieval
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+  #     tags: ["retrieval", "retrieval.query", "retrieval.passage"]
+  #   model_info:
+  #     mode: embedding
+  #     id: remodlai-nova-embeddings-v1-retrieval
+
+  # # Alternative: Full model path - Text Matching
+  # - model_name: remodlai/nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1-text-matching
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+  #     tags: ["text-matching"]
+  #   model_info:
+  #     mode: embedding
+  #     id: remodlai-nova-embeddings-v1-text-matching
+
+  # # Alternative: Full model path - Code
+  # - model_name: remodlai/nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1-code
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+  #     tags: ["code", "code.query", "code.passage"]
+  #   model_info:
+  #     mode: embedding
+  #     id: remodlai-nova-embeddings-v1-code
+
+  # RemodlAI chat models (add your chat models here)
+  # - model_name: lexiq-chat
+  #   litellm_params:
+  #     model: remodlai/your-chat-model
+  #     api_base: os.environ/LITELLM_AI_API_BASE
+  #     api_key: os.environ/LITELLM_AI_API_KEY
+  #   model_info:
+  #     mode: chat
+
+  # Nova Embeddings V1 - Retrieval Task Adapter
+  # - model_name: nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1-retrieval
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+  #     tags: ["retrieval", "retrieval.query", "retrieval.passage"]  # Task-based routing
+  #   model_info:
+  #     mode: embedding
+  #     id: nova-embeddings-retrieval
+
+  # # Nova Embeddings V1 - Text Matching Task Adapter
+  # - model_name: nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1-text-matching
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+  #     tags: ["text-matching"]  # Task-based routing
+  #   model_info:
+  #     mode: embedding
+  #     id: nova-embeddings-text-matching
+
+  # # Nova Embeddings V1 - Code Task Adapter
+  # - model_name: nova-embeddings-v1
+  #   litellm_params:
+  #     model: remodlai/nova-embeddings-v1-code
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+  #     tags: ["code", "code.query", "code.passage"]  # Task-based routing
+  #   model_info:
+  #     mode: embedding
+  #     id: nova-embeddings-code
+
+  # Wildcard routing for other RemodlAI models (chat, etc.)
+  # - model_name: "remodlai/*"
+  #   litellm_params:
+  #     model: "remodlai/*"
+  #     api_base: https://v3mznkmgkplorv-8000.proxy.runpod.net/v1/
+  #     api_key: "dummy-key"
+
+litellm_settings:
+  drop_params: True  # Drop unsupported params instead of erroring
+  num_retries: 3
+  store_audit_logs: true
+  request_timeout: 600
+  telemetry: False
+  callbacks: ["resend_email", "s3_v2"]  # Enable Nova task routing + upstream callbacks
+  context_window_fallbacks: [{"gpt-3.5-turbo": ["gpt-3.5-turbo-large"]}]
+  default_team_settings: 
+    - team_id: team-1
+      success_callback: ["langfuse"]
+      failure_callback: ["langfuse"]
+      langfuse_public_key: os.environ/LANGFUSE_PROJECT1_PUBLIC # Project 1
+      langfuse_secret: os.environ/LANGFUSE_PROJECT1_SECRET # Project 1
+    - team_id: team-2
+      success_callback: ["langfuse"]
+      failure_callback: ["langfuse"]
+      langfuse_public_key: os.environ/LANGFUSE_PROJECT2_PUBLIC # Project 2
+      langfuse_secret: os.environ/LANGFUSE_PROJECT2_SECRET # Project 2
+      langfuse_host: https://us.cloud.langfuse.com
+  
+  #session cold storage
+  cold_storage_custom_logger: s3_v2
+  s3_callback_params:
+    s3_bucket_name: "remodl-cold-storage"
+    s3_region_name: "us-east-1"
+    s3_path: "remodl/logs"
+  cache: True
+  cache_params:
+    namespace: "remodl.caching.caching"
+  
+  success_callback: ["mlflow"]
+  failure_callback: ["mlflow"]
+  
+  # set_verbose: True  # Uncomment for debugging
+
+# For /fine_tuning/jobs endpoints
+finetune_settings:
+  - custom_llm_provider: azure
+    api_base: os.environ/AZURE_API_BASE
+    api_key: os.environ/AZURE_API_KEY
+    api_version: "2023-03-15-preview"
+  - custom_llm_provider: openai
+    api_key: os.environ/OPENAI_API_KEY
+
+# for /files endpoints
+files_settings:
+  - custom_llm_provider: azure
+    api_base: os.environ/AZURE_API_BASE
+    api_key: os.environ/AZURE_API_KEY
+    api_version: "2023-03-15-preview"
+  - custom_llm_provider: openai
+    api_key: os.environ/OPENAI_API_KEY
+
+general_settings:
+  master_key: sk-1234  # Change this to a secure key in production
+  local_model_cost_map: true
+  store_prompts_in_spend_logs: true
+  store_prompts_in_cold_storage: true
+  store_model_in_db: true
+  #database_url: postgresql://neondb_owner:npg_YIynbl1f3MUc@ep-autumn-king-a4xm63yd-pooler.us-east-1.aws.neon.tech/litellm?sslmode=require&channel_binding=require'  # Uncomment for production
+
+# Router settings for Nova task-based routing
+router_settings:
+  enable_tag_filtering: True  # Required for task-based routing
+
