@@ -1,20 +1,20 @@
 -- DropIndex
-DROP INDEX "LiteLLM_DailyAgentSpend_agent_id_date_api_key_model_custom__key";
+DROP INDEX IF EXISTS "LiteLLM_DailyAgentSpend_agent_id_date_api_key_model_custom__key";
 
 -- DropIndex
-DROP INDEX "LiteLLM_DailyEndUserSpend_end_user_id_date_api_key_model_cu_key";
+DROP INDEX IF EXISTS "LiteLLM_DailyEndUserSpend_end_user_id_date_api_key_model_cu_key";
 
 -- DropIndex
-DROP INDEX "LiteLLM_DailyOrganizationSpend_organization_id_date_api_key_key";
+DROP INDEX IF EXISTS "LiteLLM_DailyOrganizationSpend_organization_id_date_api_key_key";
 
 -- DropIndex
-DROP INDEX "LiteLLM_DailyTagSpend_tag_date_api_key_model_custom_llm_pro_key";
+DROP INDEX IF EXISTS "LiteLLM_DailyTagSpend_tag_date_api_key_model_custom_llm_pro_key";
 
 -- DropIndex
-DROP INDEX "LiteLLM_DailyTeamSpend_team_id_date_api_key_model_custom_ll_key";
+DROP INDEX IF EXISTS "LiteLLM_DailyTeamSpend_team_id_date_api_key_model_custom_ll_key";
 
 -- DropIndex
-DROP INDEX "LiteLLM_DailyUserSpend_user_id_date_api_key_model_custom_ll_key";
+DROP INDEX IF EXISTS "LiteLLM_DailyUserSpend_user_id_date_api_key_model_custom_ll_key";
 
 -- AlterTable
 ALTER TABLE "LiteLLM_DailyAgentSpend" ADD COLUMN     "endpoint" TEXT;
