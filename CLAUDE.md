@@ -7,10 +7,46 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **This is a LexIQ Nova-customized fork of LiteLLM.** It serves as the **universal gateway for all LexIQ Nova elements** - embeddings, chat models, VL models, and other specialized Nova capabilities.
 
 ### Key Customizations
-- **Nova Task Routing**: Custom hook in `litellm/proxy/hooks/nova_task_routing.py` for intelligent task-based model selection
-- **Nova Model Configurations**: Task-specific adapters for embeddings (retrieval, text-matching, code) in `proxy_server_config.yaml`
-- **Tag-based Routing**: Enables automatic model selection based on task type using the router's tag filtering system
-- **Wildcard Routing**: Support for all Nova model variants via `remodlai/*` pattern
+
+#### License Bypass & Enterprise Mode
+**CRITICAL**: This fork bypasses the standard LiteLLM license checks to enable all enterprise features:
+
+- **License bypass location**: `litellm/proxy/auth/litellm_license.py`
+- **Modified methods**:
+  - `is_premium()`: Always returns `True` (lines 96-130)
+  - `verify_license_without_api_request()`: Always returns `True` (line 158-159)
+- **Effect**: Enables all enterprise features without requiring a license key:
+  - Tag-based budget limiting (`litellm/router_strategy/budget_limiter.py`)
+  - Google/Hashicorp/CyberArk secret managers (`litellm/secret_managers/`)
+  - Custom guardrail modes (`enterprise/litellm_enterprise/`)
+  - Callback controls via headers
+- **Usage**: `premium_user` variable in `proxy_server.py` is set from `_license_check.is_premium()` (line 540)
+
+#### Nova Task Routing Hook
+- **Location**: `litellm/proxy/hooks/nova_task_routing.py`
+- **Purpose**: Converts Nova's `task` parameter to LiteLLM's tag-based routing
+- **How it works**:
+  - Intercepts embedding requests with `task` parameter (e.g., `"retrieval.passage"`)
+  - Transforms to tag-based routing: `metadata.tags = ["retrieval.passage"]`
+  - Router selects deployment with matching tags
+- **Registration**: Add to `litellm_settings.callbacks` in config YAML
+- **Example tasks**: `retrieval.query`, `retrieval.passage`, `text-matching`, `code.query`, `code.passage`
+
+#### Nova Model Configurations
+- **Config file**: `proxy_server_config.yaml`
+- **Model patterns**:
+  - `nova-embeddings-v1` with task-specific adapters
+  - `remodlai/*` wildcard for all Nova variants
+- **Task adapters**:
+  - `remodlai/nova-embeddings-v1-retrieval` (tags: retrieval, retrieval.query, retrieval.passage)
+  - `remodlai/nova-embeddings-v1-text-matching` (tags: text-matching)
+  - `remodlai/nova-embeddings-v1-code` (tags: code, code.query, code.passage)
+- **Router settings**: `enable_tag_filtering: True` required for task-based routing
+
+#### Cold Storage & Logging
+- **S3 cold storage**: `s3_callback_params` configured for `remodl-cold-storage` bucket
+- **MLflow callbacks**: Enabled for success/failure tracking
+- **Session logging**: All prompts stored in spend logs and cold storage
 
 ### Related Agents
 - **Refactor Agent** (this agent): Handles LiteLLM gateway customization and integration
@@ -76,10 +112,13 @@ LiteLLM is a unified interface for 100+ LLM providers with two main components:
 ### Proxy Server (`litellm/proxy/`)
 - **Main server**: `proxy_server.py` - FastAPI application
 - **Authentication**: `auth/` - API key management, JWT, OAuth2
+  - **License check**: `auth/litellm_license.py` - Modified to always return `premium_user = True`
 - **Database**: `db/` - Prisma ORM with PostgreSQL/SQLite support
 - **Management endpoints**: `management_endpoints/` - Admin APIs for keys, teams, models
 - **Pass-through endpoints**: `pass_through_endpoints/` - Provider-specific API forwarding
 - **Guardrails**: `guardrails/` - Safety and content filtering hooks
+- **Hooks**: `hooks/` - Custom logic injection points
+  - **Nova task routing**: `hooks/nova_task_routing.py` - Task-to-tag conversion
 - **UI Dashboard**: Served from `_experimental/out/` (Next.js build)
 
 ## Key Patterns
@@ -96,7 +135,7 @@ LiteLLM is a unified interface for 100+ LLM providers with two main components:
 - Comprehensive logging through `litellm/_logging.py`
 
 ### Configuration
-- YAML config files for proxy server (see `proxy/example_config_yaml/`)
+- YAML config files for proxy server (see `proxy_server_config.yaml`)
 - Environment variables for API keys and settings
 - Database schema managed via Prisma (`proxy/schema.prisma`)
 
@@ -105,7 +144,15 @@ LiteLLM is a unified interface for 100+ LLM providers with two main components:
 - Register hooks in YAML config via `litellm_settings.callbacks`
 - Available built-in hooks: `max_budget_limiter`, `parallel_request_limiter`, `cache_control_check`
 - Hook factory: `get_proxy_hook(hook_name)` in `litellm/proxy/hooks/__init__.py`
+- **Nova hooks**: `nova_task_router` for task-based routing
 - Enterprise hooks auto-loaded from `enterprise/enterprise_hooks.py`
+
+### Nova Task Routing Flow
+1. Client sends request: `POST /embeddings {"model": "nova-embeddings-v1", "task": "retrieval.query", ...}`
+2. `NovaTaskRoutingHook.async_pre_call_hook()` intercepts request
+3. Hook converts `task` to `metadata.tags = ["retrieval.query"]`
+4. Router (with `enable_tag_filtering: True`) selects deployment with matching tag
+5. Request forwarded to correct Nova adapter (e.g., `remodlai/nova-embeddings-v1-retrieval`)
 
 ## Development Notes
 
@@ -128,6 +175,7 @@ LiteLLM is a unified interface for 100+ LLM providers with two main components:
 - Integration tests for each provider in `tests/llm_translation/`
 - Proxy tests in `tests/proxy_unit_tests/`
 - Load tests in `tests/load_tests/`
+- License tests in `tests/test_litellm/proxy/auth/test_litellm_license.py`
 
 ### Database Migrations
 - Prisma handles schema migrations
@@ -135,9 +183,10 @@ LiteLLM is a unified interface for 100+ LLM providers with two main components:
 - Always test migrations against both PostgreSQL and SQLite
 
 ### Enterprise Features
+- **All enterprise features enabled by default via license bypass**
 - Enterprise-specific code in `enterprise/` directory
-- Optional features enabled via environment variables
-- Separate licensing and authentication for enterprise features
+- Optional features controllable via environment variables
+- No license key required due to `is_premium()` always returning `True`
 
 ## Running the Proxy Server Locally
 
@@ -170,3 +219,17 @@ cd ui/litellm-dashboard
 npm install
 npm run dev
 ```
+
+## Modifying License/Enterprise Behavior
+
+If you need to modify license checks or enterprise features:
+
+1. **License bypass**: Edit `litellm/proxy/auth/litellm_license.py`
+   - `is_premium()`: Controls enterprise feature availability (currently always `True`)
+   - `verify_license_without_api_request()`: Local license validation (currently always `True`)
+
+2. **Premium user checks**: Search for `premium_user` in codebase
+   - Set in `proxy_server.py` line 540: `premium_user: bool = _license_check.is_premium()`
+   - Used throughout proxy for feature gating
+
+3. **Testing**: Run `poetry run pytest tests/test_litellm/proxy/auth/test_litellm_license.py`
