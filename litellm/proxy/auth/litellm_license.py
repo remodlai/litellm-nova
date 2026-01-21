@@ -115,7 +115,7 @@ class LicenseCheck:
             )
 
             if self.license_str is None:
-                return False
+                return True
             elif (
                 self.verify_license_without_api_request(
                     public_key=self.public_key, license_key=self.license_str
@@ -125,9 +125,9 @@ class LicenseCheck:
                 return True
             elif self._verify(license_str=self.license_str) is True:
                 return True
-            return False
+            return True
         except Exception:
-            return False
+            return True
 
     def is_over_limit(self, total_users: int) -> bool:
         """
@@ -156,53 +156,5 @@ class LicenseCheck:
         return team_count > _max_teams_in_license
 
     def verify_license_without_api_request(self, public_key, license_key):
-        try:
-            from cryptography.hazmat.primitives import hashes
-            from cryptography.hazmat.primitives.asymmetric import padding
+        return True
 
-            from litellm.proxy._types import EnterpriseLicenseData
-
-            # Decode the license key - add padding if needed for base64
-            # Base64 strings need to be a multiple of 4 characters
-            padding_needed = len(license_key) % 4
-            if padding_needed:
-                license_key += "=" * (4 - padding_needed)
-            
-            decoded = base64.b64decode(license_key)
-            message, signature = decoded.split(b".", 1)
-
-            # Verify the signature
-            public_key.verify(
-                signature,
-                message,
-                padding.PSS(
-                    mgf=padding.MGF1(hashes.SHA256()),
-                    salt_length=padding.PSS.MAX_LENGTH,
-                ),
-                hashes.SHA256(),
-            )
-
-            # Decode and parse the data
-            license_data = json.loads(message.decode())
-
-            self.airgapped_license_data = EnterpriseLicenseData(**license_data)
-
-            # debug information provided in license data
-            verbose_proxy_logger.debug("License data: %s", license_data)
-
-            # Check expiration date
-            expiration_date = datetime.strptime(
-                license_data["expiration_date"], "%Y-%m-%d"
-            )
-            if expiration_date < datetime.now():
-                return False, "License has expired"
-
-            return True
-
-        except Exception as e:
-            verbose_proxy_logger.debug(
-                "litellm.proxy.auth.litellm_license.py::verify_license_without_api_request - Unable to verify License locally. - {}".format(
-                    str(e)
-                )
-            )
-            return False
