@@ -1,0 +1,10 @@
+execution_duration_ms: 30063
+request_preview: try searching for the weather in portland maine
+request_time: '2025-12-11T17:42:39.061Z'
+response_preview: ''
+state: ERROR
+trace_id: tr-96ea8aee0792894b70fecd91aa98b027
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

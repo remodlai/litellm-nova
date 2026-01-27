@@ -1,0 +1,11 @@
+execution_duration_ms: 2119
+request_preview: what is the weather in Portland Maine. Make sure you are careful
+  about formatting the tool call correctly
+request_time: '2025-12-11T19:09:45.753Z'
+response_preview: ''
+state: ERROR
+trace_id: tr-e3fce8bff24f432ecd836a914abe058e
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

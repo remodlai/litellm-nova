@@ -1,0 +1,21 @@
+execution_duration_ms: 2358
+request_preview: try using the tavily search. if theres an error tell me what it is
+request_time: '2025-12-11T18:28:54.935Z'
+response_preview: '{"id": "chatcmpl-9ad3be341b97c349", "created": 1765477736, "model":
+  "openai/gpt-oss-20b", "object": "chat.completion", "system_fingerprint": null, "choices":
+  [{"finish_reason": "stop", "index": 0, "message": {"content": null, "role": "assistant",
+  "tool_calls": [{"function": {"arguments": "{\"query\":\"latest tech news\",\"max_results\":5,\"search_depth\":\"basic\",\"topic\":\"news\"}",
+  "name": "tavily_web_search-tavily_search"}, "id": "chatcmpl-tool-88a27dbc786f0f6e",
+  "type": "function"}], "function_call": null, "provider_specific_fields": null, "reasoning_content":
+  "User says: \"try using the tavily search. if there''s an error tell me what it
+  is\". This is ambiguous: I think they want me to perform a web search. But they
+  didn''t specify a query. Likely they want me to demonstrate the usage. Perhaps I
+  need to call the tavily web search with no query? Probably need to specify a sample
+  query. The instructions: \"try using the tavily search. if there''s an error tell
+  me what it is\". So ...'
+state: OK
+trace_id: tr-9b20736ed170ec5b94097485806d60cf
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

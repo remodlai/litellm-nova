@@ -1,0 +1,22 @@
+execution_duration_ms: 2241
+request_preview: default-message-value
+request_time: '2025-12-11T17:41:34.124Z'
+response_preview: '{"meta": null, "content": [{"type": "text", "text": "{\"query\":\"weather
+  in maine\",\"follow_up_questions\":null,\"answer\":null,\"images\":[],\"results\":[{\"title\":\"Weather
+  in Maine\",\"url\":\"https://www.weatherapi.com/\",\"content\":\"{''location'':
+  {''name'': ''Maine-Soroa'', ''region'': ''Diffa'', ''country'': ''Niger'', ''lat'':
+  13.2178, ''lon'': 12.0267, ''tz_id'': ''Africa/Niamey'', ''localtime_epoch'': 1765474865,
+  ''localtime'': ''2025-12-11 18:41''}, ''current'': {''last_updated_epoch'': 1765474200,
+  ''last_updated'': ''2025-12-11 18:30'', ''temp_c'': 26.3, ''temp_f'': 79.4, ''is_day'':
+  0, ''condition'': {''text'': ''Clear'', ''icon'': ''//cdn.weatherapi.com/weather/64x64/night/113.png'',
+  ''code'': 1000}, ''wind_mph'': 9.8, ''wind_kph'': 15.8, ''wind_degree'': 61, ''wind_dir'':
+  ''ENE'', ''pressure_mb'': 1010.0, ''pressure_in'': 29.84, ''precip_mm'': 0.0, ''precip_in'':
+  0.0, ''humidity'': 22, ''cloud'': 3, ''feelslike_c'': 24.9, ''feelslike_f'': 76.8,
+  ''windchill_c'': 26.3, ''windchill_f'': 79.4, ''heatindex_c'': 24.9, ''heatindex_f'':
+  76.8, ''dewpoint_c'': ...'
+state: OK
+trace_id: tr-9d71a95b970cf03fa77f380df13b1e43
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

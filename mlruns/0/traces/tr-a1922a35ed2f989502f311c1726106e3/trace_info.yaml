@@ -1,0 +1,17 @@
+execution_duration_ms: 2607
+request_preview: whats the weather in maine
+request_time: '2025-12-11T16:33:57.755Z'
+response_preview: '{"id": "chatcmpl-8f5c8ba465a59c87", "created": 1765470840, "model":
+  "mistralai/Ministral-3-14B-Instruct-2512", "object": "chat.completion", "system_fingerprint":
+  null, "choices": [{"finish_reason": "stop", "index": 0, "message": {"content": "",
+  "role": "assistant", "tool_calls": null, "function_call": null, "provider_specific_fields":
+  null}}], "usage": {"completion_tokens": 28, "prompt_tokens": 1509, "total_tokens":
+  1537, "completion_tokens_details": {"accepted_prediction_tokens": null, "audio_tokens":
+  null, "reasoning_tokens": 0, "rejected_prediction_tokens": null, "text_tokens":
+  null, "image_tokens": null}, "prompt_tokens_details": null}}'
+state: OK
+trace_id: tr-a1922a35ed2f989502f311c1726106e3
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,20 @@
+execution_duration_ms: 3765
+request_preview: what is the weather in maine
+request_time: '2025-12-11T17:40:03.818Z'
+response_preview: '{"id": "chatcmpl-b60012fb8298e391", "created": 1765474806, "model":
+  "openai/gpt-oss-20b", "object": "chat.completion", "system_fingerprint": null, "choices":
+  [{"finish_reason": "stop", "index": 0, "message": {"content": null, "role": "assistant",
+  "tool_calls": [{"function": {"arguments": "{\"query\":\"current weather in Maine\",\"max_results\":5,\"search_depth\":\"basic\",\"topic\":\"general\"}",
+  "name": "tavily_web_search-tavily_search"}, "id": "chatcmpl-tool-a55a1cc9e97ab270",
+  "type": "function"}], "function_call": null, "provider_specific_fields": null, "reasoning_content":
+  "The user asks: \"what is the weather in maine\" – it''s a location-based question
+  \"weather in Maine\". This is real-time. We need to use web search to get current
+  weather. Use tavily_web_search-tavily_search for real-time. Probably query \"weather
+  Maine\" or \"current weather in Maine\". Need to specify topic \"weather\"? Not
+  an option. The search function supports \"topic\" general, news, finance. Use genera...'
+state: OK
+trace_id: tr-c6bc1f37c2ce464aa5b0d8d57cdff5a1
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,20 @@
+execution_duration_ms: 676
+request_preview: what is the weather in portland maine
+request_time: '2025-12-11T20:53:45.193Z'
+response_preview: '{"id": "chatcmpl-9596286fd1d06881", "created": 1765486425, "model":
+  "hosted_vllm/mistralai/Ministral-3-14B-Instruct-2512", "object": "chat.completion",
+  "system_fingerprint": null, "choices": [{"finish_reason": "tool_calls", "index":
+  0, "message": {"content": null, "role": "assistant", "tool_calls": [{"function":
+  {"arguments": "{\"query\": \"current weather in Portland Maine\", \"time_range\":
+  \"day\", \"topic\": \"general\"}", "name": "tavily-tavily_search"}, "id": "chatcmpl-tool-8b89d28e7f557f32",
+  "type": "function"}], "function_call": null, "provider_specific_fields": {"refusal":
+  null, "reasoning": null}}, "provider_specific_fields": {"stop_reason": null, "token_ids":
+  null}}], "usage": {"completion_tokens": 33, "prompt_tokens": 793, "total_tokens":
+  826, "completion_tokens_details": null, "prompt_tokens_details": null}, "service_tier":
+  null, "prompt_logprobs": null, "prompt_token_ids": null, "kv_transfer_params": null}'
+state: OK
+trace_id: tr-7fdf65be6f99447a8e42342188e664c9
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

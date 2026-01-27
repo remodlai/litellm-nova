@@ -1,0 +1,20 @@
+execution_duration_ms: 1859
+request_preview: whats the weather in maine
+request_time: '2025-12-11T17:39:22.682Z'
+response_preview: '{"id": "chatcmpl-9a8d7dce558038d5", "created": 1765474764, "model":
+  "openai/gpt-oss-20b", "object": "chat.completion", "system_fingerprint": null, "choices":
+  [{"finish_reason": "stop", "index": 0, "message": {"content": null, "role": "assistant",
+  "tool_calls": [{"function": {"arguments": "{\"query\":\"weather in Maine\", \"max_results\":5,
+  \"search_depth\":\"advanced\"}", "name": "tavily_web_search-tavily_search"}, "id":
+  "chatcmpl-tool-8cade92899855fc7", "type": "function"}], "function_call": null, "provider_specific_fields":
+  null, "reasoning_content": "We need recent weather. Use web search."}}], "usage":
+  {"completion_tokens": 54, "prompt_tokens": 707, "total_tokens": 761, "completion_tokens_details":
+  {"accepted_prediction_tokens": null, "audio_tokens": null, "reasoning_tokens": 9,
+  "rejected_prediction_tokens": null, "text_tokens": null, "image_tokens": null},
+  "prompt_tokens_details": null}}'
+state: OK
+trace_id: tr-7a89456eade5b02e514766ae784a0055
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

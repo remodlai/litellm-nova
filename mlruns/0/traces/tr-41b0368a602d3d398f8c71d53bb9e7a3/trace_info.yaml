@@ -1,0 +1,27 @@
+execution_duration_ms: 21499
+request_preview: 'what tools can you use
+
+
+  '
+request_time: '2025-12-11T17:58:58.403Z'
+response_preview: 'I can call one tool that’s available in this environment:
+
+
+  | Tool | What it does | Typical use‑case |
+
+  |------|--------------|------------------|
+
+  | **`tavily_web_search`** | Performs a web search and returns the most relevant
+  snippets, URLs, and optional images or metadata | Use this to get up‑to‑date facts,
+  news, or verify current information that isn’t in my training data. |
+
+
+  That’s the only external tool I can invoke directly. All other information I provide
+  comes from my internal knowledge base (up to the 2024‑06 cutoff). If you need real‑time
+  data, just let me know and I’ll call `tavily_web_search` for you.'
+state: OK
+trace_id: tr-41b0368a602d3d398f8c71d53bb9e7a3
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

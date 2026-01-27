@@ -1,0 +1,20 @@
+execution_duration_ms: 18296
+request_preview: what is the weather in portland maine
+request_time: '2025-12-12T17:42:03.083Z'
+response_preview: '{"id": "resp_bGl0ZWxsbTpjdXN0b21fbGxtX3Byb3ZpZGVyOm9wZW5haTttb2RlbF9pZDpmMzY5YTBmMC1iMTFhLTQ5ZDEtYTVkZS1jODQ3ZTQ0MWMwZjg7cmVzcG9uc2VfaWQ6cmVzcF84ZWM3ZjExYzJiZmVmMmM2",
+  "created_at": 1765561325, "error": null, "incomplete_details": null, "instructions":
+  null, "metadata": null, "model": "gpt-oss-20b", "object": "response", "output":
+  [{"id": "rs_97c45c3e080f1c7f", "summary": [], "type": "reasoning", "content": [{"text":
+  "The user asks: \"what is the weather in portland maine\". The assistant should
+  provide up-to-date weather info for Portland, Maine. We''ll need to query. Use web_search_preview-tavily_search.
+  We''ll search \"Portland Maine weather\" maybe use search. We''ll give brief current
+  local weather. Could also use open weather API but we can use search.", "type":
+  "reasoning_text"}], "encrypted_content": null, "status": null}, {"arguments": "{\"query\":\"Portland
+  Maine weather current\",\"max_results\":5,\"search_depth\":\"basic\",\"topic\":\"news\"}",
+  "call_id": "call_84a59fff945c...'
+state: OK
+trace_id: tr-c297f6d4e9348d225637b1f62fb19fde
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

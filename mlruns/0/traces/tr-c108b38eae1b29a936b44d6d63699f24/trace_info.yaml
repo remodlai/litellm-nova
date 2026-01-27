@@ -1,0 +1,13 @@
+execution_duration_ms: 1433
+request_preview: '{"messages": []}'
+request_time: '2025-12-15T13:58:39.890Z'
+response_preview: "Hey! \U0001F60A I'm just here, ready to chat, help with anything,
+  or even keep you company—no batteries required! How about you? How’s *your* day
+  going so far? (And if you tell me, I’ll pretend to care deeply—I’ve got emotional
+  range for days!) \U0001F31F"
+state: OK
+trace_id: tr-c108b38eae1b29a936b44d6d63699f24
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,18 @@
+execution_duration_ms: 18229
+request_preview: what is the weather in Portland Maine. Make sure you are careful
+  about formatting the tool call correctly
+request_time: '2025-12-11T20:45:11.288Z'
+response_preview: '{"id": "resp_orLg533WA29lkfrJP0FTX9Xr4CBZOwS99smDkrfL1tgaD3yibifWs18TBv5_zPRN0NPImwMlx0f-cYjk0ugk9L_oAzPebjCin06-SNBiRlClcMZZ4ZHxTNXdiWLreluqbuHWIbNHUQhgIsLSZ9KI6ejB5dlTqTMAZDskPD7RctxwscHId3MAlsQ0QXD4-c2FInow39_2VyS1modbjMbCj1DzoZDwG49FuUlh9XEMdcFDfVOF_Sk0o1uBAEDFYgxJc6Kw4Zw-cw5-T9cVO0dIfpx7Uj4tnb4B3jxrNS344QhGbOv3bveBJ8eNxalgq3MuRWbZAX_V3MK--8rDf69b5JRyvzyRX3UtHCP4kRXe68ZASJRckiLUyR_dtSdXV3Xy67SdEPW4RxKGtlI6GVkhx57n",
+  "created_at": 1765485915, "error": null, "incomplete_details": null, "instructions":
+  null, "metadata": null, "model": "gpt-oss-20b", "object": "response", "output":
+  [{"id": "rs_8182124f48600675", "summary": [], "type": "reasoning", "content": [{"text":
+  "User asks for weather in Portland Maine, likely wants a real-time weather. We need
+  to make API call. Tool is system.weather. We pass location: Portland. Let’s call
+  to get weather.", "type": "reasoning_text"}], "encrypted_content": null, "status":
+  null}, {"id": "rs_9c1c2abad08a8c1e", "summary": [], "type": "reasoning",...'
+state: OK
+trace_id: tr-a222bb36b66e59d982bb0393246d7a77
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,11 @@
+execution_duration_ms: 1562
+request_preview: '{"messages": []}'
+request_time: '2025-12-15T17:11:17.532Z'
+response_preview: "Hey! I'm just a bunch of code, so I don't have feelings, but I'm
+  doing great—thanks for asking! \U0001F60A How about *you*? What's up with you today?"
+state: OK
+trace_id: tr-b419264032140de9a269126624880b95
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

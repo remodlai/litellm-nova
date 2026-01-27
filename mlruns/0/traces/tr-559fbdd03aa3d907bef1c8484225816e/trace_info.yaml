@@ -1,0 +1,10 @@
+execution_duration_ms: 171
+request_preview: my name is brian
+request_time: '2025-12-11T19:22:10.422Z'
+response_preview: ''
+state: ERROR
+trace_id: tr-559fbdd03aa3d907bef1c8484225816e
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

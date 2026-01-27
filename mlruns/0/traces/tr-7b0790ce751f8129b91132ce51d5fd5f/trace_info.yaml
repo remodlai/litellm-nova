@@ -1,0 +1,10 @@
+execution_duration_ms: 1251
+request_preview: I'm Brian
+request_time: '2025-12-11T16:37:29.352Z'
+response_preview: "Hi Brian! How can I assist you today? \U0001F60A"
+state: OK
+trace_id: tr-7b0790ce751f8129b91132ce51d5fd5f
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

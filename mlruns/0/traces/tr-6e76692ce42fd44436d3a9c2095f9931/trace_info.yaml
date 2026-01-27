@@ -1,0 +1,10 @@
+execution_duration_ms: 252
+request_preview: How are you? What's in this image?
+request_time: '2025-12-15T18:36:58.989Z'
+response_preview: ''
+state: ERROR
+trace_id: tr-6e76692ce42fd44436d3a9c2095f9931
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

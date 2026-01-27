@@ -1,0 +1,13 @@
+execution_duration_ms: 1514
+request_preview: '{"messages": []}'
+request_time: '2025-12-15T16:52:51.738Z'
+response_preview: 'The sum of **1 + 1** is:
+
+
+  **2**'
+state: OK
+trace_id: tr-b47a9319c4fdcc47b0f1149e9f6d4fb5
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

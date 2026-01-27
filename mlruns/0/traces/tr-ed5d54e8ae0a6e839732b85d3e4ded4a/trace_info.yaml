@@ -1,0 +1,13 @@
+execution_duration_ms: 1117
+request_preview: '{"messages": []}'
+request_time: '2025-12-15T14:23:19.828Z'
+response_preview: 'The sum of 1 + 1 is **2**.
+
+
+  (You''re facing a classic arithmetic question here! 1 + 1 = 2 in standard mathematics.)'
+state: OK
+trace_id: tr-ed5d54e8ae0a6e839732b85d3e4ded4a
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

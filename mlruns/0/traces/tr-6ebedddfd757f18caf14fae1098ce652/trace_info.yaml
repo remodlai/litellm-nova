@@ -1,0 +1,11 @@
+execution_duration_ms: 1654
+request_preview: '{"messages": []}'
+request_time: '2025-12-11T19:19:07.312Z'
+response_preview: "Hey! I'm all good on my end—thanks for asking. How about you? Anything
+  new or interesting going on? \U0001F31F"
+state: OK
+trace_id: tr-6ebedddfd757f18caf14fae1098ce652
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

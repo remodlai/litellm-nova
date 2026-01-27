@@ -1,0 +1,1 @@
+{"messages": [{"role": "user", "content": "what is the weather in portland maine"}], "tools": [{"type": "mcp", "server_label": "litellm", "server_url": "https://your-litellm-proxy/mcp", "require_approval": "never"}]}

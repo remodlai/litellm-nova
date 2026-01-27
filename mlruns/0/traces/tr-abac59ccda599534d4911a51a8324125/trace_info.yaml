@@ -1,0 +1,21 @@
+execution_duration_ms: 3542
+request_preview: what is the latest on graham plattner
+request_time: '2025-11-03T04:14:58.597Z'
+response_preview: '{"id": "chatcmpl-08492ec3-9b5e-414b-9e24-972472d69232", "created":
+  1762143301, "model": "claude-sonnet-4-5", "object": "chat.completion", "system_fingerprint":
+  null, "choices": [{"finish_reason": "tool_calls", "index": 0, "message": {"content":
+  "", "role": "assistant", "tool_calls": [{"function": {"arguments": "{\"query\":
+  \"Graham Plattner latest news\", \"limit\": 5, \"sources\": [{\"type\":\"web\"},{\"type\":\"news\"}]}",
+  "name": "firecrawl_search"}, "id": "toolu_015xJVULYp4yfRxUaKVuu9HX", "type": "function"}],
+  "function_call": null}}], "usage": {"completion_tokens": 95, "prompt_tokens": 2184,
+  "total_tokens": 2279, "completion_tokens_details": {"accepted_prediction_tokens":
+  null, "audio_tokens": null, "reasoning_tokens": 0, "rejected_prediction_tokens":
+  null, "text_tokens": null}, "prompt_tokens_details": {"audio_tokens": null, "cached_tokens":
+  0, "text_tokens": null, "image_tokens": null, "cache_creation_tokens": 0}, "cache_creation_input_tokens":
+  0, "cache_read_input_tokens": 0}}'
+state: OK
+trace_id: tr-abac59ccda599534d4911a51a8324125
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

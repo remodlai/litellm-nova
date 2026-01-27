@@ -1,0 +1,22 @@
+execution_duration_ms: 2160
+request_preview: default-message-value
+request_time: '2025-12-11T21:06:26.715Z'
+response_preview: '{"meta": null, "content": [{"type": "text", "text": "{\"query\":\"weather
+  portland maine\",\"follow_up_questions\":null,\"answer\":null,\"images\":[],\"results\":[{\"title\":\"Weather
+  in portland, maine\",\"url\":\"https://www.weatherapi.com/\",\"content\":\"{''location'':
+  {''name'': ''Portland'', ''region'': ''Maine'', ''country'': ''United States of
+  America'', ''lat'': 43.6614, ''lon'': -70.2558, ''tz_id'': ''America/New_York'',
+  ''localtime_epoch'': 1765487191, ''localtime'': ''2025-12-11 16:06''}, ''current'':
+  {''last_updated_epoch'': 1765486800, ''last_updated'': ''2025-12-11 16:00'', ''temp_c'':
+  -1.7, ''temp_f'': 28.9, ''is_day'': 0, ''condition'': {''text'': ''Sunny'', ''icon'':
+  ''//cdn.weatherapi.com/weather/64x64/night/113.png'', ''code'': 1000}, ''wind_mph'':
+  22.4, ''wind_kph'': 36.0, ''wind_degree'': 259, ''wind_dir'': ''W'', ''pressure_mb'':
+  996.0, ''pressure_in'': 29.41, ''precip_mm'': 0.0, ''precip_in'': 0.0, ''humidity'':
+  41, ''cloud'': 25, ''feelslike_c'': -9.3, ''feelslike_f'': 15.2, ''windchill_c'':
+  -10.0, ''windchill_f'': 14.0, ''heatindex_c'': -2.7...'
+state: OK
+trace_id: tr-cc7222efe83becc4b0c027da6bc96199
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,17 @@
+execution_duration_ms: 795
+request_preview: my name is Brian
+request_time: '2025-12-11T07:12:04.013Z'
+response_preview: 'Nice to meet you, Brian!
+
+
+  What can I help you with today—questions, ideas, or just someone to chat with? I’m
+  here for it. ✨
+
+
+  —*(Friendly, no strings, no Mistral flair.)*'
+state: OK
+trace_id: tr-79ee9d6cc3db07784487cb0474dd8481
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

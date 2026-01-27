@@ -1,0 +1,22 @@
+execution_duration_ms: 10167
+request_preview: what is happening when you try to use the tools
+request_time: '2025-12-11T16:22:47.511Z'
+response_preview: "When I try to use the tools like **`firecrawl_scrape`** or **`Firecrawl_search`**,
+  here’s how the process works step by-step:\n\n---\n\n### **1. Search Tool (`firecrawl_search`)**\nThis
+  searches the web (or other sources like images/news) for specific information based
+  on your query.\n\n#### **How It Works:**\n- I input a **query** (e.g., *\"latest
+  AI trends 2024\"*).\n- The tool searches relevant sources (web, images, news) and
+  returns **links** to the most relevant pages (like a search engine).\n- If needed,
+  I can also ask to **scrape the content** of those pages directly (extract text,
+  images, or structured data like tables).\n- Example use case:\n  > *\"Find 5 top
+  AI companies and extract their websites' latest news.\"*\n\n#### **What You See:**\n-
+  A list of search results (e.g., articles, videos, or images).\n- Optionally, the
+  **content** (text, summaries, or screenshots) of those results.\n\n---\n\n### **2.
+  Scrape Tool (`firecrawl_scrape`)**\nThis extracts content from a **specific URL**
+  (e.g., a webp..."
+state: OK
+trace_id: tr-c28826c4549d62b1fefcfb9a334a4781
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

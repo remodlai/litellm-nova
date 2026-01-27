@@ -1,0 +1,50 @@
+execution_duration_ms: 5057
+request_preview: what tools do you have
+request_time: '2025-12-11T20:51:57.010Z'
+response_preview: 'I have access to the following tools to assist you with information
+  and tasks:
+
+
+  ### **1. Web Search**
+
+  I can search the web in real-time for up-to-date information using the **`tavily-tavily_search`**
+  tool. This is useful for:
+
+  - **General information** (e.g., latest news, trends, or facts).
+
+  - **News** (e.g., recent events, updates on specific topics).
+
+  - **Finance** (e.g., stock updates, market trends).
+
+
+  #### **Search Capabilities:**
+
+  - Perform **basic or advanced searches** for specific topics.
+
+  - Filter results by **time range** (e.g., last day, week, month).
+
+  - Include or exclude specific **domains** (websites).
+
+  - Fetch **images, image descriptions, or raw content** (if needed).
+
+  - Focus on content from a **specific country**.
+
+
+  ---
+
+  ### How Can I Help You Today?
+
+  Let me know what you''re looking for, and I can use the right tool to assist you!
+  For example:
+
+  - Need the **latest news** about a topic?
+
+  - Want to know **up-to-date facts** on a subject?
+
+  - Need help with **specific websites** or ...'
+state: OK
+trace_id: tr-fae54749a899d21e129f46297090d656
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

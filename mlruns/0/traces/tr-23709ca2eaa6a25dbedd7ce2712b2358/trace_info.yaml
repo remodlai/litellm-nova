@@ -1,0 +1,10 @@
+execution_duration_ms: 2146
+request_preview: what did i ask you a moment ago
+request_time: '2025-12-11T18:31:29.763Z'
+response_preview: 'You asked: **“what did i ask you a moment ago”**.'
+state: OK
+trace_id: tr-23709ca2eaa6a25dbedd7ce2712b2358
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

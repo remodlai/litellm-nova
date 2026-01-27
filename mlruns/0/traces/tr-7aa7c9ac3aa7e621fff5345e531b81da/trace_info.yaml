@@ -1,0 +1,10 @@
+execution_duration_ms: 837
+request_preview: what is the weather in portland maine
+request_time: '2025-12-15T14:18:56.916Z'
+response_preview: ''
+state: ERROR
+trace_id: tr-7aa7c9ac3aa7e621fff5345e531b81da
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

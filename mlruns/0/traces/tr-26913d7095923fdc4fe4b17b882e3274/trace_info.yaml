@@ -1,0 +1,10 @@
+execution_duration_ms: 2980
+request_preview: '{"messages": []}'
+request_time: '2025-12-11T21:41:08.083Z'
+response_preview: 1 + 1 = 2
+state: OK
+trace_id: tr-26913d7095923fdc4fe4b17b882e3274
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

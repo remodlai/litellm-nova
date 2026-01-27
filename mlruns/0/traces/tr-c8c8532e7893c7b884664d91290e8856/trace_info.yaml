@@ -1,0 +1,19 @@
+execution_duration_ms: 1494
+request_preview: default-message-value
+request_time: '2025-11-04T01:16:57.214Z'
+response_preview: '[{"type": "text", "text": "{\n  \"web\": [\n    {\n      \"url\":
+  \"https://www.youtube.com/watch?v=qjgYGfQis80\",\n      \"title\": \"Graham Platner
+  ''vigorously'' making the case against ... - YouTube\",\n      \"description\":
+  \"NBC News Senior National Political Reporter Sahil Kapur sits down with Maine Senate
+  candidate Graham Platner. Platner addresses the recent ...\",\n      \"position\":
+  1\n    },\n    {\n      \"url\": \"https://www.theguardian.com/us-news/2025/nov/03/graham-platner-democrat-senate-maine\",\n      \"title\":
+  \"''In this ''til the end'': Maine Senate hopeful Graham Platner on ...\",\n      \"description\":
+  \"Platner''s populist campaign faces backlash over past comments and a contentious
+  tattoo.\",\n      \"position\": 2\n    },\n    {\n      \"url\": \"http://www.insideelections.com/news/article/is-graham-platner-solving-the-wrong-problem-maine-democrats-susan-collins\",\n      \"title\":
+  \"Is Graham Platner Solving the Wrong Problem for Maine Democrats?\",\n    ...'
+state: OK
+trace_id: tr-c8c8532e7893c7b884664d91290e8856
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

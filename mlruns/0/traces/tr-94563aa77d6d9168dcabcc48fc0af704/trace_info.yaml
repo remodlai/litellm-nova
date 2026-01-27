@@ -1,0 +1,24 @@
+execution_duration_ms: 3365
+request_preview: try searching for something
+request_time: '2025-12-11T18:27:14.679Z'
+response_preview: '<think>User says "try searching for something". They want us to
+  do a search, but not specify what to search. Could ask for clarification: "what
+  would you like me to search?" Alternatively, we could demonstrate the function by
+  searching a default topic, like "latest tech news" or "current weather". But that
+  might not satisfy.
+
+
+  Let''s follow user intentions: They say "try searching for something". They may
+  be encouraging us to use the web search tool. We could ask them to specify what
+  to search. That respects clarity.
+
+
+  Alternatively, we could pick a generic search. I''d ask them what they''d like.</think>Sure
+  thing! What would you like me to look up? Just let me know the topic or keyword
+  you’d like me to search for.'
+state: OK
+trace_id: tr-94563aa77d6d9168dcabcc48fc0af704
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,13 @@
+execution_duration_ms: 2922
+request_preview: what is the weather in Portland Maine. Make sure you are careful
+  about formatting the tool call correctly
+request_time: '2025-12-11T20:18:26.112Z'
+response_preview: "```json\n{\n  \"name\": \"compose_weather\",\n  \"arguments\":
+  {\n    \"address\": \"Portland Maine\",\n    \"authToken\": \"YOUR_AUTH_TOKEN_HERE\",\n
+  \   \"locationId\": \"YOUR_LOCATION_ID_HERE\"\n  }\n}\n```\n"
+state: OK
+trace_id: tr-237b3182d3f7669019b7f4f03721ca1f
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,20 @@
+execution_duration_ms: 888
+request_preview: what is the weather in portland maine
+request_time: '2025-12-12T17:59:34.252Z'
+response_preview: '{"id": "resp_bGl0ZWxsbTpjdXN0b21fbGxtX3Byb3ZpZGVyOm9wZW5haTttb2RlbF9pZDpmMzY5YTBmMC1iMTFhLTQ5ZDEtYTVkZS1jODQ3ZTQ0MWMwZjg7cmVzcG9uc2VfaWQ6cmVzcF85OWM4ODI2MGIxNWY0OGNl",
+  "created_at": 1765562374, "error": null, "incomplete_details": null, "instructions":
+  null, "metadata": null, "model": "gpt-oss-20b", "object": "response", "output":
+  [{"id": "rs_a6b38167266683e0", "summary": [], "type": "reasoning", "content": [{"text":
+  "User asks: \"what is the weather in portland maine\". Need up-to-date weather.
+  Use web_search_preview-tavily_search or maybe Firecrawl search? Since need current
+  weather. Use web_search_preview-tavily_search. Let''s search \"weather Portland
+  Maine today\".", "type": "reasoning_text"}], "encrypted_content": null, "status":
+  null}, {"arguments": "{\"query\":\"weather Portland Maine today\",\"max_results\":5,\"search_depth\":\"basic\",\"topic\":\"news\",\"include_raw_content\":false}",
+  "call_id": "call_903c4d1b9d0aad15", "name": "web_search_preview-tavily_search",
+  "type": "...'
+state: OK
+trace_id: tr-7ff0020a88c1a020a873898d735d0d3f
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,10 @@
+execution_duration_ms: 483
+request_preview: test searching the web. get the weather in portland maine
+request_time: '2025-12-11T07:10:00.339Z'
+response_preview: ''
+state: ERROR
+trace_id: tr-9d3415d2d2a734ea6f19c665759498c3
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,12 @@
+execution_duration_ms: 1822
+request_preview: use tavily to search for top news stopries
+request_time: '2025-12-11T18:27:45.293Z'
+response_preview: '<think>User wants to search for top news stories using tavily.
+  We''ll need to call the tavily_web_search function. Provide a query: "top news stories".
+  Use maybe 5 results, advanced search? Likely general. Let''s do a basic search.'
+state: OK
+trace_id: tr-564ca2c54a5926dbf8383bafbaaf328f
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

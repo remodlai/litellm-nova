@@ -1,0 +1,12 @@
+execution_duration_ms: 876
+request_preview: hi
+request_time: '2025-12-11T16:17:06.653Z'
+response_preview: "Hi there! \U0001F60A How can I help you today? Feel free to ask
+  me anything—whether it's a question, a fun fact, advice, or just a random chat.
+  I'm here for it! \U0001F680✨"
+state: OK
+trace_id: tr-c803db56bffe8ee38184c7728f927902
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

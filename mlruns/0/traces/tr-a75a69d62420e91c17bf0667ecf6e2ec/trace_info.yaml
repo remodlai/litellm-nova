@@ -1,0 +1,13 @@
+execution_duration_ms: 30126
+request_preview: 'what tools can you use
+
+
+  '
+request_time: '2025-12-11T17:46:16.232Z'
+response_preview: ''
+state: ERROR
+trace_id: tr-a75a69d62420e91c17bf0667ecf6e2ec
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

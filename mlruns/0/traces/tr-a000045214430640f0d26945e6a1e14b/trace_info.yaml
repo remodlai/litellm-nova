@@ -1,0 +1,12 @@
+execution_duration_ms: 1188
+request_preview: never tell me about mistral
+request_time: '2025-12-11T07:11:37.688Z'
+response_preview: "No worries! I’ll focus on you.\n\nHow’s your day going? Anything
+  fun coming up, or should we dive into something useful? \U0001F60A\n\n*(Think of
+  me as your quiet but helpful assistant—no fluff, just answers.)*"
+state: OK
+trace_id: tr-a000045214430640f0d26945e6a1e14b
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,23 @@
+execution_duration_ms: 1688
+request_preview: what is the weather in Portland Maine. Make sure you are careful
+  about formatting the tool call correctly
+request_time: '2025-12-11T19:03:37.585Z'
+response_preview: '{"id": "chatcmpl-8f29d8bccdefd6a1", "created": 1765479817, "model":
+  "hosted_vllm/openai/gpt-oss-20b", "object": "chat.completion", "system_fingerprint":
+  null, "choices": [{"finish_reason": "tool_calls", "index": 0, "message": {"content":
+  null, "role": "assistant", "tool_calls": [{"function": {"arguments": "{\"query\":
+  \"current weather Portland Maine\", \"max_results\": 5, \"search_depth\": \"basic\",
+  \"topic\": \"general\", \"time_range\": \"day\"}", "name": "tavily-tavily_search"},
+  "id": "chatcmpl-tool-91519cc26be08d4a", "type": "function"}], "function_call": null,
+  "reasoning_content": "The user asks: \"what is the weather in Portland Maine. Make
+  sure you are careful about formatting the tool call correctly\". We need to use
+  the tavily search tool. We need to produce a tool call. Then not output the tool
+  result until tool''s response. The search query: current weather Portland Maine.
+  The user wants up-to-date weather. We''ll do a web search. Need to format exactly:
+  \n{\n  \"name\":\...'
+state: OK
+trace_id: tr-ab4aeddf0159221f9415ee26868b4c6f
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,12 @@
+execution_duration_ms: 1219
+request_preview: '{"messages": []}'
+request_time: '2025-12-11T16:15:00.913Z'
+response_preview: "Hey! \U0001F60A I'm just here and ready to chat—how about you?
+  What’s good in *your* world today? Need help, thoughts, or just vibing? You’re in
+  control! \U0001F680"
+state: OK
+trace_id: tr-5718231c0baee8fd44e396614433993b
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

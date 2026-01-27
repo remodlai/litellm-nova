@@ -1,0 +1,12 @@
+execution_duration_ms: 2370
+request_preview: and before that
+request_time: '2025-12-11T18:31:40.476Z'
+response_preview: I’m not sure I understand what you’d like to see “before that.”
+  Could you let me know which part or topic you’re referring to? That’ll help me give
+  you the right information.
+state: OK
+trace_id: tr-48977853d3362b85819b0c6a6f402a7d
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,10 @@
+execution_duration_ms: 30043
+request_preview: Say hello
+request_time: '2025-12-11T21:42:24.974Z'
+response_preview: "Hello! \U0001F60A"
+state: OK
+trace_id: tr-37a593313764eedc79470a9044f450ce
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

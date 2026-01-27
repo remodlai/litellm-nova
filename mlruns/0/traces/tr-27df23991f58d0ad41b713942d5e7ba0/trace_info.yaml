@@ -1,0 +1,10 @@
+execution_duration_ms: 2040
+request_preview: my name is Brian
+request_time: '2025-12-11T19:27:47.987Z'
+response_preview: Nice to meet you, Brian! How can I help you today?
+state: OK
+trace_id: tr-27df23991f58d0ad41b713942d5e7ba0
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

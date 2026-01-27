@@ -1,0 +1,46 @@
+execution_duration_ms: 11335
+request_preview: what is the latest on graham plattner
+request_time: '2025-11-03T04:15:03.697Z'
+response_preview: 'Based on the latest search results, here''s what''s happening with
+  **Graham Platner** (note: the correct spelling appears to be "Platner" rather than
+  "Plattner"):
+
+
+  ## Recent Updates:
+
+
+  **Campaign Controversies (Late January 2025)**
+
+  - Platner, a Maine U.S. Senate candidate running to challenge Republican Senator
+  Susan Collins, has faced multiple early campaign controversies
+
+  - He was involved in a scandal regarding past Reddit posts that came to light during
+  his campaign
+
+  - There was also a "tattoo scandal" where he "bared his chest" in response to controversy
+
+  - Despite these issues, Platner has stated "I have no right to give up" and is continuing
+  his campaign
+
+
+  **Political Activity**
+
+  - He rallied against **Question 1** in Portland, which would create stronger voter
+  ID laws in Maine
+
+  - The Democratic National Committee chair has commented on his candidacy
+
+  - He faces a crowded Democratic primary field for the U.S. Senate seat
+
+
+  **Background**
+
+  - Platner is an oyster farmer from Maine
+
+  - He rec...'
+state: OK
+trace_id: tr-c4575b7838f5d0dafb0ebede25cbaa69
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

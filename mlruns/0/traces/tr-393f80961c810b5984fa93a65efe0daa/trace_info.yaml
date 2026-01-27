@@ -1,0 +1,21 @@
+execution_duration_ms: 1469
+request_preview: default-message-value
+request_time: '2025-11-06T21:16:10.456Z'
+response_preview: '[{"type": "text", "text": "{\n  \"web\": [\n    {\n      \"url\":
+  \"https://www.quora.com/What-would-the-capital-of-the-Moon-be-called\",\n      \"title\":
+  \"What would the capital of the Moon be called? - Quora\",\n      \"description\":
+  \"Some variation on Luna City, Luna 1 or even just Luna are likely candidates for
+  the lunar capital. Though the Greek lunar goddess'' name Selene ...\",\n      \"position\":
+  1\n    },\n    {\n      \"url\": \"https://en.wikipedia.org/wiki/Moon\",\n      \"title\":
+  \"Moon - Wikipedia\",\n      \"description\": \"The English proper name for Earth''s
+  natural satellite is typically written as Moon, with a capital M. The noun moon
+  is derived from Old English ...\",\n      \"position\": 2\n    },\n    {\n      \"url\":
+  \"https://lunarchronicles.fandom.com/wiki/Luna\",\n      \"title\": \"Luna | Lunar
+  Chronicles Wiki - Fandom\",\n      \"description\": \"Luna''s capital city, Artemisia,
+  is located on the Earth-facing side of the moon near the North Pole at t...'
+state: OK
+trace_id: tr-393f80961c810b5984fa93a65efe0daa
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

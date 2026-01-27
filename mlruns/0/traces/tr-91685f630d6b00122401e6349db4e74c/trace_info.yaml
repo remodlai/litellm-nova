@@ -1,0 +1,21 @@
+execution_duration_ms: 1110
+request_preview: what is the weather in Portland Maine
+request_time: '2025-12-11T18:43:18.843Z'
+response_preview: '{"id": "chatcmpl-adbf0f7283b1db05", "created": 1765478599, "model":
+  "hosted_vllm/openai/gpt-oss-20b", "object": "chat.completion", "system_fingerprint":
+  null, "choices": [{"finish_reason": "tool_calls", "index": 0, "message": {"content":
+  null, "role": "assistant", "tool_calls": [{"function": {"arguments": "{\"query\":
+  \"weather Portland Maine\", \"max_results\": 5, \"search_depth\": \"basic\", \"topic\":
+  \"general\"}", "name": "tavily_web_search-tavily_search"}, "id": "chatcmpl-tool-91e1d2a4f8eb0140",
+  "type": "function"}], "function_call": null, "reasoning_content": "The user asks:
+  \"what is the weather in Portland Maine\". This is a real-time weather query. We
+  need up-to-date info. We should search the web. Use the tavily_web_search function.
+  Provide query: \"weather Portland Maine\" maybe \"Portland, Maine weather\". Let''s
+  search.", "provider_specific_fields": {"refusal": null, "reasoning": "The user asks:
+  \"what is the weather in Portland Maine\". This is a real-time weather quer...'
+state: OK
+trace_id: tr-91685f630d6b00122401e6349db4e74c
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

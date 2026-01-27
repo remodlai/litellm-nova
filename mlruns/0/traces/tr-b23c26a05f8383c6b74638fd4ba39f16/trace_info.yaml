@@ -1,0 +1,10 @@
+execution_duration_ms: 1253
+request_preview: '{"messages": []}'
+request_time: '2025-12-12T17:35:41.810Z'
+response_preview: "Hey! I'm doing great—thanks for asking! How about you? \U0001F60A"
+state: OK
+trace_id: tr-b23c26a05f8383c6b74638fd4ba39f16
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

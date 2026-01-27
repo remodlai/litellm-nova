@@ -1,0 +1,12 @@
+execution_duration_ms: 1860
+request_preview: what is the weather in portland maine
+request_time: '2025-12-15T17:16:50.250Z'
+response_preview: '[TOOL_CALLS]firecrawl_search{"query": "weather in Portland Maine",
+  "limit": 1, "sources": [{"type": "web"}], "scrapeOptions": {"formats": ["markdown"],
+  "onlyMainContent": true}}'
+state: OK
+trace_id: tr-b5f1e275016764fdaed8ac6e677396d9
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

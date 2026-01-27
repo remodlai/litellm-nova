@@ -1,0 +1,13 @@
+execution_duration_ms: 3041
+request_preview: can you search the web
+request_time: '2025-12-11T16:18:22.351Z'
+response_preview: "Yes! I can search the web for you. What would you like me to search
+  for? \U0001F60A\n\nFor example:\n- *\"Latest AI trends in 2024.\"*\n- *\"Best travel
+  destinations in Europe.\"*\n- *\"How to fix a broken pipe.\"*\n- *\"Upcoming tech
+  conferences.\"*"
+state: OK
+trace_id: tr-a29ded95851bc2534a5ca0226a9506c5
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

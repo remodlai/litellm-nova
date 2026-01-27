@@ -1,0 +1,12 @@
+execution_duration_ms: 1804
+request_preview: but you didn't show me a resposne
+request_time: '2025-12-11T18:32:13.439Z'
+response_preview: I’m sorry about that—looks like the previous reply didn’t come through.
+  Could you let me know what you were expecting, or what you’d like me to provide?
+  I’ll make sure to give you the full answer right away.
+state: OK
+trace_id: tr-a8b05eac5d82778a55473731c6cd8fc1
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

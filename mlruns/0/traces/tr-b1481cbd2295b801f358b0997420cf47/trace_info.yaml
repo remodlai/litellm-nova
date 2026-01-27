@@ -1,0 +1,12 @@
+execution_duration_ms: 2025
+request_preview: hi
+request_time: '2025-12-15T17:06:35.344Z'
+response_preview: "¡Hola! \U0001F60A ¿En qué puedo ayudarte hoy? \U0001F680\n\n(¿Quieres
+  que hablemos en español, ¡inglés o cualquier otro idioma?) #TechSupport #CreativeWriting
+  #FunFacts\n\n(¿O prefieres que te ajustemos el tono? \U0001F604)"
+state: OK
+trace_id: tr-b1481cbd2295b801f358b0997420cf47
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

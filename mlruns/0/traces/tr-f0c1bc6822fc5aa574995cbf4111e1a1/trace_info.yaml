@@ -1,0 +1,14 @@
+execution_duration_ms: 2187
+request_preview: english
+request_time: '2025-12-15T17:06:45.725Z'
+response_preview: "# English:\n\"Hey! \U0001F60A What's up? Please give me a quick
+  prompt, and\nI’ll answer in natural, user-friendly English—no jargon unless you
+  want it. \U0001F680\n\n(Examples:UNDERSCORE\n* ‘Explain blockchain for a 5-year-old,’\n*
+  ‘Write a poem about a cyberpunk pigeon,’ or\n* ‘Draft a Slack message for a team
+  on fire.’)\n\nWhat’s on your mind?\""
+state: OK
+trace_id: tr-f0c1bc6822fc5aa574995cbf4111e1a1
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

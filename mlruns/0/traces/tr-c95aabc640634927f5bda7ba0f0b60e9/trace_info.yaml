@@ -1,0 +1,21 @@
+execution_duration_ms: 941
+request_preview: default-message-value
+request_time: '2025-12-11T16:30:39.058Z'
+response_preview: '{"results": [{"title": "Goat - Wikipedia", "url": "https://en.wikipedia.org/wiki/Goat",
+  "snippet": "The goat or domestic goat (Capra hircus) is a species of goat-antelope
+  that is mostly kept as livestock. It was domesticated from the wild goat (C. aegagrus)
+  of", "date": null, "last_updated": null}, {"title": "GOAT Definition & Meaning -
+  Merriam-Webster", "url": "https://www.merriam-webster.com/dictionary/goat", "snippet":
+  "# goat. or plural goat  **:** any of various hollow-horned ruminant mammals (especially
+  of the genus *Capra*) related to the sheep but of lighter build and with backwardly
+  arching horns, a short tail, and usually straight hair. variants  or less commonly
+  G.O.A.T. plural GOATs also G.O.A.T.s. ## Synonyms of *goat*. ## Examples of *goat*
+  in a Sentence. Noun   In the last inning, a home run can make you the hero, and
+  a strikeout can make you *the goat*. —Brian Truitt, *USA Today*, 25 Nov. 2025    See
+  All Example Sentences for *goat*. ## Word History. The first known ...'
+state: OK
+trace_id: tr-c95aabc640634927f5bda7ba0f0b60e9
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

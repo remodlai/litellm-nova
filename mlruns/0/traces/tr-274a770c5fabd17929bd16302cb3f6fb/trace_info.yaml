@@ -1,0 +1,20 @@
+execution_duration_ms: 2194
+request_preview: try searching for the weather in portland maine.
+request_time: '2025-12-11T18:32:30.969Z'
+response_preview: '{"id": "chatcmpl-81faff5058f246c2", "created": 1765477952, "model":
+  "openai/gpt-oss-20b", "object": "chat.completion", "system_fingerprint": null, "choices":
+  [{"finish_reason": "stop", "index": 0, "message": {"content": null, "role": "assistant",
+  "tool_calls": [{"function": {"arguments": "{\"query\":\"weather Portland Maine\",\"max_results\":5,\"search_depth\":\"basic\",\"topic\":\"news\"}",
+  "name": "tavily_web_search-tavily_search"}, "id": "chatcmpl-tool-862faf68734d917e",
+  "type": "function"}], "function_call": null, "provider_specific_fields": null, "reasoning_content":
+  "We need to perform web search for \"weather in portland maine\". We''ll use tavily.
+  Then present result."}}], "usage": {"completion_tokens": 71, "prompt_tokens": 1725,
+  "total_tokens": 1796, "completion_tokens_details": {"accepted_prediction_tokens":
+  null, "audio_tokens": null, "reasoning_tokens": 25, "rejected_prediction_tokens":
+  null, "text_tokens": null, "image_tokens": null}, "prompt_tokens_details": null}}'
+state: OK
+trace_id: tr-274a770c5fabd17929bd16302cb3f6fb
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

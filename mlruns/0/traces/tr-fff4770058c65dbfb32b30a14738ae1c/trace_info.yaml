@@ -1,0 +1,16 @@
+execution_duration_ms: 3604
+request_preview: what did i ask you to search
+request_time: '2025-12-11T18:31:55.562Z'
+response_preview: "You asked me to **“try searching for something.”**  \nSince you
+  didn’t give a specific keyword, I ran a few general searches to demonstrate the
+  tool:\n\n| Purpose | Query |\n|---------|-------|\n| Explore current headlines |
+  “top news 2025‑12‑11” |\n| Get a snapshot of today’s news | “top news stories” |\n|
+  Check the latest tech updates | “latest tech news” |\n\nIf there’s a particular
+  topic, keyword, or question you’d like me to look up, just let me know and I’ll
+  run a focused search for you!"
+state: OK
+trace_id: tr-fff4770058c65dbfb32b30a14738ae1c
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

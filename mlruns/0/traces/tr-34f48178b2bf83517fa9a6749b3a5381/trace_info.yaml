@@ -1,0 +1,10 @@
+execution_duration_ms: 30185
+request_preview: Once upon a time
+request_time: '2025-12-11T21:41:59.567Z'
+response_preview: ''
+state: ERROR
+trace_id: tr-34f48178b2bf83517fa9a6749b3a5381
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

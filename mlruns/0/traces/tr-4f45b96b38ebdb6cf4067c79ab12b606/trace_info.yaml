@@ -1,0 +1,10 @@
+execution_duration_ms: 210
+request_preview: what tools do you have
+request_time: '2025-12-11T19:21:19.476Z'
+response_preview: ''
+state: ERROR
+trace_id: tr-4f45b96b38ebdb6cf4067c79ab12b606
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

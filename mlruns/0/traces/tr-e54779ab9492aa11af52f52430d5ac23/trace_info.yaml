@@ -1,0 +1,17 @@
+execution_duration_ms: 1747
+request_preview: try again
+request_time: '2025-12-11T20:52:26.151Z'
+response_preview: '{"id": "chatcmpl-9d98e05e14a4413e", "created": 1765486347, "model":
+  "mistralai/Ministral-3-14B-Instruct-2512", "object": "chat.completion", "system_fingerprint":
+  null, "choices": [{"finish_reason": "stop", "index": 0, "message": {"content": "",
+  "role": "assistant", "tool_calls": null, "function_call": null, "provider_specific_fields":
+  null}}], "usage": {"completion_tokens": 38, "prompt_tokens": 1070, "total_tokens":
+  1108, "completion_tokens_details": {"accepted_prediction_tokens": null, "audio_tokens":
+  null, "reasoning_tokens": 0, "rejected_prediction_tokens": null, "text_tokens":
+  null, "image_tokens": null}, "prompt_tokens_details": null}}'
+state: OK
+trace_id: tr-e54779ab9492aa11af52f52430d5ac23
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

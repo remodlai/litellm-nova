@@ -1,0 +1,17 @@
+execution_duration_ms: 2403
+request_preview: try using it to search for latest news stories
+request_time: '2025-12-11T20:52:11.736Z'
+response_preview: '{"id": "chatcmpl-ad8d46840eea5d6a", "created": 1765486333, "model":
+  "mistralai/Ministral-3-14B-Instruct-2512", "object": "chat.completion", "system_fingerprint":
+  null, "choices": [{"finish_reason": "stop", "index": 0, "message": {"content": "",
+  "role": "assistant", "tool_calls": null, "function_call": null, "provider_specific_fields":
+  null}}], "usage": {"completion_tokens": 45, "prompt_tokens": 1067, "total_tokens":
+  1112, "completion_tokens_details": {"accepted_prediction_tokens": null, "audio_tokens":
+  null, "reasoning_tokens": 0, "rejected_prediction_tokens": null, "text_tokens":
+  null, "image_tokens": null}, "prompt_tokens_details": null}}'
+state: OK
+trace_id: tr-094142d11f08679596144447dd6b4578
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,11 @@
+execution_duration_ms: 1595
+request_preview: top news
+request_time: '2025-12-11T18:27:26.475Z'
+response_preview: '<think>User: "top news". Need to fetch current top news. Use web
+  search.'
+state: OK
+trace_id: tr-2a1e945617f86620aeb251de87b1d095
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

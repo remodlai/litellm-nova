@@ -1,0 +1,21 @@
+execution_duration_ms: 1951
+request_preview: default-message-value
+request_time: '2025-12-11T18:52:14.234Z'
+response_preview: '{"meta": null, "content": [{"type": "text", "text": "{\"query\":\"weather
+  04097\",\"follow_up_questions\":null,\"answer\":null,\"images\":[],\"results\":[{\"title\":\"Weather
+  in 04097\",\"url\":\"https://www.weatherapi.com/\",\"content\":\"{''location'':
+  {''name'': ''North Yarmouth'', ''region'': ''Maine'', ''country'': ''USA'', ''lat'':
+  43.8380012512207, ''lon'': -70.2001037597656, ''tz_id'': ''America/New_York'', ''localtime_epoch'':
+  1765479167, ''localtime'': ''2025-12-11 13:52''}, ''current'': {''last_updated_epoch'':
+  1765478700, ''last_updated'': ''2025-12-11 13:45'', ''temp_c'': 0.6, ''temp_f'':
+  33.1, ''is_day'': 1, ''condition'': {''text'': ''Partly Cloudy'', ''icon'': ''//cdn.weatherapi.com/weather/64x64/day/116.png'',
+  ''code'': 1003}, ''wind_mph'': 19.5, ''wind_kph'': 31.3, ''wind_degree'': 252, ''wind_dir'':
+  ''WSW'', ''pressure_mb'': 995.0, ''pressure_in'': 29.37, ''precip_mm'': 0.0, ''precip_in'':
+  0.0, ''humidity'': 38, ''cloud'': 25, ''feelslike_c'': -5.8, ''feelslike_f'': 21.5,
+  ''windchill_c'': -6.8, ''windchill_f'': 19.7, ''heatindex_c'': -0.8, ''heatind...'
+state: OK
+trace_id: tr-286dd49dfa2bbf368f9b31e210ccf2b8
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

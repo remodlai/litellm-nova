@@ -1,0 +1,21 @@
+execution_duration_ms: 3198
+request_preview: try searching for the weather in maine rgiht now
+request_time: '2025-12-11T17:40:59.845Z'
+response_preview: '{"id": "chatcmpl-91b42fd5702e6a3e", "created": 1765474862, "model":
+  "openai/gpt-oss-20b", "object": "chat.completion", "system_fingerprint": null, "choices":
+  [{"finish_reason": "stop", "index": 0, "message": {"content": null, "role": "assistant",
+  "tool_calls": [{"function": {"arguments": "{\"query\":\"weather in Maine right now\",\"limit\":5,\"sources\":[{\"type\":\"web\"}]}",
+  "name": "firecrawl-firecrawl_search"}, "id": "chatcmpl-tool-bf6eed39737df2b3", "type":
+  "function"}], "function_call": null, "provider_specific_fields": null, "reasoning_content":
+  "The user says: \"try searching for the weather in maine rgiht now\". There''s a
+  typo: \"rgiht\". They likely want the current weather in Maine. We''ll search the
+  web. Use firecrawl_search. Probably query: \"current weather in Maine\" or \"weather
+  in Maine right now\". Let''s search."}}], "usage": {"completion_tokens": 109, "prompt_tokens":
+  987, "total_tokens": 1096, "completion_tokens_details": {"accepted_prediction_tokens":
+  null, "audi...'
+state: OK
+trace_id: tr-c671c93b7dfaeb83b23f91b7c0f7cea2
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

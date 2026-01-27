@@ -1,0 +1,20 @@
+execution_duration_ms: 1918
+request_preview: what is the weather in portland maine
+request_time: '2025-12-12T17:47:56.409Z'
+response_preview: '{"id": "resp_bGl0ZWxsbTpjdXN0b21fbGxtX3Byb3ZpZGVyOm9wZW5haTttb2RlbF9pZDpmMzY5YTBmMC1iMTFhLTQ5ZDEtYTVkZS1jODQ3ZTQ0MWMwZjg7cmVzcG9uc2VfaWQ6cmVzcF9hOGQ4MjRhNGQyODhhZjhm",
+  "created_at": 1765561676, "error": null, "incomplete_details": null, "instructions":
+  null, "metadata": null, "model": "gpt-oss-20b", "object": "response", "output":
+  [{"id": "rs_9e59ffa2bf7a2916", "summary": [], "type": "reasoning", "content": [{"text":
+  "The user asks: \"what is the weather in portland maine\". We need to look up current
+  weather. Likely we need to fetch real-time data. We can use web_search_preview-tavily_search
+  to search for current weather in Portland Maine. Alternatively use firecrawl_search.
+  The domain \"tavily\" maybe another tool. The official instructions: \"Search the
+  web for real-time information ... use this tool when you need up-to-date information.\"
+  That''s the recommended tool for weather.\n\nThus call web_search_preview-tavily_search
+  with query \"weather in Portland Maine today\" or \"cur...'
+state: OK
+trace_id: tr-c327da142df9b62ee949972b3ff8238c
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

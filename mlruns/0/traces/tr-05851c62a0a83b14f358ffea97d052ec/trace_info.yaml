@@ -1,0 +1,11 @@
+execution_duration_ms: 1098
+request_preview: '{"messages": []}'
+request_time: '2025-12-12T15:46:41.634Z'
+response_preview: Hey there! I’m doing great—thanks for asking. How’s everything on
+  your end?
+state: OK
+trace_id: tr-05851c62a0a83b14f358ffea97d052ec
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

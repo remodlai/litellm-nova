@@ -1,0 +1,17 @@
+execution_duration_ms: 1625
+request_preview: search for the weather in maine
+request_time: '2025-12-11T16:20:47.604Z'
+response_preview: '{"id": "chatcmpl-bc9bded4ec877e34", "created": 1765470048, "model":
+  "mistralai/Ministral-3-14B-Instruct-2512", "object": "chat.completion", "system_fingerprint":
+  null, "choices": [{"finish_reason": "stop", "index": 0, "message": {"content": "",
+  "role": "assistant", "tool_calls": null, "function_call": null, "provider_specific_fields":
+  null}}], "usage": {"completion_tokens": 47, "prompt_tokens": 1660, "total_tokens":
+  1707, "completion_tokens_details": {"accepted_prediction_tokens": null, "audio_tokens":
+  null, "reasoning_tokens": 0, "rejected_prediction_tokens": null, "text_tokens":
+  null, "image_tokens": null}, "prompt_tokens_details": null}}'
+state: OK
+trace_id: tr-6dc202c2fbffffc1a0801f503b1a5d51
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

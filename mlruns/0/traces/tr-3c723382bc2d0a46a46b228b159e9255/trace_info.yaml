@@ -1,0 +1,10 @@
+execution_duration_ms: 4779
+request_preview: hi
+request_time: '2025-12-11T20:51:44.858Z'
+response_preview: "Hello! How can I assist you today? \U0001F60A"
+state: OK
+trace_id: tr-3c723382bc2d0a46a46b228b159e9255
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

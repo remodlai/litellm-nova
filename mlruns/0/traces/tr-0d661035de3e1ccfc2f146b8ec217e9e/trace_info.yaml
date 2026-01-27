@@ -1,0 +1,23 @@
+execution_duration_ms: 7183
+request_preview: what is the weather in Portland Maine. Make sure you are careful
+  about formatting the tool call correctly
+request_time: '2025-12-11T19:08:29.958Z'
+response_preview: "Here’s a properly formatted **toolbar/call-instruction** for retrieving
+  the weather in **Portland, Maine** (using structured syntax like you might in an
+  API/government tool prompt):\n\n---\n**Correct Formatting Example:**\n\n```plaintext\n[\n
+  \ \"weather\": {\n    \"location\": \"Portland, ME, USA\",\n    \"type\": \"current_forecast\",\n
+  \   \"include\": [\"temperature\", \"conditions\", \"humidity\", \"wind_speed\",
+  \"uv_index\"],\n    \"unit_system\": \"imperial\",\n    \"provider\": \"NWS_API\"
+  \ // or \"NOAA APIs/FederatedWx/etc.\" depending on context\n  }\n]\n```\n\n**Key
+  Components:**\n1. Standardized **JSON-like structure** (less ambiguous than plaintext).\n2.
+  **Location specificity**: Use \"Portland, ME, USA\" (avoiding partial typos like
+  \"Portland, Maine\").\n3. **Precision fields**: Temperature is the most crucial
+  for safety/awareness (include secondary flags like \"humidity >75%\" for rainfall
+  potential).\n---\n**Alternately**, if your system accepts checklist/prompts:\n\n---\n**Formatted
+  Query Tool Call:**\n\n**Step 1:** `Query=\"weath..."
+state: OK
+trace_id: tr-0d661035de3e1ccfc2f146b8ec217e9e
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

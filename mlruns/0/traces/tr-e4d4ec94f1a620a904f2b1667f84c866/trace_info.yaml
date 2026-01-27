@@ -1,0 +1,14 @@
+execution_duration_ms: 2148
+request_preview: try again
+request_time: '2025-12-11T16:20:37.278Z'
+response_preview: "Could you clarify what you'd like me to try again? For example:\n\n-
+  Do you want me to **re-search** something specific? (e.g., latest tech news, a product
+  review, etc.)\n- Should I **re-phrase or refine** my previous response?\n- Are you
+  looking for something from a **specific website**?\n- Or is there something else
+  you had in mind? \U0001F60A"
+state: OK
+trace_id: tr-e4d4ec94f1a620a904f2b1667f84c866
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

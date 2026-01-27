@@ -1,0 +1,17 @@
+execution_duration_ms: 1846
+request_preview: 'try scraping this page: https://en.wikipedia.org/wiki/Goat'
+request_time: '2025-12-11T16:21:50.537Z'
+response_preview: '{"id": "chatcmpl-9254ad30f486df86", "created": 1765470111, "model":
+  "mistralai/Ministral-3-14B-Instruct-2512", "object": "chat.completion", "system_fingerprint":
+  null, "choices": [{"finish_reason": "stop", "index": 0, "message": {"content": "",
+  "role": "assistant", "tool_calls": null, "function_call": null, "provider_specific_fields":
+  null}}], "usage": {"completion_tokens": 45, "prompt_tokens": 2536, "total_tokens":
+  2581, "completion_tokens_details": {"accepted_prediction_tokens": null, "audio_tokens":
+  null, "reasoning_tokens": 0, "rejected_prediction_tokens": null, "text_tokens":
+  null, "image_tokens": null}, "prompt_tokens_details": null}}'
+state: OK
+trace_id: tr-43c6edf059bc47e1c2715c8bccee655d
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

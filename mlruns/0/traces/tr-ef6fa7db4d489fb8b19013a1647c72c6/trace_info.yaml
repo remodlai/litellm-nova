@@ -1,0 +1,12 @@
+execution_duration_ms: 2135
+request_preview: heoo?
+request_time: '2025-12-11T16:37:22.827Z'
+response_preview: "Hello! \U0001F60A Are you still there? How can I assist you now?\n\nIf
+  you have any questions or need help with something—searching for info, answering
+  a topic, or anything else—just let me know! \U0001F680"
+state: OK
+trace_id: tr-ef6fa7db4d489fb8b19013a1647c72c6
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT

@@ -1,0 +1,11 @@
+execution_duration_ms: 2497
+request_preview: try again
+request_time: '2025-12-11T18:31:17.237Z'
+response_preview: Sure! Could you tell me what you'd like me to try again? Any details
+  or context would help me give you a better answer.
+state: OK
+trace_id: tr-41a7f5423f0b4c7ad23a4bd9944a75b9
+trace_location:
+  mlflow_experiment:
+    experiment_id: '0'
+  type: MLFLOW_EXPERIMENT
